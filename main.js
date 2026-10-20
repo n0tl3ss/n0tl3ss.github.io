@@ -59,7 +59,7 @@ if (configured()) {
 form.addEventListener('submit', (event) => {
   if (!configured()) {
     event.preventDefault();
-    message('This preview does not send messages. You can reach me by email.');
+    message('The contact form is currently unavailable. Please use the email link to get in touch.');
     return;
   }
   if (!challengeToken) {

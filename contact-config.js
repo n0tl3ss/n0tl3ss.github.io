@@ -1,5 +1,5 @@
 // Public configuration only. Keep the Turnstile SECRET in Apps Script properties.
-// Empty values intentionally keep this review build from sending messages.
+// Empty values keep the form disabled until the live services are connected.
 window.CONTACT_CONFIG = Object.freeze({
   endpoint: "",
   turnstileSiteKey: ""
