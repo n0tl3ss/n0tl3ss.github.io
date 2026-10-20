@@ -104,19 +104,10 @@ function diagnoseSetup() {
     const config = getConfig();
     stage = 'storage';
     getSheet(config);
-    stage = 'recaptcha';
-    // An intentionally invalid token checks API access without accepting a message.
-    const result = createRecaptchaAssessment('setup-diagnostic-invalid-token', config);
-    if (!result.tokenProperties || result.tokenProperties.valid !== false) {
-      throw contactFailure('DIAGNOSTIC_UNEXPECTED_RESPONSE');
-    }
-    const reason = result.tokenProperties.invalidReason;
-    if (reason === 'KEY_MISMATCH' || reason === 'DOMAIN_MISMATCH') {
-      throw contactFailure('RECAPTCHA_TOKEN_' + reason);
-    }
+    // Only a fresh token from the real form can test the reCAPTCHA integration.
     console.log(JSON.stringify({
       event: 'contact_diagnostic',
-      code: 'SHEET_AND_RECAPTCHA_API_REACHABLE',
+      code: 'CONFIG_AND_SHEET_OK',
     }));
   } catch (error) {
     logContactFailure('setup_' + stage, error);

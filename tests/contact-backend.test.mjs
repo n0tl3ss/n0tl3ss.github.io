@@ -396,13 +396,15 @@ test('logs private diagnostic codes without exposing provider errors or form dat
   }
 });
 
-test('setup diagnostic checks API access and sheet schema without saving or sending', () => {
-  const harness = createHarness({ recaptchaResponse: { tokenProperties: { valid: false, invalidReason: 'MALFORMED' } } });
-  harness.sandbox.diagnoseSetup();
-  assert.deepEqual(JSON.parse(harness.logs[0]), { event: 'contact_diagnostic', code: 'SHEET_AND_RECAPTCHA_API_REACHABLE' });
-  assert.equal(JSON.parse(harness.fetches[0].request.payload).event.token, 'setup-diagnostic-invalid-token');
-  assert.equal(harness.rows.length, 0);
-  assert.equal(harness.sentEmails.length, 0);
+test('setup diagnostic checks configuration and sheet schema without calling reCAPTCHA', () => {
+  for (const options of [{}, { recaptchaStatus: 400 }, { recaptchaStatus: 403 }, { fetchError: true }]) {
+    const harness = createHarness(options);
+    harness.sandbox.diagnoseSetup();
+    assert.deepEqual(JSON.parse(harness.logs[0]), { event: 'contact_diagnostic', code: 'CONFIG_AND_SHEET_OK' });
+    assert.equal(harness.fetches.length, 0);
+    assert.equal(harness.rows.length, 0);
+    assert.equal(harness.sentEmails.length, 0);
+  }
 });
 
 test('reports known Google API rejection reasons without logging the response body', () => {
@@ -419,9 +421,9 @@ test('reports known Google API rejection reasons without logging the response bo
         details: [{ '@type': 'type.googleapis.com/google.rpc.ErrorInfo', reason }],
       } },
     });
-    harness.sandbox.diagnoseSetup();
+    assert.match(html(harness.post()), /could not submit/);
     assert.deepEqual(JSON.parse(harness.logs[0]), {
-      event: 'contact_failure', stage: 'setup_recaptcha', code: 'RECAPTCHA_HTTP_400' + suffix,
+      event: 'contact_failure', stage: 'recaptcha', code: 'RECAPTCHA_HTTP_400' + suffix,
     });
     assert.doesNotMatch(harness.logs.join('\n'), /recaptcha-api-key|valid-token|visitor@example\.com|private message/);
     assert.equal(harness.rows.length, 0);
@@ -429,17 +431,16 @@ test('reports known Google API rejection reasons without logging the response bo
   }
 });
 
-test('setup diagnostic distinguishes missing sheets from rejected API requests', () => {
+test('setup diagnostic reports configuration and sheet failures without contacting Google', () => {
   for (const [options, stage, code] of [
     [{ messagesExists: false }, 'setup_storage', 'SHEET_MISSING'],
-    [{ recaptchaStatus: 403 }, 'setup_recaptcha', 'RECAPTCHA_HTTP_403'],
-    [{ recaptchaResponse: { tokenProperties: { valid: false, invalidReason: 'KEY_MISMATCH' } } }, 'setup_recaptcha', 'RECAPTCHA_TOKEN_KEY_MISMATCH'],
-    [{}, 'setup_recaptcha', 'DIAGNOSTIC_UNEXPECTED_RESPONSE'],
+    [{ headers: ['wrong', 'schema'] }, 'setup_storage', 'SHEET_HEADERS_INVALID'],
     [{ properties: { RECAPTCHA_API_KEY: '' } }, 'setup_configuration', 'CONFIG_INVALID'],
   ]) {
     const harness = createHarness(options);
     harness.sandbox.diagnoseSetup();
     assert.deepEqual(JSON.parse(harness.logs[0]), { event: 'contact_failure', stage, code });
+    assert.equal(harness.fetches.length, 0);
     assert.equal(harness.rows.length, 0);
     assert.equal(harness.sentEmails.length, 0);
   }
