@@ -12,9 +12,11 @@ function app(config = {}) {
   let serial = 0;
   let widgetOptions;
   const resets = [];
-  const window = { CONTACT_CONFIG: config, addEventListener: (type, callback) => { windowEvents[type] = callback; }, turnstile: { render: (selector, options) => { widgetOptions = options; return 'widget-1'; }, reset: id => resets.push(id) } };
-  vm.runInNewContext(source, { window, crypto: { randomUUID: () => `request-${++serial}` }, document: { querySelector: selector => nodes.get(selector), createElement: () => ({}), head: { append: script => scripts.push(script) } }, Date });
-  return { nodes, window, windowEvents, scripts, resets, events, options: () => widgetOptions };
+  const removals = [];
+  const root = { dataset: { theme: 'light' } };
+  const window = { CONTACT_CONFIG: config, addEventListener: (type, callback) => { windowEvents[type] = callback; }, turnstile: { render: (selector, options) => { widgetOptions = options; return 'widget-1'; }, reset: id => resets.push(id), remove: id => removals.push(id) } };
+  vm.runInNewContext(source, { window, crypto: { randomUUID: () => `request-${++serial}` }, document: { documentElement: root, querySelector: selector => nodes.get(selector), createElement: () => ({}), head: { append: script => scripts.push(script) } }, Date });
+  return { nodes, window, windowEvents, scripts, resets, removals, root, events, options: () => widgetOptions };
 }
 const live = { endpoint: 'https://script.google.com/macros/s/EXAMPLE_DEPLOYMENT/exec', turnstileSiteKey: 'public-test-sitekey' };
 
@@ -74,4 +76,21 @@ test('provider loading failures leave submission disabled', () => {
   a.scripts[0].onerror();
   assert.equal(a.nodes.get('#send-message').disabled, true);
   assert.match(a.nodes.get('#form-status').textContent, /email link/);
+});
+
+test('changing themes replaces the spam widget and requires a fresh challenge', () => {
+  const a = app(live);
+  a.windowEvents.themechange(); // The provider may not have loaded yet.
+  a.root.dataset.theme = 'dark';
+  a.window.onTurnstileReady();
+  assert.equal(a.options().theme, 'dark');
+  a.options().callback('previous-token');
+  a.root.dataset.theme = 'light';
+  a.windowEvents.themechange();
+  assert.deepEqual(a.removals, ['widget-1']);
+  assert.equal(a.options().theme, 'light');
+  assert.equal(a.nodes.get('#send-message').disabled, true);
+  let prevented = false;
+  a.events.submit({ preventDefault: () => { prevented = true; } });
+  assert.equal(prevented, true);
 });

@@ -28,6 +28,7 @@ Only `site/` is copied to `dist/`. The Apps Script backend, tests, setup instruc
 - Six published Micronaut guides with direct links and attribution.
 - One-page and detailed PDF downloads. These web copies use city/country instead of a street address and omit the phone number. The original CV documents are unchanged.
 - An accessible, responsive contact form with an email fallback.
+- Light and dark themes, with a header switch and a saved browser preference. Light is the default; printing uses a light palette.
 
 ## Contact: private Sheet + email
 
