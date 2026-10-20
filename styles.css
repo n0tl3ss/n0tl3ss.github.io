@@ -101,15 +101,18 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
 .career-content p.career-grade { color:var(--green); font-size:11px; margin-top:8px; }
 .career-content ul { color:var(--muted); font-size:13px; margin:13px 0 0; }
 .career-content li { margin:5px 0; }
-.education-section .section-heading > p.education-school { font-size:21px; line-height:1.45; color:var(--ink); }
-.education-school span { display:block; margin-top:9px; color:var(--muted); font-size:12px; }
-.degree-grid { display:grid; grid-template-columns:1fr 1fr; gap:70px; }
-.degree { padding:25px 0 27px; border-top:2px solid var(--green); border-bottom:1px solid var(--line); }
-.degree-heading { display:flex; align-items:center; justify-content:space-between; gap:20px; }
-.degree-heading h3 { font-family:var(--serif); font-size:64px; font-weight:400; line-height:1; letter-spacing:-.055em; color:var(--green); }
-.degree-heading p { color:var(--muted); font-size:12px; font-variant-numeric:tabular-nums; }
-.degree-subject { margin-top:20px; font-size:20px; font-weight:500; letter-spacing:-.025em; }
-.degree-level { margin-top:4px; color:var(--muted); font-size:12px; }
+.education-section > .eyebrow { color:var(--green); margin-bottom:20px; }
+.education-summary { padding:32px; border:1px solid var(--line); border-top:3px solid var(--green); }
+.education-institution { padding-bottom:27px; }
+.education-institution h2 { font-size:36px; }
+.education-school { margin-top:8px; font-size:16px; }
+.education-location { margin-top:3px; color:var(--muted); font-size:12px; }
+.degree { display:grid; grid-template-columns:64px minmax(0,1fr) auto; align-items:center; gap:8px 24px; padding-block:23px; border-top:1px solid var(--line); }
+.degree:last-child { padding-bottom:0; }
+.degree-code { color:var(--green); font-family:var(--serif); font-size:30px; line-height:1.2; }
+.degree-content h3 { font-size:18px; }
+.degree-content p { margin-top:3px; color:var(--muted); font-size:13px; }
+.degree-date { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap; }
 .guide-grid { display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--ink); }
 .guide { display:flex; flex-direction:column; padding:26px 34px 26px 0; border-bottom:1px solid var(--line); transition:background .18s; }
 .guide:nth-child(even) { border-left:1px solid var(--line); padding-left:34px; padding-right:0; }
@@ -171,7 +174,7 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
 .privacy-page p,.privacy-page li { font-size:14px; color:var(--muted); margin:10px 0; }
 .privacy-page a { text-decoration:underline; }
 @media (min-width:1440px) { .hero { column-gap:130px; } }
-@media (max-width:1000px) { .wrap { width:calc(100% - 64px); } .site-header { gap:24px; } .site-header nav { gap:18px; } .header-cv { padding-left:20px; } .hero { column-gap:45px; grid-template-columns:minmax(0,1fr) 220px; } h1 { font-size:92px; } .hero-description { font-size:14px; } .contact-layout { gap:45px; } .career-row { grid-template-columns:165px 1fr; gap:30px; } .degree-grid { gap:40px; } }
+@media (max-width:1000px) { .wrap { width:calc(100% - 64px); } .site-header { gap:24px; } .site-header nav { gap:18px; } .header-cv { padding-left:20px; } .hero { column-gap:45px; grid-template-columns:minmax(0,1fr) 220px; } h1 { font-size:92px; } .hero-description { font-size:14px; } .contact-layout { gap:45px; } .career-row { grid-template-columns:165px 1fr; gap:30px; } }
 @media (max-width:720px) {
   .wrap { width:calc(100% - 40px); }
   .site-header { min-height:82px; gap:20px; flex-wrap:wrap; padding-block:20px; }
@@ -216,11 +219,15 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
   .career-title h3 { font-size:18px; }
   .career-title > span { font-size:11px; }
   .career-content p,.career-content ul { font-size:12px; }
-  .education-section .section-heading > p.education-school { font-size:18px; }
-  .degree-grid { grid-template-columns:1fr; gap:27px; }
-  .degree { padding-block:22px; }
-  .degree-heading h3 { font-size:56px; }
-  .degree-subject { font-size:18px; margin-top:17px; }
+  .education-summary { padding:22px; }
+  .education-institution { padding-bottom:23px; }
+  .education-institution h2 { font-size:29px; }
+  .education-school { font-size:14px; }
+  .degree { grid-template-columns:48px minmax(0,1fr); column-gap:16px; padding-block:20px; align-items:start; }
+  .degree-code { font-size:26px; padding-top:1px; }
+  .degree-content h3 { font-size:17px; }
+  .degree-content p { font-size:12px; }
+  .degree-date { grid-column:2; font-size:12px; }
   .guide-grid { grid-template-columns:1fr; }
   .guide,.guide:nth-child(even) { padding:23px 0; border-left:0; }
   .guide h3 { font-size:19px; }
