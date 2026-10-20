@@ -35,6 +35,8 @@ U **Execution log** pronađi red sa `event` i `code` i pošalji samo taj red. `S
 
 `RECAPTCHA_API_KEY` je poseban Google Cloud API ključ, različit od site key-a i legacy reCAPTCHA secret key-a. Mora pripadati odgovarajućem Cloud projektu, imati dozvoljen reCAPTCHA Enterprise API i odgovarajuća ograničenja. `NOTIFY_EMAIL` određuje primaoca obaveštenja i adresu u linku **Email directly** na stranici odgovora.
 
+Ako dobiješ `RECAPTCHA_HTTP_400`, proveri da `RECAPTCHA_API_KEY` dolazi iz **Google Cloud → APIs & Services → Credentials → API key**, u projektu koji poseduje Checkbox ključ. Kopiraj tačnu vrednost bez razmaka. Dopunjena dijagnostika prikazuje poznate Google razloge kao nastavak koda: `API_KEY_INVALID` znači da API ključ nije prihvaćen, `SERVICE_DISABLED` da API nije uključen, a `API_KEY_SERVICE_BLOCKED` da ograničenja ključa ne dozvoljavaju servis. Nepoznati detalji i tekst Google odgovora se ne zapisuju. Ako ostane samo HTTP kod, uzrok još nije utvrđen; proveri i da `RECAPTCHA_PROJECT_ID` odgovara projektu Checkbox ključa.
+
 Za aktiviranje promenjenog koda na postojećem `/exec` URL-u izaberi **Deploy → Manage deployments → Edit → Version: New version → Deploy**. Posle neuspelog web zahteva otvori **Executions** i poslednji `doPost`; privatni log beleži fazu i dijagnostički kod bez ključeva, tokena ili sadržaja poruke. [Google uputstvo za ažuriranje deploymenta](https://developers.google.com/apps-script/concepts/deployments), [Apps Script logovi](https://developers.google.com/apps-script/guides/logging).
 
 ## Cena i domen

@@ -248,7 +248,23 @@ function createRecaptchaAssessment(token, config) {
 
   const status = response.getResponseCode();
   if (status < 200 || status >= 300) {
-    throw contactFailure('RECAPTCHA_HTTP_' + status);
+    let suffix = '';
+    try {
+      const body = JSON.parse(response.getContentText());
+      const details = body.error && Array.isArray(body.error.details) ? body.error.details : [];
+      const knownReasons = [
+        'API_KEY_INVALID', 'API_KEY_SERVICE_BLOCKED', 'API_KEY_HTTP_REFERRER_BLOCKED',
+        'API_KEY_IP_ADDRESS_BLOCKED', 'SERVICE_DISABLED', 'BILLING_DISABLED', 'CONSUMER_INVALID',
+      ];
+      const info = details.find(function (detail) {
+        return detail && detail['@type'] === 'type.googleapis.com/google.rpc.ErrorInfo' &&
+          knownReasons.indexOf(detail.reason) >= 0;
+      });
+      if (info) suffix = '_' + info.reason;
+    } catch (ignored) {
+      // Non-JSON and unknown provider details remain private; preserve the HTTP status.
+    }
+    throw contactFailure('RECAPTCHA_HTTP_' + status + suffix);
   }
 
   return JSON.parse(response.getContentText());

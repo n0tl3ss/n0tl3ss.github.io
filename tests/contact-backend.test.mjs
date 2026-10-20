@@ -405,6 +405,30 @@ test('setup diagnostic checks API access and sheet schema without saving or send
   assert.equal(harness.sentEmails.length, 0);
 });
 
+test('reports known Google API rejection reasons without logging the response body', () => {
+  for (const [reason, suffix] of [
+    ['API_KEY_INVALID', '_API_KEY_INVALID'],
+    ['SERVICE_DISABLED', '_SERVICE_DISABLED'],
+    ['API_KEY_SERVICE_BLOCKED', '_API_KEY_SERVICE_BLOCKED'],
+    ['recaptcha-api-key valid-token visitor@example.com', ''],
+  ]) {
+    const harness = createHarness({
+      recaptchaStatus: 400,
+      recaptchaResponse: { error: {
+        message: 'recaptcha-api-key valid-token visitor@example.com private message',
+        details: [{ '@type': 'type.googleapis.com/google.rpc.ErrorInfo', reason }],
+      } },
+    });
+    harness.sandbox.diagnoseSetup();
+    assert.deepEqual(JSON.parse(harness.logs[0]), {
+      event: 'contact_failure', stage: 'setup_recaptcha', code: 'RECAPTCHA_HTTP_400' + suffix,
+    });
+    assert.doesNotMatch(harness.logs.join('\n'), /recaptcha-api-key|valid-token|visitor@example\.com|private message/);
+    assert.equal(harness.rows.length, 0);
+    assert.equal(harness.sentEmails.length, 0);
+  }
+});
+
 test('setup diagnostic distinguishes missing sheets from rejected API requests', () => {
   for (const [options, stage, code] of [
     [{ messagesExists: false }, 'setup_storage', 'SHEET_MISSING'],
