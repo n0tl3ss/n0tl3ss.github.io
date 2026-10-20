@@ -32,7 +32,7 @@ if (configured()) {
     widgetId = window.turnstile.render('#turnstile-container', {
       sitekey: config.turnstileSiteKey,
       action: 'contact',
-      theme: 'light',
+      theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light',
       size: 'flexible',
       callback(token) {
         challengeToken = token;
@@ -78,4 +78,11 @@ window.addEventListener('pageshow', (event) => {
     requireChallenge('Please complete the spam check to send another message.');
     window.turnstile.reset(widgetId);
   }
+});
+
+window.addEventListener('themechange', () => {
+  if (widgetId === undefined || !window.turnstile) return;
+  requireChallenge('Please complete the spam check before sending.');
+  window.turnstile.remove(widgetId);
+  window.onTurnstileReady();
 });
