@@ -24,7 +24,7 @@ Only `site/` is copied to `dist/`. The Apps Script backend, tests, setup instruc
 ## Contents
 
 - Experience at Oracle and Seven Bridges Genomics, education and technical skills.
-- Selected framework, cloud and developer-tooling work with dated public contribution links from 2022 onward.
+- Framework and cloud feature contributions, including Micronaut Data vector search, OpenTelemetry, OKE Workload Identity, OCI Certificates, Micrometer Observation, CloudWatch logging and Python dataclasses, with dated public PR links. Additional links cover Prometheus Pushgateway, JDBC tracing, OCI raw metrics and OCI DevOps project generation.
 - Apple web server security acknowledgment (November 2025), with the source link and a saved screenshot of the relevant section.
 - Six published Micronaut guides with direct links and attribution.
 - One-page and detailed PDF downloads. These web copies use city/country instead of a street address and omit the phone number. The editable CV documents are maintained separately.
@@ -88,11 +88,17 @@ To activate the form later, connect the services above, run `node scripts/check-
 Content is based on the candidate's CV, employment dates and verified public contributions. Examples:
 
 - [Micronaut OpenTelemetry](https://github.com/micronaut-projects/micronaut-tracing/pull/65)
+- [Micronaut Data vector type support — May 2026](https://github.com/micronaut-projects/micronaut-data/pull/3637) and [published vector mapping documentation](https://micronaut-projects.github.io/micronaut-data/latest/guide/#sqlVectorType)
 - [OKE Workload Identity — September 2023](https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/686)
 - [OCI Certificates — June 2023](https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/596)
 - [Micrometer Observation — July 2023](https://github.com/micronaut-projects/micronaut-micrometer/pull/585)
 - [OCI runner configuration update — March 2024](https://github.com/micronaut-projects/github-actions/pull/43)
 - [Apple acknowledgment — November 2025](https://support.apple.com/en-gw/102774)
+- [CloudWatch logging — September 2022](https://github.com/micronaut-projects/micronaut-aws/pull/1438)
+- [Prometheus Pushgateway module — October 2024](https://github.com/micronaut-projects/micronaut-micrometer/pull/848)
+- [OpenTelemetry JDBC instrumentation — October 2024](https://github.com/micronaut-projects/micronaut-tracing/pull/646)
+- [OCI raw metrics registry — January 2024](https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/779)
+- [OCI DevOps CI project generation — July 2022](https://github.com/micronaut-projects/micronaut-starter/pull/1302)
 - [Python dataclass introspection](https://github.com/micronaut-projects/micronaut-core/pull/13786)
 - [Published OKE guide](https://guides.micronaut.io/micronaut-k8s-oci-gradle-java/)
 

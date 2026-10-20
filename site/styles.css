@@ -75,6 +75,11 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
 .work-row p.work-tech { font-size:10px; letter-spacing:.06em; color:var(--green); margin-top:15px; }
 .work-row p.work-links { display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:10px; font-size:11px; }
 .work-links a { text-decoration:underline; }
+.more-work { margin-top:34px; }
+.more-work h3 { font-size:16px; }
+.more-work ul { display:grid; grid-template-columns:1fr 1fr; gap:12px 28px; list-style:none; padding:0; margin:16px 0 0; }
+.more-work a { font-size:12px; text-decoration:underline; }
+.more-work a span { display:block; font-size:10px; color:var(--muted); }
 .recognition { margin-top:42px; max-width:790px; }
 .recognition .eyebrow { color:var(--green); margin-bottom:12px; }
 .recognition h3 { font-size:23px; }
@@ -195,6 +200,7 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
   .section-heading .eyebrow { margin-bottom:14px; }
   h2 { font-size:36px; }
   .section-heading > p:last-child:not(.eyebrow) { font-size:13px; margin-top:20px; }
+  .more-work ul { grid-template-columns:1fr; }
   .work-row { grid-template-columns:24px minmax(0,1fr) 24px; gap:14px; padding-block:24px; }
   .work-row h3 { font-size:17px; }
   .work-row p { font-size:12px; }
