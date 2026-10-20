@@ -2,7 +2,7 @@
 
 An English portfolio and CV website for GitHub Pages. Plain HTML, CSS and JavaScript, with no frontend dependencies or third-party analytics.
 
-**Website:** https://n0tl3ss.github.io/ — publishing is manual from the `gh-pages` branch. The contact form is deliberately disabled until the Google services are connected; visitors can use the email link. The form never simulates successful delivery.
+**Website:** https://n0tl3ss.github.io/ — publishing is manual from the `gh-pages` branch. The contact form is connected to Google reCAPTCHA and the Apps Script backend; visitors can also use the email link. The form never simulates successful delivery.
 
 ## Local preview
 
