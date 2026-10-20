@@ -117,6 +117,8 @@ test('live mode waits for a contact checkbox challenge', () => {
   assert.equal(a.options().size, 'normal');
   assert.equal(a.renderings.length, 1);
   assert.equal(a.renderings[0].selector.tagName, 'div');
+  assert.equal(a.nodes.get('#send-message').disabled, true);
+  assert.equal(a.nodes.get('#form-status').textContent, 'Please complete the spam check before sending.');
   let prevented = false;
   a.events.submit({ preventDefault: () => { prevented = true; } });
   assert.equal(prevented, true);
