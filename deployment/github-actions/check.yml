@@ -1,0 +1,15 @@
+name: Check website
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Test
+        run: node --test tests/*.test.mjs
+      - name: Build
+        run: node scripts/build.mjs

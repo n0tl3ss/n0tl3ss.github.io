@@ -1,0 +1,11 @@
+dist/
+.preview/
+.env
+.env.*
+!.env.example
+.DS_Store
+node_modules/
+*.log
+.clasp.json
+credentials*.json
+secrets*.json
