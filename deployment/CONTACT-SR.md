@@ -1,0 +1,30 @@
+# Aktiviranje kontakt forme preko Google-a
+
+Forma je pripremljena za Google reCAPTCHA, privatnu Google tabelu i mejl obaveštenje na **n0t_l3ss@outlook.com**. Za sada posetioci mogu da koriste mejl link; slanje forme uključujemo tek kada povežemo stvarne Google resurse.
+
+## Šta je potrebno
+
+Jedan Google nalog koji će biti vlasnik tabele, Apps Script aplikacije i Google Cloud projekta. Nisu potrebni Cloudflare nalog, poseban server ili javno deljena tabela.
+
+1. U [Google Cloud konzoli](https://console.cloud.google.com/) napravi projekat, npr. `Nemanja CV Contact`, i uključi **reCAPTCHA Enterprise API**. Naziv servisa u interfejsu može biti **Fraud Defense**.
+2. Napravi **Website / Challenge (v2) / checkbox** CAPTCHA ključ. Dozvoljeni domeni: `n0tl3ss.github.io` i `nmikic.rs`. Ostavi proveru domena uključenu. Sačuvaj javni **Key ID / site key**.
+3. Napravi API ključ i ograniči ga na **reCAPTCHA Enterprise API**. Nemoj postaviti HTTP-referrer ograničenje: ovaj API ključ koristi server, a ne pregledač. Taj ključ ostaje u Apps Script podešavanjima, nikada u javnom sajtu ili poruci u chatu.
+4. Napravi praznu privatnu Google tabelu, pa Apps Script projekat sa pripremljenim [Code.gs](../apps-script/Code.gs) i [appsscript.json](../apps-script/appsscript.json). U **Project Settings → Script Properties** unesi vrednosti iz [detaljnog uputstva](../apps-script/README.md). Pokreni `setup()` i odobri pristup svom nalogu.
+5. U Apps Script izaberi **Deploy → New deployment → Web app**, izvršavanje **Me**, pristup **Anyone**. Kopiraj objavljeni URL koji se završava na **`/exec`**.
+
+## Šta da mi pošalješ
+
+Samo ove dve javne vrednosti:
+
+- **reCAPTCHA site key / Key ID**;
+- **Apps Script `/exec` URL**.
+
+Google lozinka, tajni API ključ i deljenje tabele nisu potrebni. Project ID, Sheet ID i tajni API ključ unosiš direktno u **Script Properties** prema uputstvu.
+
+Kada dobijem javne vrednosti, povezaću sajt i objaviti konfiguraciju. Zatim treba poslati jednu probnu poruku i proveriti da postoji jedan red u tabeli sa statusom `MAIL_SENT`, kao i da je obaveštenje stiglo na Outlook. Automatski lokalni testovi ne mogu da potvrde stvarnu isporuku mejla.
+
+## Cena i domen
+
+Google trenutno dozvoljava do 10.000 CAPTCHA procena mesečno po organizaciji bez uključivanja naplate. Prekoračenje bez billing naloga vraća grešku, pa forma odbija slanje; pročitaj [aktuelne kvote](https://docs.cloud.google.com/recaptcha/docs/billing-information). Ne treba uključivati billing samo za početno povezivanje.
+
+Trenutno koristi `SITE_URL=https://n0tl3ss.github.io/` i `ALLOWED_HOSTNAME=n0tl3ss.github.io`. Kada DNS i HTTPS za `nmikic.rs` budu spremni, usklađujemo ove vrednosti sa novim kanonskim domenom i objavljujemo novu Apps Script verziju. [Uputstvo za Loopia domen](DOMAIN.md).

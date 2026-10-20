@@ -10,7 +10,9 @@ const requestId = '550e8400-e29b-41d4-a716-446655440000';
 
 function createHarness(options = {}) {
   const properties = new Map(Object.entries({
-    TURNSTILE_SECRET: 'turnstile-secret',
+    RECAPTCHA_API_KEY: 'recaptcha-api-key',
+    RECAPTCHA_PROJECT_ID: 'project-id',
+    RECAPTCHA_SITE_KEY: 'recaptcha-site-key',
     SPREADSHEET_ID: 'sheet-id',
     NOTIFY_EMAIL: 'owner@example.com',
     SITE_URL: 'https://example.com/cv',
@@ -25,7 +27,7 @@ function createHarness(options = {}) {
     'email',
     'company',
     'message',
-    'turnstile_hostname',
+    'recaptcha_hostname',
     'notification_status',
   ];
   const messagesExists = options.messagesExists !== false;
@@ -33,10 +35,12 @@ function createHarness(options = {}) {
   const sentEmails = [];
   const fetches = [];
   const statusUpdates = [];
-  const response = options.turnstileResponse || {
-    success: true,
-    hostname: 'example.com',
-    action: 'contact',
+  const response = options.recaptchaResponse || {
+    tokenProperties: {
+      valid: true,
+      hostname: 'example.com',
+    },
+    riskAnalysis: { score: 0.9 },
   };
   const sheet = {
     getLastRow() {
@@ -140,7 +144,7 @@ function createHarness(options = {}) {
         fetches.push({ url, request });
         if (options.fetchError) throw new Error('fetch failed');
         return {
-          getResponseCode() { return options.turnstileStatus || 200; },
+          getResponseCode() { return options.recaptchaStatus || 200; },
           getContentText() { return JSON.stringify(response); },
         };
       },
@@ -187,7 +191,7 @@ function createHarness(options = {}) {
           message: 'Hello from the contact form.',
           fax_number: '',
           request_id: requestId,
-          'cf-turnstile-response': 'valid-token',
+          'g-recaptcha-response': 'valid-token',
           ...fields,
         },
       });
@@ -207,11 +211,17 @@ test('accepts a valid submission, saves it, and sends only to configured recipie
   assert.match(html(result), /message was received/);
   assert.equal(harness.rows.length, 1);
   assert.equal(harness.rows[0][2], 'Nemanja');
+  assert.equal(harness.rows[0].length, 8);
+  assert.equal(harness.rows[0][6], 'example.com');
   assert.equal(harness.rows[0][7], 'MAIL_SENT');
   assert.equal(harness.sentEmails.length, 1);
   assert.equal(harness.sentEmails[0].to, 'owner@example.com');
   assert.equal(harness.sentEmails[0].mailOptions.replyTo, 'nemanja@example.com');
-  assert.equal(harness.fetches[0].request.payload.secret, 'turnstile-secret');
+  assert.equal(harness.fetches[0].url, 'https://recaptchaenterprise.googleapis.com/v1/projects/project-id/assessments');
+  assert.equal(harness.fetches[0].request.headers['x-goog-api-key'], 'recaptcha-api-key');
+  assert.deepEqual(JSON.parse(harness.fetches[0].request.payload), {
+    event: { token: 'valid-token', siteKey: 'recaptcha-site-key' },
+  });
   assert.match(html(result), /background:#f7f6f0/);
   assert.match(html(result), /color:#182d29/);
   assert.match(html(result), /Georgia,serif/);
@@ -219,13 +229,13 @@ test('accepts a valid submission, saves it, and sends only to configured recipie
   assert.match(html(result), /mailto:owner%40example\.com/);
 });
 
-test('fails closed when Turnstile action or hostname is wrong', () => {
-  for (const turnstileResponse of [
-    { success: true, hostname: 'attacker.example', action: 'contact' },
-    { success: true, hostname: 'example.com', action: 'login' },
-    { success: false, hostname: 'example.com', action: 'contact' },
+test('fails closed when reCAPTCHA validity or hostname is wrong', () => {
+  for (const recaptchaResponse of [
+    { tokenProperties: { valid: true, hostname: 'attacker.example' } },
+    { tokenProperties: { valid: false, hostname: 'example.com' } },
+    { tokenProperties: { valid: true } },
   ]) {
-    const harness = createHarness({ turnstileResponse });
+    const harness = createHarness({ recaptchaResponse });
     const result = harness.post();
     assert.match(html(result), /could not submit/);
     assert.equal(harness.rows.length, 0);
@@ -238,6 +248,9 @@ test('rejects honeypot, malformed UUID, missing fields, and oversized content', 
     { fax_number: 'bot' },
     { request_id: 'not-a-uuid' },
     { message: '' },
+    { message: '123456789' },
+    { 'g-recaptcha-response': '' },
+    { 'g-recaptcha-response': 'x'.repeat(16385) },
     { message: 'x'.repeat(5001) },
   ];
   for (const fields of cases) {
@@ -325,18 +338,33 @@ test('fails closed when Messages is missing or its headers are changed', () => {
   assert.equal(wrongSchema.sentEmails.length, 0);
 });
 
-test('rejects provider network failures and replayed Turnstile tokens', () => {
+test('fails closed when reCAPTCHA configuration is incomplete', () => {
+  for (const properties of [
+    { RECAPTCHA_API_KEY: '' },
+    { RECAPTCHA_PROJECT_ID: 'bad' },
+    { RECAPTCHA_SITE_KEY: 'short' },
+  ]) {
+    const harness = createHarness({ properties });
+    assert.match(html(harness.post()), /could not submit/);
+    assert.equal(harness.fetches.length, 0);
+    assert.equal(harness.rows.length, 0);
+    assert.equal(harness.sentEmails.length, 0);
+  }
+});
+
+test('rejects provider network failures and replayed reCAPTCHA tokens', () => {
   const networkFailure = createHarness({ fetchError: true });
   assert.match(html(networkFailure.post()), /could not submit/);
   assert.equal(networkFailure.rows.length, 0);
   assert.equal(networkFailure.sentEmails.length, 0);
 
   const replay = createHarness({
-    turnstileResponse: {
-      success: false,
-      hostname: 'example.com',
-      action: 'contact',
-      'error-codes': ['timeout-or-duplicate'],
+    recaptchaResponse: {
+      tokenProperties: {
+        valid: false,
+        hostname: 'example.com',
+        invalidReason: 'TOKEN_ALREADY_USED',
+      },
     },
   });
   assert.match(html(replay.post()), /could not submit/);
@@ -354,7 +382,7 @@ test('setup creates Messages only when absent and writes the exact headers', () 
     'email',
     'company',
     'message',
-    'turnstile_hostname',
+    'recaptcha_hostname',
     'notification_status',
   ]);
 });

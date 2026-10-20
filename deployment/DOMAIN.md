@@ -37,7 +37,7 @@ The Outlook contact address does not require mail hosting or MX records on `nmik
 
 6. GitHub's settings may have added a `CNAME` commit directly to `gh-pages`. Fetch it before deploying. Create the new site subtree commit, then merge its tree into that fetched publishing branch in a temporary checkout, preserving its history and `CNAME`. Push normally; do not discard the settings commit or force an unrelated branch over it. Later publish from the same source while preserving any Pages-created branch commits.
 7. Add/verify the old URL-prefix property and the new domain property in Google Search Console, submit `https://nmikic.rs/sitemap.xml`, inspect/request indexing of the homepage, and use Change of Address after redirects work. Keep the old GitHub URL redirecting.
-8. Update professional profile website links to the final URL. When enabling the contact form, register the exact `nmikic.rs` hostname in Turnstile and use it in the backend's `ALLOWED_HOSTNAME`/`SITE_URL` settings.
+8. Update professional profile website links to the final URL. When enabling the contact form, register the exact `nmikic.rs` hostname in Google reCAPTCHA and use it in the backend's `ALLOWED_HOSTNAME`/`SITE_URL` settings.
 
 To prepare a rollback of source metadata, run `node scripts/set-site-url.mjs https://n0tl3ss.github.io`. Remove the custom domain in Pages settings too; changing a local file alone does not change the server redirect.
 

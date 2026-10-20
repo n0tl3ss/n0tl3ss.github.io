@@ -1,4 +1,3 @@
-const CONTACT_ACTION = 'contact';
 const RECENT_REQUESTS_KEY = 'RECENT_REQUESTS';
 const RECENT_REQUEST_TTL_MS = 24 * 60 * 60 * 1000;
 const MAX_RECENT_REQUESTS = 100;
@@ -7,7 +6,7 @@ const DAILY_ACCEPTED_STATE_KEY = 'DAILY_ACCEPTED_STATE';
 const EMAIL_THROTTLE_LIMIT = 3;
 const EMAIL_THROTTLE_TTL_SECONDS = 60 * 60;
 const MESSAGES_SHEET_NAME = 'Messages';
-const MAX_TOKEN_LENGTH = 2048;
+const MAX_TOKEN_LENGTH = 16384;
 const MAX_NAME_LENGTH = 120;
 const MAX_EMAIL_LENGTH = 254;
 const MAX_COMPANY_LENGTH = 200;
@@ -22,7 +21,7 @@ const HEADERS = [
   'email',
   'company',
   'message',
-  'turnstile_hostname',
+  'recaptcha_hostname',
   'notification_status',
 ];
 
@@ -36,8 +35,8 @@ function doPost(e) {
     }
 
     validateForm(form);
-    const turnstile = verifyTurnstile(form.turnstileResponse, config);
-    const result = saveSubmission(form, turnstile.hostname, config);
+    const recaptcha = verifyRecaptcha(form.recaptchaResponse, config);
+    const result = saveSubmission(form, recaptcha.hostname, config);
 
     if (result.duplicate) {
       return renderStatus('duplicate', config);
@@ -82,14 +81,17 @@ function setup() {
 function getConfig() {
   const properties = PropertiesService.getScriptProperties();
   const config = {
-    turnstileSecret: properties.getProperty('TURNSTILE_SECRET') || '',
+    recaptchaApiKey: properties.getProperty('RECAPTCHA_API_KEY') || '',
+    recaptchaProjectId: properties.getProperty('RECAPTCHA_PROJECT_ID') || '',
+    recaptchaSiteKey: properties.getProperty('RECAPTCHA_SITE_KEY') || '',
     spreadsheetId: properties.getProperty('SPREADSHEET_ID') || '',
     notifyEmail: properties.getProperty('NOTIFY_EMAIL') || '',
     siteUrl: properties.getProperty('SITE_URL') || '',
     allowedHostname: properties.getProperty('ALLOWED_HOSTNAME') || '',
   };
 
-  if (!config.turnstileSecret || !config.spreadsheetId ||
+  if (!config.recaptchaApiKey || !isProjectId(config.recaptchaProjectId) ||
+      !isSiteKey(config.recaptchaSiteKey) || !config.spreadsheetId ||
       !isEmail(config.notifyEmail) || !isHttpsUrl(config.siteUrl) ||
       !isHostname(config.allowedHostname)) {
     throw new Error('Contact form configuration is incomplete.');
@@ -125,7 +127,7 @@ function parseForm(e) {
     message: readField(parameters, 'message', MAX_MESSAGE_LENGTH),
     faxNumber: readField(parameters, 'fax_number', MAX_HONEYPOT_LENGTH),
     requestId: readField(parameters, 'request_id', MAX_REQUEST_ID_LENGTH),
-    turnstileResponse: readField(parameters, 'cf-turnstile-response', MAX_TOKEN_LENGTH),
+    recaptchaResponse: readField(parameters, 'g-recaptcha-response', MAX_TOKEN_LENGTH),
   };
 }
 
@@ -140,8 +142,11 @@ function readField(parameters, name, maxLength) {
 
 function validateForm(form) {
   if (!form.name || !form.email || !form.message || !form.requestId ||
-      !form.turnstileResponse) {
+      !form.recaptchaResponse) {
     throw new Error('Required field is missing.');
+  }
+  if (form.message.length < 10) {
+    throw new Error('Message is too short.');
   }
   if (!isEmail(form.email)) {
     throw new Error('Email is invalid.');
@@ -151,36 +156,55 @@ function validateForm(form) {
   }
 }
 
-function verifyTurnstile(token, config) {
+function verifyRecaptcha(token, config) {
   if (!token || token.length > MAX_TOKEN_LENGTH) {
-    throw new Error('Turnstile token is invalid.');
+    throw new Error('reCAPTCHA token is invalid.');
   }
 
   const response = UrlFetchApp.fetch(
-    'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+    'https://recaptchaenterprise.googleapis.com/v1/projects/' +
+      encodeURIComponent(config.recaptchaProjectId) + '/assessments',
     {
       method: 'post',
-      payload: {
-        secret: config.turnstileSecret,
-        response: token,
+      contentType: 'application/json',
+      headers: {
+        'x-goog-api-key': config.recaptchaApiKey,
       },
+      payload: JSON.stringify({
+        event: {
+          token: token,
+          siteKey: config.recaptchaSiteKey,
+        },
+      }),
       muteHttpExceptions: true,
     },
   );
 
   if (response.getResponseCode() < 200 || response.getResponseCode() >= 300) {
-    throw new Error('Turnstile verification request failed.');
+    throw new Error('reCAPTCHA verification request failed.');
   }
 
   const result = JSON.parse(response.getContentText());
-  if (result.success !== true || result.hostname !== config.allowedHostname ||
-      result.action !== CONTACT_ACTION) {
-    throw new Error('Turnstile verification failed.');
+  const tokenProperties = result.tokenProperties || {};
+  if (tokenProperties.valid !== true ||
+      tokenProperties.hostname !== config.allowedHostname) {
+    throw new Error('reCAPTCHA verification failed.');
   }
-  return result;
+
+  // Checkbox validity is the gate; do not invent a score threshold that can reject real users.
+  return { hostname: tokenProperties.hostname };
 }
 
-function saveSubmission(form, turnstileHostname, config) {
+function isProjectId(value) {
+  return typeof value === 'string' &&
+    /^[a-z][a-z0-9-]{4,28}[a-z0-9]$/.test(value);
+}
+
+function isSiteKey(value) {
+  return typeof value === 'string' && /^[A-Za-z0-9_-]{10,100}$/.test(value);
+}
+
+function saveSubmission(form, recaptchaHostname, config) {
   const lock = LockService.getScriptLock();
   lock.waitLock(5000);
 
@@ -217,7 +241,7 @@ function saveSubmission(form, turnstileHostname, config) {
       safeSheetValue(form.email),
       safeSheetValue(form.company),
       safeSheetValue(form.message),
-      safeSheetValue(turnstileHostname),
+      safeSheetValue(recaptchaHostname),
       'SAVED',
     ]);
     rowSaved = true;

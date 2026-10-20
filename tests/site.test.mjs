@@ -12,7 +12,7 @@ test('local page links and assets resolve, without publishing private evidence',
   }
   for (const [, anchor] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(html.includes(`id="${anchor}"`), anchor);
   assert.equal([...html.matchAll(/class="guide"/g)].length, 6);
-  assert.doesNotMatch(html, /Vojvode|335g|64-52-43-955|SPREADSHEET_ID|TURNSTILE_SECRET/);
+  assert.doesNotMatch(html, /Vojvode|335g|64-52-43-955|SPREADSHEET_ID|RECAPTCHA_API_KEY/);
   for (const name of ['cv-one-page.pdf', 'cv-two-pages.pdf']) {
     const bytes = await readFile(new URL(`assets/${name}`, root));
     assert.equal(bytes.subarray(0, 4).toString(), '%PDF');
@@ -23,9 +23,9 @@ test('contact configuration exposes only a public endpoint and site key', async 
   const sandbox = { window: {} };
   vm.runInNewContext(source, sandbox);
   const config = sandbox.window.CONTACT_CONFIG;
-  assert.deepEqual(Object.keys(config).sort(), ['endpoint', 'turnstileSiteKey']);
-  if (config.endpoint || config.turnstileSiteKey) {
+  assert.deepEqual(Object.keys(config).sort(), ['endpoint', 'recaptchaSiteKey']);
+  if (config.endpoint || config.recaptchaSiteKey) {
     assert.match(config.endpoint, /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/);
-    assert.match(config.turnstileSiteKey, /^[A-Za-z0-9_-]{10,100}$/);
+    assert.match(config.recaptchaSiteKey, /^[A-Za-z0-9_-]{10,100}$/);
   }
 });
