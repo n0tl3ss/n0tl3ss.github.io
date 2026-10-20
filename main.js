@@ -44,6 +44,7 @@ function renderRecaptcha() {
   if (widgetId !== undefined) window.grecaptcha.enterprise.reset(widgetId);
   const widgetHost = document.createElement('div');
   if (typeof container.replaceChildren === 'function') container.replaceChildren(widgetHost);
+  message('Please complete the spam check before sending.');
   widgetId = window.grecaptcha.enterprise.render(widgetHost, {
     sitekey: config.recaptchaSiteKey,
     theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light',
