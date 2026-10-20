@@ -68,18 +68,28 @@ h1 em { font-weight:400; }
 h2 { font-family:var(--serif); font-size:44px; font-weight:400; line-height:1.14; letter-spacing:-.04em; }
 .section-heading > p:last-child:not(.eyebrow) { align-self:end; color:var(--muted); font-size:14px; max-width:420px; }
 h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
+.project-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-bottom:32px; }
+.project-link { display:flex; flex-direction:column; padding:20px 22px; border:1px solid var(--line); background:var(--tint); border-radius:2px; }
+.project-link:hover { border-color:var(--green); text-decoration:none; }
+.project-name { display:flex; justify-content:space-between; align-items:baseline; gap:16px; font-size:17px; font-weight:550; line-height:1.4; letter-spacing:-.025em; }
+.project-name > span { color:var(--green); font-size:20px; }
+.project-link:hover .project-name { text-decoration:underline; text-underline-offset:5px; }
+.project-description { color:var(--muted); font-size:13px; margin-top:8px; }
+.project-domain { color:var(--green); font-size:11px; padding-top:16px; margin-top:auto; }
 .work-list { border-top:1px solid var(--ink); }
 .work-row { display:grid; grid-template-columns:80px minmax(0,1fr) 50px; column-gap:20px; padding:29px 0; border-bottom:1px solid var(--line); }
 .work-number { font-size:11px; color:var(--muted); padding-top:6px; font-variant-numeric:tabular-nums; }
 .work-row p { font-size:14px; max-width:710px; color:var(--muted); margin-top:9px; }
 .work-row p.work-tech { font-size:10px; letter-spacing:.06em; color:var(--green); margin-top:15px; }
-.work-row p.work-links { display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:10px; font-size:11px; }
-.work-links a { text-decoration:underline; }
+.work-row p.work-links { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; font-size:11px; }
+.work-links a { display:inline-flex; align-items:center; gap:8px; min-height:40px; padding:8px 12px; border:1px solid var(--line); border-radius:2px; color:var(--green); line-height:1.5; }
+.work-links a:hover { background:var(--tint); border-color:var(--green); }
 .more-work { margin-top:34px; }
 .more-work h3 { font-size:16px; }
 .more-work ul { display:grid; grid-template-columns:1fr 1fr; gap:12px 28px; list-style:none; padding:0; margin:16px 0 0; }
-.more-work a { font-size:12px; text-decoration:underline; }
-.more-work a span { display:block; font-size:10px; color:var(--muted); }
+.more-work a { display:block; height:100%; padding:14px 16px; border:1px solid var(--line); border-radius:2px; font-size:12px; }
+.more-work a:hover { background:var(--tint); border-color:var(--green); }
+.more-work a span { display:block; margin-top:5px; font-size:10px; color:var(--muted); }
 .recognition { margin-top:42px; max-width:790px; }
 .recognition .eyebrow { color:var(--green); margin-bottom:12px; }
 .recognition h3 { font-size:23px; }
@@ -98,6 +108,7 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
 .career-title { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 22px; }
 .career-title > span { font-size:12px; color:var(--muted); }
 .career-content p { color:var(--muted); font-size:13px; margin-top:13px; max-width:750px; }
+.career-content p a { color:var(--green); text-decoration:underline; }
 .career-content p.career-grade { color:var(--green); font-size:11px; margin-top:8px; }
 .career-content ul { color:var(--muted); font-size:13px; margin:13px 0 0; }
 .career-content li { margin:5px 0; }
@@ -207,6 +218,8 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
   .section-heading .eyebrow { margin-bottom:14px; }
   h2 { font-size:36px; }
   .section-heading > p:last-child:not(.eyebrow) { font-size:13px; margin-top:20px; }
+  .project-links { grid-template-columns:1fr; gap:12px; margin-bottom:24px; }
+  .project-link { padding:18px; }
   .more-work ul { grid-template-columns:1fr; }
   .work-row { grid-template-columns:24px minmax(0,1fr) 24px; gap:14px; padding-block:24px; }
   .work-row h3 { font-size:17px; }
