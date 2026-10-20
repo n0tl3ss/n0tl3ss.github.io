@@ -78,8 +78,12 @@ function createHarness(options = {}) {
   };
   const cache = new Map();
   const htmlOutputs = [];
+  const logs = [];
   const sandbox = {
-    console,
+    console: {
+      error(value) { logs.push(String(value)); },
+      log(value) { logs.push(String(value)); },
+    },
     Date,
     JSON,
     String,
@@ -142,7 +146,7 @@ function createHarness(options = {}) {
     UrlFetchApp: {
       fetch(url, request) {
         fetches.push({ url, request });
-        if (options.fetchError) throw new Error('fetch failed');
+        if (options.fetchError) throw new Error(String(options.fetchError));
         return {
           getResponseCode() { return options.recaptchaStatus || 200; },
           getContentText() { return JSON.stringify(response); },
@@ -181,6 +185,7 @@ function createHarness(options = {}) {
     fetches,
     statusUpdates,
     htmlOutputs,
+    logs,
     headers,
     post(fields = {}) {
       return sandbox.doPost({
@@ -370,6 +375,64 @@ test('rejects provider network failures and replayed reCAPTCHA tokens', () => {
   assert.match(html(replay.post()), /could not submit/);
   assert.equal(replay.rows.length, 0);
   assert.equal(replay.sentEmails.length, 0);
+});
+
+test('logs private diagnostic codes without exposing provider errors or form data', () => {
+  const cases = [
+    [{ recaptchaStatus: 403 }, 'RECAPTCHA_HTTP_403'],
+    [{ recaptchaResponse: { tokenProperties: { valid: false, invalidReason: 'KEY_MISMATCH' } } }, 'RECAPTCHA_TOKEN_KEY_MISMATCH'],
+    [{ recaptchaResponse: { tokenProperties: { valid: true, hostname: 'other.example' } } }, 'RECAPTCHA_HOSTNAME_MISMATCH'],
+    [{ recaptchaResponse: { tokenProperties: { valid: false, invalidReason: 'recaptcha-api-key valid-token visitor@example.com' } } }, 'RECAPTCHA_TOKEN_INVALID'],
+    [{ fetchError: 'recaptcha-api-key valid-token visitor@example.com private message' }, 'SERVICE_ERROR'],
+  ];
+  for (const [options, code] of cases) {
+    const harness = createHarness(options);
+    const result = harness.post({ email: 'visitor@example.com', message: 'private message' });
+    assert.deepEqual(JSON.parse(harness.logs[0]), { event: 'contact_failure', stage: 'recaptcha', code });
+    assert.doesNotMatch(harness.logs.join('\n'), /recaptcha-api-key|valid-token|visitor@example\.com|private message/);
+    assert.doesNotMatch(html(result), /RECAPTCHA_|SERVICE_ERROR/);
+    assert.equal(harness.rows.length, 0);
+    assert.equal(harness.sentEmails.length, 0);
+  }
+});
+
+test('setup diagnostic checks API access and sheet schema without saving or sending', () => {
+  const harness = createHarness({ recaptchaResponse: { tokenProperties: { valid: false, invalidReason: 'MALFORMED' } } });
+  harness.sandbox.diagnoseSetup();
+  assert.deepEqual(JSON.parse(harness.logs[0]), { event: 'contact_diagnostic', code: 'SHEET_AND_RECAPTCHA_API_REACHABLE' });
+  assert.equal(JSON.parse(harness.fetches[0].request.payload).event.token, 'setup-diagnostic-invalid-token');
+  assert.equal(harness.rows.length, 0);
+  assert.equal(harness.sentEmails.length, 0);
+});
+
+test('setup diagnostic distinguishes missing sheets from rejected API requests', () => {
+  for (const [options, stage, code] of [
+    [{ messagesExists: false }, 'setup_storage', 'SHEET_MISSING'],
+    [{ recaptchaStatus: 403 }, 'setup_recaptcha', 'RECAPTCHA_HTTP_403'],
+    [{ recaptchaResponse: { tokenProperties: { valid: false, invalidReason: 'KEY_MISMATCH' } } }, 'setup_recaptcha', 'RECAPTCHA_TOKEN_KEY_MISMATCH'],
+    [{}, 'setup_recaptcha', 'DIAGNOSTIC_UNEXPECTED_RESPONSE'],
+    [{ properties: { RECAPTCHA_API_KEY: '' } }, 'setup_configuration', 'CONFIG_INVALID'],
+  ]) {
+    const harness = createHarness(options);
+    harness.sandbox.diagnoseSetup();
+    assert.deepEqual(JSON.parse(harness.logs[0]), { event: 'contact_failure', stage, code });
+    assert.equal(harness.rows.length, 0);
+    assert.equal(harness.sentEmails.length, 0);
+  }
+});
+
+test('validation failures record only a diagnostic code and never call Google', () => {
+  for (const [fields, code] of [
+    [{ fax_number: 'private value' }, 'HONEYPOT_FILLED'],
+    [{ 'g-recaptcha-response': '' }, 'REQUIRED_FIELD_MISSING'],
+    [{ request_id: 'private value' }, 'REQUEST_ID_INVALID'],
+  ]) {
+    const harness = createHarness();
+    assert.match(html(harness.post(fields)), /could not submit/);
+    assert.deepEqual(JSON.parse(harness.logs[0]), { event: 'contact_failure', stage: 'validation', code });
+    assert.equal(harness.fetches.length, 0);
+    assert.doesNotMatch(harness.logs.join('\n'), /private value/);
+  }
 });
 
 test('setup creates Messages only when absent and writes the exact headers', () => {

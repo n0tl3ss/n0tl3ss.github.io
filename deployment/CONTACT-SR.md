@@ -27,6 +27,16 @@ Kada dobijem javne vrednosti, povezaću sajt i objaviti konfiguraciju. Zatim tre
 
 Forma koristi Checkbox integraciju. Google poruka **ERROR for site owner: Invalid key type** znači da dostavljeni ključ nije kompatibilan sa tom integracijom. Proveri da je tip ključa **Checkbox / CHECKBOX**, pa isti novi ključ upiši u `RECAPTCHA_SITE_KEY` u Apps Script svojstvima i u javnu konfiguraciju sajta. `setup()` proverava podešavanja i pristup tabeli; njegovo uspešno izvršavanje ne proverava CAPTCHA ključ niti isporuku mejla. Dok kompatibilan ključ nije potvrđen u pregledaču, javna forma ostaje isključena i dostupan je mejl link.
 
+## Ako odgovor glasi Unable to send
+
+Ova stranica znači da je zahtev stigao do Apps Script-a, ali je odbijen ili nije mogao da bude obrađen. Za dijagnostiku kopiraj aktuelni `apps-script/Code.gs` u svoj Apps Script projekat, sačuvaj, pa izaberi **diagnoseSetup → Run**. Funkcija čita šemu tabele i šalje jedan reCAPTCHA API zahtev sa namerno nevažećim test tokenom. Ne upisuje redove i ne šalje mejl.
+
+U **Execution log** pronađi red sa `event` i `code` i pošalji samo taj red. `SHEET_AND_RECAPTCHA_API_REACHABLE` potvrđuje pristup tabeli i prihvaćen API zahtev; prava CAPTCHA provera i isporuka mejla i dalje zahtevaju probnu poruku. Kodovi `RECAPTCHA_HTTP_400` / `403` upućuju na API zahtev ili pristup, `RECAPTCHA_TOKEN_KEY_MISMATCH` na neusaglašen ključ, a `SHEET_MISSING` / `SHEET_HEADERS_INVALID` na tabelu. `SERVICE_ERROR` uz `stage` označava neuspeh servisa bez izlaganja njegovog sirovog odgovora.
+
+`RECAPTCHA_API_KEY` je poseban Google Cloud API ključ, različit od site key-a i legacy reCAPTCHA secret key-a. Mora pripadati odgovarajućem Cloud projektu, imati dozvoljen reCAPTCHA Enterprise API i odgovarajuća ograničenja. `NOTIFY_EMAIL` određuje primaoca obaveštenja i adresu u linku **Email directly** na stranici odgovora.
+
+Za aktiviranje promenjenog koda na postojećem `/exec` URL-u izaberi **Deploy → Manage deployments → Edit → Version: New version → Deploy**. Posle neuspelog web zahteva otvori **Executions** i poslednji `doPost`; privatni log beleži fazu i dijagnostički kod bez ključeva, tokena ili sadržaja poruke. [Google uputstvo za ažuriranje deploymenta](https://developers.google.com/apps-script/concepts/deployments), [Apps Script logovi](https://developers.google.com/apps-script/guides/logging).
+
 ## Cena i domen
 
 Google trenutno dozvoljava do 10.000 CAPTCHA procena mesečno po organizaciji bez uključivanja naplate. Prekoračenje bez billing naloga vraća grešku, pa forma odbija slanje; pročitaj [aktuelne kvote](https://docs.cloud.google.com/recaptcha/docs/billing-information). Ne treba uključivati billing samo za početno povezivanje.

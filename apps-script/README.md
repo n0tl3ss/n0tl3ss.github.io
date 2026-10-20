@@ -30,6 +30,12 @@ Runtime requires a tab named `Messages` with the exact headers written by `setup
 
 Keep the spreadsheet private. The notification address may also be visible in the site's public mail link, but `NOTIFY_EMAIL` remains a fixed server-controlled recipient and the form never accepts a visitor-supplied recipient. Never put `RECAPTCHA_API_KEY` or `SPREADSHEET_ID` in the public frontend. The endpoint validates field lengths, email syntax, UUID request IDs, the honeypot, reCAPTCHA validity/hostname, and formula-like leading characters before writing values to Sheets.
 
+## Diagnostics and code updates
+
+For a live `Unable to send` response, run `diagnoseSetup()` from the editor after saving the current source. It reads the Sheet schema and sends one assessment request with an intentionally invalid diagnostic token, without adding rows or sending email. `SHEET_AND_RECAPTCHA_API_REACHABLE` confirms those services are reachable; a real message must still verify token validity and delivery. Failure logs contain only the stage and a controlled diagnostic code, never raw provider errors, credentials, tokens or message contents. See the [Serbian troubleshooting steps](../deployment/CONTACT-SR.md#ako-odgovor-glasi-unable-to-send).
+
+To apply code changes to the existing public `/exec` URL, edit its deployment under **Deploy → Manage deployments**, choose a **New version**, and deploy. Saving the source alone does not change the published version. Script Properties remain server-side; `NOTIFY_EMAIL` also controls the public response page's direct-email link.
+
 ## Local tests
 
 From the project directory:

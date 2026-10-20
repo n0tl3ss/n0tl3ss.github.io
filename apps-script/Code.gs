@@ -26,16 +26,20 @@ const HEADERS = [
 ];
 
 function doPost(e) {
+  let stage = 'configuration';
   try {
     const config = getConfig();
+    stage = 'validation';
     const form = parseForm(e);
 
     if (form.faxNumber !== '') {
-      return renderStatus('failure', config);
+      throw contactFailure('HONEYPOT_FILLED');
     }
 
     validateForm(form);
+    stage = 'recaptcha';
     const recaptcha = verifyRecaptcha(form.recaptchaResponse, config);
+    stage = 'storage';
     const result = saveSubmission(form, recaptcha.hostname, config);
 
     if (result.duplicate) {
@@ -46,9 +50,25 @@ function doPost(e) {
     }
     return renderStatus(result.mailSent ? 'success' : 'saved', config);
   } catch (error) {
+    logContactFailure(stage, error);
     // Do not expose validation, configuration, or provider errors to the public.
     return renderStatus('failure', safeConfigForResponse());
   }
+}
+
+function contactFailure(code) {
+  const error = new Error('Contact request failed.');
+  error.contactFailureCode = code;
+  return error;
+}
+
+function logContactFailure(stage, error) {
+  // Never log raw service errors, credentials, tokens or submitted form fields.
+  console.error(JSON.stringify({
+    event: 'contact_failure',
+    stage: stage,
+    code: error && error.contactFailureCode ? error.contactFailureCode : 'SERVICE_ERROR',
+  }));
 }
 
 function doGet() {
@@ -78,6 +98,31 @@ function setup() {
   return 'Contact sheet headers are ready.';
 }
 
+function diagnoseSetup() {
+  let stage = 'configuration';
+  try {
+    const config = getConfig();
+    stage = 'storage';
+    getSheet(config);
+    stage = 'recaptcha';
+    // An intentionally invalid token checks API access without accepting a message.
+    const result = createRecaptchaAssessment('setup-diagnostic-invalid-token', config);
+    if (!result.tokenProperties || result.tokenProperties.valid !== false) {
+      throw contactFailure('DIAGNOSTIC_UNEXPECTED_RESPONSE');
+    }
+    const reason = result.tokenProperties.invalidReason;
+    if (reason === 'KEY_MISMATCH' || reason === 'DOMAIN_MISMATCH') {
+      throw contactFailure('RECAPTCHA_TOKEN_' + reason);
+    }
+    console.log(JSON.stringify({
+      event: 'contact_diagnostic',
+      code: 'SHEET_AND_RECAPTCHA_API_REACHABLE',
+    }));
+  } catch (error) {
+    logContactFailure('setup_' + stage, error);
+  }
+}
+
 function getConfig() {
   const properties = PropertiesService.getScriptProperties();
   const config = {
@@ -94,7 +139,7 @@ function getConfig() {
       !isSiteKey(config.recaptchaSiteKey) || !config.spreadsheetId ||
       !isEmail(config.notifyEmail) || !isHttpsUrl(config.siteUrl) ||
       !isHostname(config.allowedHostname)) {
-    throw new Error('Contact form configuration is incomplete.');
+    throw contactFailure('CONFIG_INVALID');
   }
   return config;
 }
@@ -135,7 +180,7 @@ function readField(parameters, name, maxLength) {
   const value = typeof parameters[name] === 'string' ? parameters[name] : '';
   const normalized = value.replace(/\u0000/g, '').trim();
   if (normalized.length > maxLength) {
-    throw new Error('Field is too long.');
+    throw contactFailure('FIELD_TOO_LONG');
   }
   return normalized;
 }
@@ -143,24 +188,45 @@ function readField(parameters, name, maxLength) {
 function validateForm(form) {
   if (!form.name || !form.email || !form.message || !form.requestId ||
       !form.recaptchaResponse) {
-    throw new Error('Required field is missing.');
+    throw contactFailure('REQUIRED_FIELD_MISSING');
   }
   if (form.message.length < 10) {
-    throw new Error('Message is too short.');
+    throw contactFailure('MESSAGE_TOO_SHORT');
   }
   if (!isEmail(form.email)) {
-    throw new Error('Email is invalid.');
+    throw contactFailure('EMAIL_INVALID');
   }
   if (!isUuid(form.requestId)) {
-    throw new Error('Request ID is invalid.');
+    throw contactFailure('REQUEST_ID_INVALID');
   }
 }
 
 function verifyRecaptcha(token, config) {
   if (!token || token.length > MAX_TOKEN_LENGTH) {
-    throw new Error('reCAPTCHA token is invalid.');
+    throw contactFailure('RECAPTCHA_TOKEN_INVALID');
   }
 
+  const result = createRecaptchaAssessment(token, config);
+  const tokenProperties = result.tokenProperties || {};
+  if (tokenProperties.valid !== true) {
+    const knownReasons = [
+      'INVALID_REASON_UNSPECIFIED', 'UNKNOWN_INVALID_REASON', 'MALFORMED',
+      'EXPIRED', 'DUPE', 'MISSING', 'BROWSER_ERROR', 'UNEXPECTED_ACTION',
+      'KEY_MISMATCH', 'DOMAIN_MISMATCH',
+    ];
+    const reason = knownReasons.indexOf(tokenProperties.invalidReason) >= 0
+      ? tokenProperties.invalidReason : 'INVALID';
+    throw contactFailure('RECAPTCHA_TOKEN_' + reason);
+  }
+  if (tokenProperties.hostname !== config.allowedHostname) {
+    throw contactFailure('RECAPTCHA_HOSTNAME_MISMATCH');
+  }
+
+  // Checkbox validity is the gate; do not invent a score threshold that can reject real users.
+  return { hostname: tokenProperties.hostname };
+}
+
+function createRecaptchaAssessment(token, config) {
   const response = UrlFetchApp.fetch(
     'https://recaptchaenterprise.googleapis.com/v1/projects/' +
       encodeURIComponent(config.recaptchaProjectId) + '/assessments',
@@ -180,19 +246,12 @@ function verifyRecaptcha(token, config) {
     },
   );
 
-  if (response.getResponseCode() < 200 || response.getResponseCode() >= 300) {
-    throw new Error('reCAPTCHA verification request failed.');
+  const status = response.getResponseCode();
+  if (status < 200 || status >= 300) {
+    throw contactFailure('RECAPTCHA_HTTP_' + status);
   }
 
-  const result = JSON.parse(response.getContentText());
-  const tokenProperties = result.tokenProperties || {};
-  if (tokenProperties.valid !== true ||
-      tokenProperties.hostname !== config.allowedHostname) {
-    throw new Error('reCAPTCHA verification failed.');
-  }
-
-  // Checkbox validity is the gate; do not invent a score threshold that can reject real users.
-  return { hostname: tokenProperties.hostname };
+  return JSON.parse(response.getContentText());
 }
 
 function isProjectId(value) {
@@ -266,6 +325,7 @@ function saveSubmission(form, recaptchaHostname, config) {
     mailSent = true;
     setRowStatus(sheet, rowNumber, 'MAIL_SENT');
   } catch (error) {
+    logContactFailure('email', error);
     // The row is already persisted. Record the notification failure when possible.
     setRowStatus(sheet, rowNumber, 'MAIL_FAILED');
   }
@@ -294,11 +354,11 @@ function getSheet(config) {
   const spreadsheet = SpreadsheetApp.openById(config.spreadsheetId);
   const sheet = spreadsheet.getSheetByName(MESSAGES_SHEET_NAME);
   if (!sheet) {
-    throw new Error('Messages sheet is missing. Run setup first.');
+    throw contactFailure('SHEET_MISSING');
   }
   const firstRow = sheet.getRange(1, 1, 1, HEADERS.length).getValues()[0];
   if (!headersMatch(firstRow)) {
-    throw new Error('Messages sheet headers do not match the expected schema.');
+    throw contactFailure('SHEET_HEADERS_INVALID');
   }
   return sheet;
 }
