@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 import vm from 'node:vm';
 
-const codePath = path.resolve(new URL('../apps-script/Code.gs', import.meta.url).pathname);
+const codePath = fileURLToPath(new URL('../apps-script/Code.gs', import.meta.url));
 const code = fs.readFileSync(codePath, 'utf8');
 const requestId = '550e8400-e29b-41d4-a716-446655440000';
 
