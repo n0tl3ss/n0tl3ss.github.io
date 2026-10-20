@@ -30,6 +30,7 @@ Only `site/` is copied to `dist/`. The Apps Script backend, tests, setup instruc
 - One-page and detailed PDF downloads. These web copies use city/country instead of a street address and omit the phone number. The editable CV documents are maintained separately.
 - An accessible, responsive contact form with an email fallback.
 - Light and dark themes, with a header switch and a saved browser preference. Light is the default; printing uses a light palette.
+- Self-hosted Newsreader and Inter fonts (SIL Open Font License, see `site/fonts/`), subset to Latin plus Serbian letters so every platform renders the same type.
 - Search metadata, `ProfilePage`/`Person`/`WebSite` structured data, a canonical URL, sitemap, robots file and social sharing image.
 
 ## Search and custom domain
