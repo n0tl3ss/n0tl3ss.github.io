@@ -27,7 +27,7 @@ test('review mode makes no third-party request and prevents form submission', ()
   assert.equal(prevented, true);
   assert.equal(a.nodes.get('#send-message').disabled, true);
   assert.equal(a.scripts.length, 0);
-  assert.match(a.nodes.get('#form-status').textContent, /does not send/);
+  assert.match(a.nodes.get('#form-status').textContent, /currently unavailable/);
 });
 test('untrusted endpoint configuration cannot enable the form', () => {
   for (const endpoint of ['javascript:alert(1)', 'https://attacker.example/exec', 'https://script.google.com.attacker.example/macros/s/x/exec']) {

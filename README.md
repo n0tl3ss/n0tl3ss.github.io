@@ -2,7 +2,7 @@
 
 An English portfolio and CV website for GitHub Pages. Plain HTML, CSS and JavaScript, with no frontend dependencies or third-party analytics.
 
-**Current state: private review.** The website is complete for visual review, and publishing is manual. The contact form is deliberately disabled until the Google and Cloudflare services are connected; it never simulates successful delivery.
+**Website:** https://n0tl3ss.github.io/ — publishing is manual from the `gh-pages` branch. The contact form is deliberately disabled until the Google and Cloudflare services are connected; visitors can use the email link. The form never simulates successful delivery.
 
 ## Local preview
 
@@ -51,17 +51,23 @@ The visitor receives a confirmation page from Apps Script and a return link. Usi
 
 Apps Script and email have account quotas. A saved message remains in the Sheet if email notification fails; inspect the notification-status column. This personal contact endpoint is not a general mailing service or a guarantee against distributed denial-of-service.
 
-## Publish, after review
+## Publish
 
-The intended repository name is `n0tl3ss.github.io`, for `https://n0tl3ss.github.io/`. No custom domain is required.
+The owner approved public deployment after reviewing the light and dark themes. GitHub Pages serves the root of `gh-pages`. That branch contains only the contents of `site/`, including `.nojekyll`; backend files and tests are not part of the served website.
 
-1. Approve the website and its public information. Keep the repository private until then.
-2. Connect the form services as above and commit public configuration only.
-3. Activate the workflow templates: copy `deployment/github-actions/*.yml` into `.github/workflows/` and commit using a GitHub login with permission to write workflows. The current CLI login lacks the OAuth `workflow` scope, so the review repository keeps these files as inactive templates. Local tests and the build are available now.
-4. Choose GitHub Actions as the repository's Pages source. GitHub Free requires a public repository for Pages; supported paid plans can also serve from private repositories.
-5. Run **Publish website (manual)** in Actions. After the templates are activated, ordinary pushes run tests and build checks; they do not publish the website.
+After committing and pushing source changes:
 
-The publish workflow refuses empty or test contact configuration. The live site still needs the one real delivery check after activation.
+```sh
+npm test
+npm run build
+git push origin "$(git subtree split --prefix=site)":refs/heads/gh-pages
+```
+
+The subtree split preserves site history, so later deployments push normally without force. Pushing the source branch alone does not deploy. Check the Pages build and the public URL after updating `gh-pages`.
+
+This branch-based deployment uses the current GitHub login without requiring additional OAuth workflow permissions. `deployment/github-actions/` contains inactive templates for a future switch to custom Actions. Their publish template requires live contact configuration; the current branch deployment permits the explicitly disabled form and email fallback.
+
+To activate the form later, connect the services above, run `node scripts/check-live-config.mjs`, then deploy and verify one real message reaches both the Sheet and the owner's email.
 
 ## Sources
 
