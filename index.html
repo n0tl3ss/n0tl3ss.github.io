@@ -58,7 +58,7 @@
         "worksFor": { "@type": "Organization", "name": "Oracle", "url": "https://www.oracle.com/" },
         "homeLocation": { "@type": "Place", "name": "Belgrade, Serbia" },
         "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Belgrade, School of Electrical Engineering" },
-        "knowsAbout": ["Java", "Python", "Go", "Micronaut", "GraalVM", "GraalPy", "Kubernetes", "OpenTelemetry", "Cloud computing"],
+        "knowsAbout": ["Java", "Python", "Go", "Micronaut", "GraalVM", "GraalPy", "Kubernetes", "OpenTelemetry", "Vector search", "Cloud computing"],
         "sameAs": ["https://github.com/n0tl3ss", "https://www.linkedin.com/in/nrmikic"],
         "subjectOf": { "@type": "CreativeWork", "name": "Apple web server security acknowledgements — November 2025", "url": "https://support.apple.com/en-gw/102774" },
         "mainEntityOfPage": { "@id": "https://n0tl3ss.github.io/#profile" }
@@ -134,24 +134,48 @@
       <div class="work-list">
         <article class="work-row">
           <span class="work-number" aria-hidden="true">01</span>
-          <div><h3>Observability across the stack</h3><p>OpenTelemetry for Micronaut HTTP and gRPC, JDBC/R2DBC instrumentation, Micrometer Observation and Prometheus integrations.</p><p class="work-tech">Java / OpenTelemetry / Micrometer</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-tracing/pull/65" target="_blank" rel="noopener noreferrer">OpenTelemetry · May 2022 ↗</a><a href="https://github.com/micronaut-projects/micronaut-micrometer/pull/585" target="_blank" rel="noopener noreferrer">Micrometer Observation · July 2023 ↗</a></p></div>
-          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-tracing/pull/65" target="_blank" rel="noopener noreferrer" aria-label="View my Micronaut OpenTelemetry contribution">↗</a>
+          <div><h3>OpenTelemetry for Micronaut</h3><p>Added OpenTelemetry modules for HTTP and gRPC client/server tracing, with tracing annotations, SDK configuration, integration tests and documentation.</p><p class="work-tech">Java / OpenTelemetry / HTTP / gRPC</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-tracing/pull/65" target="_blank" rel="noopener noreferrer">OpenTelemetry support · May 2022 ↗</a></p></div>
+          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-tracing/pull/65" target="_blank" rel="noopener noreferrer" aria-label="View my OpenTelemetry support contribution">↗</a>
         </article>
         <article class="work-row">
           <span class="work-number" aria-hidden="true">02</span>
-          <div><h3>Cloud integrations &amp; reliability</h3><p>Integrated OKE workload-identity authentication and OCI certificate retrieval, with scheduled certificate refresh, configuration, documentation and integration tests.</p><p class="work-tech">Java / OCI / Kubernetes / Netty</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/686" target="_blank" rel="noopener noreferrer">OKE Workload Identity · September 2023 ↗</a><a href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/596" target="_blank" rel="noopener noreferrer">OCI Certificates · June 2023 ↗</a></p></div>
-          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/686" target="_blank" rel="noopener noreferrer" aria-label="View my OKE Workload Identity contribution">↗</a>
+          <div><h3>Vector search in Micronaut Data</h3><p>Implemented dense/sparse vector types, derived similarity queries, schema/index generation and integration tests. Added JDBC bindings for Oracle, PostgreSQL/pgvector and MySQL HeatWave, plus Oracle/PostgreSQL R2DBC support.</p><p class="work-tech">Java / Micronaut Data / JDBC / R2DBC</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-data/pull/3637" target="_blank" rel="noopener noreferrer">Vector type support · May 2026 ↗</a><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/#sqlVectorType" target="_blank" rel="noopener noreferrer">Vector mapping documentation ↗</a></p></div>
+          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-data/pull/3637" target="_blank" rel="noopener noreferrer" aria-label="View my Micronaut Data vector support contribution">↗</a>
         </article>
         <article class="work-row">
           <span class="work-number" aria-hidden="true">03</span>
-          <div><h3>Python meets Micronaut</h3><p>Automatic Python dataclass introspection through GraalPy, including validation metadata, aliases, defaults, inheritance and compiler/runtime tests.</p><p class="work-tech">Python / GraalPy / GraalVM / Pyronaut</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-core/pull/13786" target="_blank" rel="noopener noreferrer">Python dataclass support · October 2026 ↗</a></p></div>
-          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-core/pull/13786" target="_blank" rel="noopener noreferrer" aria-label="View my Python dataclass introspection contribution">↗</a>
+          <div><h3>OKE Workload Identity</h3><p>Enabled Micronaut applications on Oracle OKE to authenticate with Kubernetes workload identity. Implemented service-account federation, cluster-CA TLS setup, configuration, tests and documentation.</p><p class="work-tech">Java / OCI / Kubernetes / Authentication</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/686" target="_blank" rel="noopener noreferrer">OKE Workload Identity · September 2023 ↗</a></p></div>
+          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/686" target="_blank" rel="noopener noreferrer" aria-label="View my OKE Workload Identity contribution">↗</a>
         </article>
         <article class="work-row">
           <span class="work-number" aria-hidden="true">04</span>
-          <div><h3>Tools for other engineers</h3><p>Built application and Kubernetes templates, dependency-update workflows, and Gradle/Docker tooling for offline dependency repositories and build validation. Also contributed OCI runner configuration updates to reusable GitHub Actions.</p><p class="work-tech">Gradle / Maven / Docker / CI/CD</p><p class="work-links"><a href="https://github.com/micronaut-projects/github-actions/pull/43" target="_blank" rel="noopener noreferrer">OCI runner configuration · March 2024 ↗</a></p></div>
-          <a class="arrow-link" href="https://github.com/micronaut-projects/github-actions/pull/43" target="_blank" rel="noopener noreferrer" aria-label="View my OCI runner configuration update">↗</a>
+          <div><h3>OCI certificate management</h3><p>Built the Micronaut integration with OCI Certificates, including certificate and private-key retrieval, scheduled refresh and retry, certificate-update events and HTTPS integration tests.</p><p class="work-tech">Java / OCI Certificates / TLS</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/596" target="_blank" rel="noopener noreferrer">OCI Certificates · June 2023 ↗</a></p></div>
+          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/596" target="_blank" rel="noopener noreferrer" aria-label="View my OCI Certificates integration contribution">↗</a>
         </article>
+        <article class="work-row">
+          <span class="work-number" aria-hidden="true">05</span>
+          <div><h3>Micrometer Observation</h3><p>Added Micrometer Observation integration for Micronaut, with annotation mapping, HTTP client/server filters, handler configuration and context propagation, backed by integration tests.</p><p class="work-tech">Java / Micrometer / Observability</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-micrometer/pull/585" target="_blank" rel="noopener noreferrer">Micrometer Observation · July 2023 ↗</a></p></div>
+          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-micrometer/pull/585" target="_blank" rel="noopener noreferrer" aria-label="View my Micrometer Observation contribution">↗</a>
+        </article>
+        <article class="work-row">
+          <span class="work-number" aria-hidden="true">06</span>
+          <div><h3>CloudWatch logging for Micronaut</h3><p>Added the AWS CloudWatch logging module with a Logback appender, queued and batched publishing, log-group/stream setup, sequence-token retry and an emergency fallback appender, plus tests and documentation.</p><p class="work-tech">Java / AWS CloudWatch / Logback</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-aws/pull/1438" target="_blank" rel="noopener noreferrer">CloudWatch logging · September 2022 ↗</a></p></div>
+          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-aws/pull/1438" target="_blank" rel="noopener noreferrer" aria-label="View my CloudWatch logging module contribution">↗</a>
+        </article>
+        <article class="work-row">
+          <span class="work-number" aria-hidden="true">07</span>
+          <div><h3>Python meets Micronaut</h3><p>Automatic Python dataclass introspection through GraalPy, including validation metadata, aliases, defaults, inheritance and compiler/runtime tests.</p><p class="work-tech">Python / GraalPy / GraalVM / Pyronaut</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-core/pull/13786" target="_blank" rel="noopener noreferrer">Python dataclass support · October 2026 ↗</a></p></div>
+          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-core/pull/13786" target="_blank" rel="noopener noreferrer" aria-label="View my Python dataclass introspection contribution">↗</a>
+        </article>
+      </div>
+      <div class="more-work">
+        <h3 id="more-work-title">More public features</h3>
+        <ul>
+          <li><a href="https://github.com/micronaut-projects/micronaut-micrometer/pull/848" target="_blank" rel="noopener noreferrer">Prometheus Pushgateway module <span>October 2024 ↗</span></a></li>
+          <li><a href="https://github.com/micronaut-projects/micronaut-tracing/pull/646" target="_blank" rel="noopener noreferrer">OpenTelemetry JDBC instrumentation <span>October 2024 ↗</span></a></li>
+          <li><a href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/779" target="_blank" rel="noopener noreferrer">OCI raw metrics registry <span>January 2024 ↗</span></a></li>
+          <li><a href="https://github.com/micronaut-projects/micronaut-starter/pull/1302" target="_blank" rel="noopener noreferrer">OCI DevOps CI project generation <span>July 2022 ↗</span></a></li>
+        </ul>
       </div>
       <aside class="recognition" id="recognition" aria-labelledby="recognition-title">
         <p class="eyebrow">Security recognition</p>
@@ -173,7 +197,7 @@
         <div class="career-list">
           <article class="career-row">
             <div class="career-date">2022 — Present</div>
-            <div class="career-content"><div class="career-title"><h3>Oracle</h3><span>Software Engineer</span></div><p class="career-grade">IC4 since June 2024 · Previously IC3</p><p>Contributing to the Micronaut and GraalVM ecosystems through framework features, cloud integrations, observability and developer tooling.</p><ul><li>Extended internal Java service observability with raw metrics, HTTP/JVM instrumentation and request-context propagation.</li><li>Built cloud integrations, Terraform reference deployments and delivery automation.</li><li>Developed offline dependency-mirror tooling and validated Gradle/Maven builds with checksum and compliance reports.</li><li>Authored public Micronaut guides with runnable applications and tests.</li></ul></div>
+            <div class="career-content"><div class="career-title"><h3>Oracle</h3><span>Software Engineer</span></div><p class="career-grade">IC4 since June 2024 · Previously IC3</p><p>Contributing to the Micronaut and GraalVM ecosystems through framework features, cloud integrations, observability and developer tooling.</p><ul><li>Implemented Micronaut Data vector persistence and similarity search across database integrations.</li><li>Extended internal Java service observability with raw metrics, HTTP/JVM instrumentation and request-context propagation.</li><li>Built cloud integrations, Terraform reference deployments and delivery automation.</li><li>Developed offline dependency-mirror tooling and validated Gradle/Maven builds with checksum and compliance reports.</li><li>Authored public Micronaut guides with runnable applications and tests.</li></ul></div>
           </article>
           <article class="career-row">
             <div class="career-date">May — Dec 2021</div>
