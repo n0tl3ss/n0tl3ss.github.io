@@ -29,6 +29,17 @@ Only `site/` is copied to `dist/`. The Apps Script backend, tests, setup instruc
 - One-page and detailed PDF downloads. These web copies use city/country instead of a street address and omit the phone number. The original CV documents are unchanged.
 - An accessible, responsive contact form with an email fallback.
 - Light and dark themes, with a header switch and a saved browser preference. Light is the default; printing uses a light palette.
+- Search metadata, `ProfilePage`/`Person`/`WebSite` structured data, a canonical URL, sitemap, robots file and social sharing image.
+
+## Search and custom domain
+
+The current canonical is the working GitHub Pages URL. [Loopia DNS and domain activation instructions](deployment/DOMAIN.md) prepare the move to `nmikic.rs`; registration, ownership verification and HTTPS must be ready before cutover.
+
+Google Search Console still needs an owner-authenticated property verification, sitemap submission and homepage URL inspection. After verification, check indexing and search queries over time. No metadata or test score can guarantee first place for a name search.
+
+When changing content, keep the sitemap `lastmod` and profile `dateModified` accurate. The social image is generated from [design/social-card.svg](design/social-card.svg); it is a title card, not a portrait.
+
+The repository history was rewritten to update retired contact details, including historical PDF content. If you cloned before that cleanup, clone it again rather than merging or pushing old branches back.
 
 ## Contact: private Sheet + email
 

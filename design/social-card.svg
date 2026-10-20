@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f7f6f0"/>
+  <rect x="0" y="0" width="14" height="630" fill="#124c43"/>
+  <g fill="#182d29">
+    <text x="80" y="100" font-family="Arial,Helvetica,sans-serif" font-size="39" font-weight="700" letter-spacing="-3">nm<tspan fill="#458276">.</tspan></text>
+    <text x="80" y="292" font-family="Georgia,serif" font-size="101" letter-spacing="-5">Nemanja Mikić<tspan fill="#458276">.</tspan></text>
+    <text x="84" y="370" font-family="Arial,Helvetica,sans-serif" font-size="35">Software engineer at Oracle</text>
+    <text x="84" y="422" font-family="Arial,Helvetica,sans-serif" font-size="24" fill="#626d65">Frameworks, backend &amp; cloud · Belgrade, Serbia</text>
+    <path d="M84 490H1116" stroke="#d5dad1"/>
+    <text x="84" y="547" font-family="Arial,Helvetica,sans-serif" font-size="21" fill="#124c43">JAVA   ·   PYTHON   ·   MICRONAUT   ·   GRAALVM</text>
+  </g>
+</svg>
