@@ -35,7 +35,7 @@ Only `site/` is copied to `dist/`. The Apps Script backend, tests, setup instruc
 
 The current canonical is the working GitHub Pages URL. [Loopia DNS and domain activation instructions](deployment/DOMAIN.md) prepare the move to `nmikic.rs`; registration, ownership verification and HTTPS must be ready before cutover.
 
-Google Search Console still needs an owner-authenticated property verification, sitemap submission and homepage URL inspection. After verification, check indexing and search queries over time. No metadata or test score can guarantee first place for a name search.
+The owner-provided `google2b694a43c865015d.html` file is included for Google Search Console URL-prefix verification. After deployment, click Verify in the owner account, submit `sitemap.xml`, and inspect/request indexing of the homepage. Keep the verification file after verification succeeds. After verification, check indexing and search queries over time. No metadata or test score can guarantee first place for a name search.
 
 When changing content, keep the sitemap `lastmod` and profile `dateModified` accurate. The social image is generated from [design/social-card.svg](design/social-card.svg); it is a title card, not a portrait.
 
