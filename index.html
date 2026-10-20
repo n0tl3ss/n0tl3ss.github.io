@@ -8,7 +8,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#f7f6f0">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; form-action 'self' https://script.google.com https://script.googleusercontent.com; base-uri 'self'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://www.google.com/recaptcha/; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/; form-action 'self' https://script.google.com https://script.googleusercontent.com; base-uri 'self'; object-src 'none'">
   <link rel="canonical" href="https://n0tl3ss.github.io/">
   <meta property="og:site_name" content="Nemanja Mikic">
   <meta property="og:title" content="Nemanja Mikic — Software Engineer">
@@ -60,6 +60,7 @@
         "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Belgrade, School of Electrical Engineering" },
         "knowsAbout": ["Java", "Python", "Go", "Micronaut", "GraalVM", "GraalPy", "Kubernetes", "OpenTelemetry", "Cloud computing"],
         "sameAs": ["https://github.com/n0tl3ss", "https://www.linkedin.com/in/nrmikic"],
+        "subjectOf": { "@type": "CreativeWork", "name": "Apple web server security acknowledgements — November 2025", "url": "https://support.apple.com/en-gw/102774" },
         "mainEntityOfPage": { "@id": "https://n0tl3ss.github.io/#profile" }
       }
     ]
@@ -128,30 +129,42 @@
       <div class="section-heading">
         <p class="eyebrow">01 / Selected work</p>
         <h2 id="work-title">From framework internals<br>to cloud services.</h2>
-        <p>A selection of the engineering work behind my CV. Public code is linked where available.</p>
+        <p>Selected contributions from 2022 onward, with links to the code, reviews and merge history.</p>
       </div>
       <div class="work-list">
         <article class="work-row">
           <span class="work-number" aria-hidden="true">01</span>
-          <div><h3>Observability across the stack</h3><p>OpenTelemetry for Micronaut HTTP and gRPC, JDBC/R2DBC instrumentation, Micrometer Observation and Prometheus integrations.</p><p class="work-tech">Java / OpenTelemetry / Micrometer</p></div>
+          <div><h3>Observability across the stack</h3><p>OpenTelemetry for Micronaut HTTP and gRPC, JDBC/R2DBC instrumentation, Micrometer Observation and Prometheus integrations.</p><p class="work-tech">Java / OpenTelemetry / Micrometer</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-tracing/pull/65" target="_blank" rel="noopener noreferrer">OpenTelemetry · May 2022 ↗</a><a href="https://github.com/micronaut-projects/micronaut-micrometer/pull/585" target="_blank" rel="noopener noreferrer">Micrometer Observation · July 2023 ↗</a></p></div>
           <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-tracing/pull/65" target="_blank" rel="noopener noreferrer" aria-label="View my Micronaut OpenTelemetry contribution">↗</a>
         </article>
         <article class="work-row">
           <span class="work-number" aria-hidden="true">02</span>
-          <div><h3>Cloud integrations &amp; reliability</h3><p>OCI certificate and workload-identity integrations, AWS CloudWatch logging, and a fix for SDK retry scheduling that could block Netty event loops.</p><p class="work-tech">OCI / AWS / Netty</p></div>
-          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/1403" target="_blank" rel="noopener noreferrer" aria-label="View my OCI SDK retry contribution">↗</a>
+          <div><h3>Cloud integrations &amp; reliability</h3><p>Integrated OKE workload-identity authentication and OCI certificate retrieval, with scheduled certificate refresh, configuration, documentation and integration tests.</p><p class="work-tech">Java / OCI / Kubernetes / Netty</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/686" target="_blank" rel="noopener noreferrer">OKE Workload Identity · September 2023 ↗</a><a href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/596" target="_blank" rel="noopener noreferrer">OCI Certificates · June 2023 ↗</a></p></div>
+          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/686" target="_blank" rel="noopener noreferrer" aria-label="View my OKE Workload Identity contribution">↗</a>
         </article>
         <article class="work-row">
           <span class="work-number" aria-hidden="true">03</span>
-          <div><h3>Python meets Micronaut</h3><p>GraalPy-based Python/Java interoperability, coroutine adaptation, dataclass introspection, pytest integration and native release packaging.</p><p class="work-tech">Python / GraalPy / GraalVM / Pyronaut</p></div>
+          <div><h3>Python meets Micronaut</h3><p>Automatic Python dataclass introspection through GraalPy, including validation metadata, aliases, defaults, inheritance and compiler/runtime tests.</p><p class="work-tech">Python / GraalPy / GraalVM / Pyronaut</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-core/pull/13786" target="_blank" rel="noopener noreferrer">Python dataclass support · October 2026 ↗</a></p></div>
           <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-core/pull/13786" target="_blank" rel="noopener noreferrer" aria-label="View my Python dataclass introspection contribution">↗</a>
         </article>
         <article class="work-row">
           <span class="work-number" aria-hidden="true">04</span>
-          <div><h3>Tools for other engineers</h3><p>Graal Development Kit application and Kubernetes templates, generated tests, dependency-update workflows and release validation across cloud targets.</p><p class="work-tech">Gradle / Maven / GitLab CI / Kubernetes</p></div>
-          <a class="arrow-link" href="#experience" aria-label="Read more about my developer tooling experience">↓</a>
+          <div><h3>Tools for other engineers</h3><p>Built application and Kubernetes templates, dependency-update workflows, and Gradle/Docker tooling for offline dependency repositories and build validation. Also contributed OCI runner configuration updates to reusable GitHub Actions.</p><p class="work-tech">Gradle / Maven / Docker / CI/CD</p><p class="work-links"><a href="https://github.com/micronaut-projects/github-actions/pull/43" target="_blank" rel="noopener noreferrer">OCI runner configuration · March 2024 ↗</a></p></div>
+          <a class="arrow-link" href="https://github.com/micronaut-projects/github-actions/pull/43" target="_blank" rel="noopener noreferrer" aria-label="View my OCI runner configuration update">↗</a>
         </article>
       </div>
+      <aside class="recognition" id="recognition" aria-labelledby="recognition-title">
+        <p class="eyebrow">Security recognition</p>
+        <h3 id="recognition-title">Acknowledged by Apple</h3>
+        <p>Credited as Nemanja Mikic in <a href="https://support.apple.com/en-gw/102774" target="_blank" rel="noopener noreferrer">Apple web server security acknowledgements</a> for <time datetime="2025-11">November 2025</time>.</p>
+        <details>
+          <summary>View saved screenshot</summary>
+          <figure>
+            <a href="assets/apple-acknowledgement-november-2025.png" target="_blank" rel="noopener" aria-label="Open full-size Apple acknowledgement screenshot"><img src="assets/apple-acknowledgement-november-2025.png" width="1200" height="910" loading="lazy" decoding="async" alt="Apple’s November 2025 web server security acknowledgements, including Nemanja Mikic."></a>
+            <figcaption>Unmodified browser capture of the November section, saved on <time datetime="2026-10-20">20 October 2026</time>. <a href="assets/apple-acknowledgement-provenance.json">Source and capture details</a>.</figcaption>
+          </figure>
+        </details>
+      </aside>
     </section>
 
     <section class="experience-section" id="experience" aria-labelledby="experience-title">
@@ -160,7 +173,7 @@
         <div class="career-list">
           <article class="career-row">
             <div class="career-date">2022 — Present</div>
-            <div class="career-content"><div class="career-title"><h3>Oracle</h3><span>Software Engineer</span></div><p class="career-grade">IC4 since June 2024 · Previously IC3</p><p>Contributing to the Micronaut and GraalVM ecosystems through framework features, cloud integrations, observability and developer tooling.</p><ul><li>Extended internal Java service observability with raw metrics, HTTP/JVM instrumentation and request-context propagation.</li><li>Built cloud integrations, Terraform reference deployments and delivery automation.</li><li>Authored public Micronaut guides with runnable applications and tests.</li></ul></div>
+            <div class="career-content"><div class="career-title"><h3>Oracle</h3><span>Software Engineer</span></div><p class="career-grade">IC4 since June 2024 · Previously IC3</p><p>Contributing to the Micronaut and GraalVM ecosystems through framework features, cloud integrations, observability and developer tooling.</p><ul><li>Extended internal Java service observability with raw metrics, HTTP/JVM instrumentation and request-context propagation.</li><li>Built cloud integrations, Terraform reference deployments and delivery automation.</li><li>Developed offline dependency-mirror tooling and validated Gradle/Maven builds with checksum and compliance reports.</li><li>Authored public Micronaut guides with runnable applications and tests.</li></ul></div>
           </article>
           <article class="career-row">
             <div class="career-date">May — Dec 2021</div>
@@ -202,7 +215,7 @@
           <div class="field"><label for="contact-message">Message</label><textarea id="contact-message" name="message" maxlength="5000" minlength="10" rows="5" required placeholder="Tell me a little about the role, project or question."></textarea></div>
           <div class="honeypot" aria-hidden="true"><label for="fax-number">Leave this field empty</label><input id="fax-number" name="fax_number" tabindex="-1" autocomplete="off"></div>
           <input type="hidden" name="request_id" id="request-id">
-          <div id="turnstile-container"></div>
+          <div id="recaptcha-container"></div>
           <p class="form-status" id="form-status" role="status" aria-live="polite">The contact form is currently unavailable. Please use the email link to get in touch.</p>
           <button class="button" type="submit" id="send-message" disabled>Send message <span aria-hidden="true">↗</span></button>
           <p class="form-privacy">Your details are used to respond to your message. <a href="privacy.html">Contact privacy</a></p>
