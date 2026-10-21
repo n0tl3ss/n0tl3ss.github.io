@@ -1,6 +1,6 @@
 # Aktiviranje kontakt forme preko Google-a
 
-Forma je pripremljena za Google reCAPTCHA, privatnu Google tabelu i mejl obaveštenje na **n0t_l3ss@outlook.com**. Za sada posetioci mogu da koriste mejl link; slanje forme uključujemo tek kada povežemo stvarne Google resurse.
+Forma je povezana sa Google reCAPTCHA, privatnom Google tabelom i Apps Script aplikacijom. Primalac mejl obaveštenja podešava se privatno kroz `NOTIFY_EMAIL`; javna kontakt adresa je **n0t_l3ss@outlook.com**. Posetioci mogu da koriste i mejl link.
 
 ## Šta je potrebno
 
@@ -21,7 +21,7 @@ Samo ove dve javne vrednosti:
 
 Google lozinka, tajni API ključ i deljenje tabele nisu potrebni. Project ID, Sheet ID i tajni API ključ unosiš direktno u **Script Properties** prema uputstvu.
 
-Kada dobijem javne vrednosti, povezaću sajt i objaviti konfiguraciju. Zatim treba poslati jednu probnu poruku i proveriti da postoji jedan red u tabeli sa statusom `MAIL_SENT`, kao i da je obaveštenje stiglo na Outlook. Automatski lokalni testovi ne mogu da potvrde stvarnu isporuku mejla.
+Posle povezivanja ili promene domena treba poslati jednu probnu poruku i proveriti da postoji jedan red u tabeli sa statusom `MAIL_SENT`, kao i da je obaveštenje stiglo na adresu iz `NOTIFY_EMAIL`. Automatski lokalni testovi ne mogu da potvrde stvarnu isporuku mejla.
 
 ## Ako CAPTCHA prikazuje Invalid key type
 
@@ -43,4 +43,4 @@ Za aktiviranje promenjenog koda na postojećem `/exec` URL-u izaberi **Deploy �
 
 Google trenutno dozvoljava do 10.000 CAPTCHA procena mesečno po organizaciji bez uključivanja naplate. Prekoračenje bez billing naloga vraća grešku, pa forma odbija slanje; pročitaj [aktuelne kvote](https://docs.cloud.google.com/recaptcha/docs/billing-information). Ne treba uključivati billing samo za početno povezivanje.
 
-Trenutno koristi `SITE_URL=https://n0tl3ss.github.io/` i `ALLOWED_HOSTNAME=n0tl3ss.github.io`. Kada DNS i HTTPS za `nmikic.rs` budu spremni, usklađujemo ove vrednosti sa novim kanonskim domenom i objavljujemo novu Apps Script verziju. [Uputstvo za Loopia domen](DOMAIN.md).
+Za novi domen koristi `SITE_URL=https://nmikic.rs/` i `ALLOWED_HOSTNAME=nmikic.rs`, a u reCAPTCHA podešavanjima dozvoli `nmikic.rs`. Ove vrednosti menjaju se u postojećim Script Properties; ako se menja samo njihova vrednost, nova Apps Script verzija nije potrebna. Promene izvornog koda i dalje zahtevaju novi deployment. Posle aktiviranja HTTPS-a proveri stvarno slanje poruke sa novog domena. [Uputstvo za domen](DOMAIN.md).

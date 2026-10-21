@@ -2,7 +2,7 @@
 
 An English portfolio and CV website for GitHub Pages. Plain HTML, CSS and JavaScript, with no frontend dependencies or third-party analytics.
 
-**Website:** https://n0tl3ss.github.io/ — publishing is manual from the `gh-pages` branch. The contact form is connected to Google reCAPTCHA and the Apps Script backend; visitors can also use the email link. The form never simulates successful delivery.
+**Website:** https://nmikic.rs/ — publishing is manual from the `gh-pages` branch. The contact form is connected to Google reCAPTCHA and the Apps Script backend; visitors can also use the email link. The form never simulates successful delivery.
 
 ## Local preview
 
@@ -35,7 +35,7 @@ Only `site/` is copied to `dist/`. The Apps Script backend, tests, setup instruc
 
 ## Search and custom domain
 
-The current canonical is the working GitHub Pages URL. [Loopia DNS and domain activation instructions](deployment/DOMAIN.md) prepare the move to `nmikic.rs`; registration, ownership verification and HTTPS must be ready before cutover.
+The canonical domain is `https://nmikic.rs/`. Loopia holds the registration, Cloudflare hosts DNS, and GitHub Pages hosts the site and manages its HTTPS certificate. Keep `www` and the old GitHub Pages URL redirecting to the canonical domain. [Domain setup and cutover instructions](deployment/DOMAIN.md) cover DNSSEC, ownership verification, HTTPS and contact settings.
 
 The owner-provided `google2b694a43c865015d.html` file is included for Google Search Console URL-prefix verification. After deployment, click Verify in the owner account, submit `sitemap.xml`, and inspect/request indexing of the homepage. Keep the verification file after verification succeeds. After verification, check indexing and search queries over time. No metadata or test score can guarantee first place for a name search.
 
@@ -61,7 +61,7 @@ The visitor receives a confirmation page from Apps Script and a return link. A r
 1. Follow [apps-script/README.md](apps-script/README.md) to configure the Google Cloud checkbox key, private spreadsheet and backend. The owner performs Google authorization.
 2. Keep the restricted API key, Sheet ID and backend settings in Apps Script **Script Properties**. Never put secrets in GitHub files or chat.
 3. Only the **public reCAPTCHA site key** and deployed Apps Script **`/exec` URL** go into `site/contact-config.js`. These two values can be shared for final connection.
-4. Add the current `n0tl3ss.github.io` and future `nmikic.rs` domains to the CAPTCHA key. The backend accepts the exact live hostname configured in Script Properties.
+4. Allow `nmikic.rs` on the CAPTCHA key and set backend Script Properties `ALLOWED_HOSTNAME=nmikic.rs` and `SITE_URL=https://nmikic.rs/`. The backend accepts the exact live hostname. Property-only changes do not require a new Apps Script deployment.
 5. Run `node scripts/check-live-config.mjs`, deploy, and verify one real owner test: Sheet row, `MAIL_SENT` status, email receipt and reply address. Local tests mock Google and cannot establish actual delivery.
 
 Google offers a free assessment allowance without billing; see its current [billing and quota documentation](https://docs.cloud.google.com/recaptcha/docs/billing-information). Apps Script and email also have account quotas. A message remains in the Sheet if notification fails; inspect the notification-status column.
@@ -78,7 +78,7 @@ npm run build
 git push origin "$(git subtree split --prefix=site)":refs/heads/gh-pages
 ```
 
-The subtree split preserves site history, so later deployments push normally without force. Pushing the source branch alone does not deploy. Check the Pages build and the public URL after updating `gh-pages`.
+The subtree split preserves site history. GitHub's custom-domain settings can also add commits directly to `gh-pages`; if that makes the push non-fast-forward, preserve those commits using the publishing procedure in [DOMAIN.md](deployment/DOMAIN.md#publishing-after-a-pages-settings-commit). Never force-push over them. Pushing the source branch alone does not deploy. Check the Pages build and the public URL after updating `gh-pages`.
 
 This branch-based deployment uses the current GitHub login without requiring additional OAuth workflow permissions. `deployment/github-actions/` contains inactive templates for a future switch to custom Actions. Their publish template requires live contact configuration; the current branch deployment permits the explicitly disabled form and email fallback.
 
