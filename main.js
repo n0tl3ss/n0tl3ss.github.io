@@ -70,15 +70,32 @@ function renderRecaptcha() {
 if (configured()) {
   form.action = config.endpoint;
   document.querySelector('#request-id').value = crypto.randomUUID();
-  message('Loading the spam check…');
+  let observer;
+  let loading = false;
+  const loadRecaptcha = () => {
+    if (loading) return;
+    loading = true;
+    if (observer) observer.disconnect();
+    message('Loading the spam check…');
+    window.onRecaptchaReady = renderRecaptcha;
+    const script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/enterprise.js?onload=onRecaptchaReady&render=explicit';
+    script.async = true;
+    script.defer = true;
+    script.onerror = () => requireChallenge('The spam check could not load. Please use the email link.');
+    document.head.append(script);
+  };
 
-  window.onRecaptchaReady = renderRecaptcha;
-  const script = document.createElement('script');
-  script.src = 'https://www.google.com/recaptcha/enterprise.js?onload=onRecaptchaReady&render=explicit';
-  script.async = true;
-  script.defer = true;
-  script.onerror = () => requireChallenge('The spam check could not load. Please use the email link.');
-  document.head.append(script);
+  if (typeof window.IntersectionObserver === 'function') {
+    message('The spam check will load when you reach the contact form.');
+    observer = new window.IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) loadRecaptcha();
+    }, { rootMargin: '300px' });
+    observer.observe(form);
+    form.addEventListener('focusin', loadRecaptcha, { once: true });
+  } else {
+    loadRecaptcha();
+  }
 }
 
 form.addEventListener('submit', (event) => {
