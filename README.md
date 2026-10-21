@@ -28,7 +28,7 @@ Only `site/` is copied to `dist/`. The Apps Script backend, tests, setup instruc
 - Apple web server security acknowledgment (November 2025), with the source link and a saved screenshot of the relevant section.
 - Six published Micronaut guides with direct links and attribution.
 - One-page and detailed PDF downloads. These web copies use city/country instead of a street address and omit the phone number. The editable CV documents are maintained separately.
-- An accessible, responsive contact form with an email fallback.
+- An accessible, responsive contact form with an email fallback. Google reCAPTCHA loads when the visitor approaches or focuses the form, keeping its scripts off the initial page load; space is reserved for the checkbox.
 - Light and dark themes, with a header switch and a saved browser preference. Light is the default; printing uses a light palette.
 - Self-hosted Newsreader and Inter fonts (SIL Open Font License, see `site/fonts/`), subset to Latin plus Serbian letters so every platform renders the same type.
 - Search metadata, `ProfilePage`/`Person`/`WebSite` structured data, a canonical URL, sitemap, robots file and social sharing image.

@@ -29,6 +29,11 @@ test('search identity, canonical, structured data and sharing metadata agree', a
   assert.ok(html.includes(`mailto:${person.email}`));
   assert.equal(profile.mainEntity['@id'], person['@id']);
   assert.equal(profile.isPartOf['@id'], website['@id']);
+  for (const date of [profile.dateCreated, profile.dateModified]) {
+    assert.match(date, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})$/);
+    assert.ok(Number.isFinite(Date.parse(date)));
+  }
+  assert.ok(Date.parse(profile.dateCreated) <= Date.parse(profile.dateModified));
   for (const node of graph) {
     assert.equal(node.url, canonical);
     assert.ok(node['@id'].startsWith(canonical));
@@ -41,12 +46,13 @@ test('search identity, canonical, structured data and sharing metadata agree', a
 });
 
 test('crawling files use the live canonical and keep the privacy page out of the sitemap', async () => {
-  const { canonical } = metadata(await readFile(new URL('index.html', site), 'utf8'));
+  const { canonical, graph } = metadata(await readFile(new URL('index.html', site), 'utf8'));
   const robots = await readFile(new URL('robots.txt', site), 'utf8');
   const sitemap = await readFile(new URL('sitemap.xml', site), 'utf8');
   assert.ok(robots.includes(`Sitemap: ${canonical}sitemap.xml`));
   assert.match(robots, /Allow: \//);
   assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
+  assert.ok(sitemap.includes(`<lastmod>${graph.find(node => node['@type'] === 'ProfilePage').dateModified}</lastmod>`));
   assert.equal((sitemap.match(/<loc>/g) || []).length, 1);
   assert.doesNotMatch(sitemap, /privacy|\.pdf/);
   assert.match(await readFile(new URL('privacy.html', site), 'utf8'), /name="robots" content="noindex"/);

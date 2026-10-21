@@ -173,8 +173,8 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
 .form-status[data-state="error"] { color:var(--error); }
 .form-privacy { font-size:12px; color:var(--muted); margin-top:15px; max-width:400px; }
 .form-privacy a { text-decoration:underline; }
-#recaptcha-container:empty { display:none; }
-#recaptcha-container { margin-bottom:12px; }
+#recaptcha-container { min-height:78px; margin-bottom:12px; }
+@media (max-width:344px) { #recaptcha-container { min-height:144px; } }
 .honeypot { position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
 .site-footer { display:flex; align-items:center; justify-content:space-between; gap:25px; min-height:104px; }
 .site-footer .wordmark { font-size:25px; }

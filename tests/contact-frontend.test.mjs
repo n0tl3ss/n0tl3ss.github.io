@@ -4,7 +4,7 @@ import test from 'node:test';
 import vm from 'node:vm';
 
 const source = readFileSync(new URL('../site/main.js', import.meta.url), 'utf8');
-function app(config = {}) {
+function app(config = {}, IntersectionObserver) {
   const events = {};
   const scripts = [];
   const fields = new Map();
@@ -39,6 +39,7 @@ function app(config = {}) {
   const root = { dataset: { theme: 'light' } };
   const window = {
     CONTACT_CONFIG: config,
+    IntersectionObserver,
     addEventListener: (type, callback) => { windowEvents[type] = callback; },
     grecaptcha: {
       enterprise: {
@@ -89,6 +90,40 @@ function app(config = {}) {
   };
 }
 const live = { endpoint: 'https://script.google.com/macros/s/EXAMPLE_DEPLOYMENT/exec', recaptchaSiteKey: 'public-test-sitekey' };
+
+test('defers Google until the form approaches or receives focus and loads it only once', () => {
+  for (const trigger of ['viewport', 'focus']) {
+    let intersect;
+    let observed;
+    let disconnected = false;
+    const a = app(live, class {
+      constructor(callback) { intersect = callback; }
+      observe(target) { observed = target; }
+      disconnect() { disconnected = true; }
+    });
+    assert.equal(observed, a.nodes.get('#contact-form'));
+    assert.equal(a.scripts.length, 0);
+    intersect([{ isIntersecting: false }]);
+    assert.equal(a.scripts.length, 0);
+    let prevented = false;
+    a.events.submit({ preventDefault: () => { prevented = true; } });
+    assert.equal(prevented, true);
+    if (trigger === 'viewport') intersect([{ isIntersecting: true }]);
+    else a.events.focusin();
+    assert.equal(a.scripts.length, 1);
+    assert.equal(disconnected, true);
+    assert.equal(a.nodes.get('#send-message').disabled, true);
+    a.events.focusin();
+    intersect([{ isIntersecting: true }]);
+    assert.equal(a.scripts.length, 1);
+    a.window.onRecaptchaReady();
+    a.options().callback('valid-server-verified-token');
+    prevented = false;
+    a.events.submit({ preventDefault: () => { prevented = true; } });
+    assert.equal(prevented, false);
+    assert.match(a.nodes.get('#form-status').textContent, /Sending/);
+  }
+});
 
 test('review mode makes no third-party request and prevents form submission', () => {
   const a = app();
