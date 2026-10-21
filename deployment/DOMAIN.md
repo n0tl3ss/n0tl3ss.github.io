@@ -14,10 +14,13 @@ Keep the records **DNS only**, with automatic TTL. `@` is the domain itself; `ww
 | `@` | A | `185.199.111.153` |
 | `www` | CNAME | `n0tl3ss.github.io` |
 | `_github-pages-challenge-n0tl3ss` | TXT | The exact value supplied in the owner's GitHub account Settings → Pages |
+| `@` | TXT | The `google-site-verification=…` value supplied by the owner's Search Console domain property |
 
 Optional IPv6 records for `@`: `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`. Remove incompatible old AAAA records if any exist. No wildcard records are needed.
 
 The Outlook contact address does not require mail hosting or MX records on `nmikic.rs`.
+
+Retain both ownership-verification TXT records after verification. Google's domain property and GitHub's account verification are independent of the old Google URL-prefix HTML file, which also stays in `site/`.
 
 ## Activation order
 
