@@ -1,6 +1,6 @@
 # Nemanja Mikić — CV & portfolio
 
-An English portfolio and CV website for GitHub Pages. Plain HTML, CSS and JavaScript, with no frontend dependencies or third-party analytics.
+An English portfolio and CV website for GitHub Pages. Plain HTML, CSS and JavaScript, with no frontend dependencies. Cloudflare Web Analytics measures homepage usage and performance.
 
 **Website:** https://nmikic.rs/ — publishing is manual from the `gh-pages` branch. The contact form is connected to Google reCAPTCHA and the Apps Script backend; visitors can also use the email link. The form never simulates successful delivery.
 
@@ -30,6 +30,7 @@ Only `site/` is copied to `dist/`. The Apps Script backend, tests, setup instruc
 - One-page and detailed PDF downloads. These web copies use city/country instead of a street address and omit the phone number. The editable CV documents are maintained separately.
 - An accessible, responsive contact form with an email fallback. Google reCAPTCHA loads when the visitor approaches or focuses the form, keeping its scripts off the initial page load; space is reserved for the checkbox.
 - Light and dark themes, with a header switch and a saved browser preference. Light is the default; printing uses a light palette.
+- Official Micronaut, Pyronaut and GDK wordmarks, hosted locally and displayed as CSS masks in the current theme's green.
 - Self-hosted Newsreader and Inter fonts (SIL Open Font License, see `site/fonts/`), subset to Latin plus Serbian letters so every platform renders the same type.
 - Search metadata, `ProfilePage`/`Person`/`WebSite` structured data, a canonical URL, sitemap, robots file and social sharing image.
 
@@ -42,6 +43,14 @@ The owner-provided `google2b694a43c865015d.html` file is included for Google Sea
 When changing content, keep the sitemap `lastmod` and profile `dateModified` accurate. The social image is generated from [design/social-card.svg](design/social-card.svg); it is a title card, not a portrait.
 
 The repository history was rewritten to update retired contact details, including historical PDF content. If you cloned before that cleanup, clone it again rather than merging or pushing old branches back.
+
+## Web analytics
+
+Cloudflare Web Analytics is configured for `nmikic.rs` using **Enable with JS Snippet installation**. DNS records remain DNS only; the homepage includes Cloudflare's deferred module beacon. Its `data-cf-beacon` token is a public site identifier, not an API key. The CSP allows only the beacon script and its reporting endpoint in addition to the existing contact services.
+
+View visits, page views, referrers, countries, devices and page performance under **Cloudflare → Observability → Analytics → Web analytics**. Ad blockers can prevent measurements; this is aggregate traffic analysis, not a complete count of every visitor. Local preview reports are not accepted for the configured live hostname. The privacy page explains analytics and contact processing.
+
+See [Cloudflare manual setup](https://developers.cloudflare.com/web-analytics/get-started/) and [data collection and CSP endpoints](https://developers.cloudflare.com/web-analytics/data-metrics/data-origin-and-collection/).
 
 ## Contact: Google reCAPTCHA + private Sheet + email
 
@@ -85,6 +94,8 @@ This branch-based deployment uses the current GitHub login without requiring add
 To activate the form later, connect the services above, run `node scripts/check-live-config.mjs`, then deploy and verify one real message reaches both the Sheet and the owner's email.
 
 ## Sources
+
+Project wordmarks come from the official websites: [Micronaut](https://micronaut.io/micronaut-assets/logos/micronaut-horizontal-black.svg), [Pyronaut](https://pyronaut.io/pyronaut-assets/logo-header.svg) and [GDK](https://graal.cloud/gdk/resources/img/gdk-logo-new.svg). The Pyronaut SVG viewport is trimmed to its embedded artwork. CSS changes the display color without redrawing the wordmarks.
 
 Content is based on the candidate's CV, employment dates and verified public contributions. Examples:
 

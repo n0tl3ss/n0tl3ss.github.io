@@ -10,6 +10,8 @@ test('local page links and assets resolve, without publishing private evidence',
     if (/^(?:https?:|mailto:|#)/.test(link)) continue;
     assert.ok((await stat(new URL(link, root))).isFile(), link);
   }
+  const css = await readFile(new URL('styles.css', root), 'utf8');
+  for (const [, asset] of css.matchAll(/url\(([^)]+)\)/g)) assert.ok((await stat(new URL(asset, root))).isFile(), asset);
   for (const [, anchor] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(html.includes(`id="${anchor}"`), anchor);
   assert.equal([...html.matchAll(/class="guide"/g)].length, 6);
   assert.doesNotMatch(html, /Vojvode|335g|64-52-43-955|SPREADSHEET_ID|RECAPTCHA_API_KEY/);
