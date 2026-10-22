@@ -1,5 +1,6 @@
 (() => {
   const root = document.documentElement;
+  const sr = root.lang === 'sr-Latn';
   let theme = 'light';
   try {
     if (localStorage.getItem('cv-theme') === 'dark') theme = 'dark';
@@ -16,8 +17,10 @@
     const button = document.querySelector('#theme-toggle');
     const label = document.querySelector('#theme-label');
     function updateButton() {
-      label.textContent = theme === 'dark' ? 'Light' : 'Dark';
-      button.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+      label.textContent = theme === 'dark' ? (sr ? 'Svetla' : 'Light') : (sr ? 'Tamna' : 'Dark');
+      button.setAttribute('aria-label', sr
+        ? `Prebaci na ${theme === 'dark' ? 'svetlu' : 'tamnu'} temu`
+        : `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
     }
     updateButton();
     button.hidden = false;

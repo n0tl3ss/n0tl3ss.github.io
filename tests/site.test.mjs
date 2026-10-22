@@ -8,7 +8,7 @@ test('local page links and assets resolve, without publishing private evidence',
   const html = await readFile(new URL('index.html', root), 'utf8');
   for (const [, link] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     if (/^(?:https?:|mailto:|#)/.test(link)) continue;
-    assert.ok((await stat(new URL(link, root))).isFile(), link);
+    assert.ok((await stat(new URL(link.endsWith('/') ? `${link}index.html` : link, root))).isFile(), link);
   }
   const css = await readFile(new URL('styles.css', root), 'utf8');
   for (const [, asset] of css.matchAll(/url\(([^)]+)\)/g)) assert.ok((await stat(new URL(asset, root))).isFile(), asset);

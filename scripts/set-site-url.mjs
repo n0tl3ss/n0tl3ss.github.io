@@ -4,7 +4,7 @@ const url = process.argv[2]?.replace(/\/$/, '');
 if (!['https://n0tl3ss.github.io', 'https://nmikic.rs'].includes(url)) {
   throw new Error('Use https://n0tl3ss.github.io or https://nmikic.rs. Connect and verify DNS before activating the custom domain.');
 }
-for (const file of ['index.html', 'robots.txt', 'sitemap.xml']) {
+for (const file of ['index.html', 'sr/index.html', 'privacy.html', 'sr/privacy.html', 'robots.txt', 'sitemap.xml']) {
   const path = new URL(`../site/${file}`, import.meta.url);
   const content = await readFile(path, 'utf8');
   await writeFile(path, content.replaceAll(/https:\/\/(?:n0tl3ss\.github\.io|nmikic\.rs)\//g, `${url}/`));

@@ -36,6 +36,10 @@ Only `site/` is copied to `dist/`. The Apps Script backend, tests, setup instruc
 
 ## Search and custom domain
 
+English is the default at `/`; the complete Serbian Latin version is at `/sr/`. The EN / SR links work without JavaScript and do not redirect based on browser language. Both versions have their own canonical and reciprocal `hreflang` links, and both homepages appear in the sitemap. Keep profile content, public contribution links and employment dates in sync when editing the two HTML versions. Shared CSS, theme/contact scripts, logos and PDFs stay in `site/`; Serbian pages reference those assets with relative paths.
+
+Both languages have a privacy page. Theme controls, contact status messages and reCAPTCHA are localized. Downloadable CV PDFs and the external Apps Script receipt page remain in English; the Serbian download section labels the PDFs accordingly.
+
 The canonical domain is `https://nmikic.rs/`. Loopia holds the registration, Cloudflare hosts DNS, and GitHub Pages hosts the site and manages its HTTPS certificate. Keep `www` and the old GitHub Pages URL redirecting to the canonical domain. [Domain setup and cutover instructions](deployment/DOMAIN.md) cover DNSSEC, ownership verification, HTTPS and contact settings.
 
 The owner-provided `google2b694a43c865015d.html` file is included for Google Search Console URL-prefix verification. After deployment, click Verify in the owner account, submit `sitemap.xml`, and inspect/request indexing of the homepage. Keep the verification file after verification succeeds. After verification, check indexing and search queries over time. No metadata or test score can guarantee first place for a name search.

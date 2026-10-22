@@ -53,7 +53,8 @@ test('crawling files use the live canonical and keep the privacy page out of the
   assert.match(robots, /Allow: \//);
   assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
   assert.ok(sitemap.includes(`<lastmod>${graph.find(node => node['@type'] === 'ProfilePage').dateModified}</lastmod>`));
-  assert.equal((sitemap.match(/<loc>/g) || []).length, 1);
+  assert.ok(sitemap.includes(`<loc>${canonical}sr/</loc>`));
+  assert.equal((sitemap.match(/<loc>/g) || []).length, 2);
   assert.doesNotMatch(sitemap, /privacy|\.pdf/);
   assert.match(await readFile(new URL('privacy.html', site), 'utf8'), /name="robots" content="noindex"/);
   if (canonical === 'https://nmikic.rs/') assert.equal(await readFile(new URL('CNAME', site), 'utf8'), 'nmikic.rs\n');
@@ -64,15 +65,17 @@ test('domain activation and rollback update all canonical references and CNAME t
   const temp = await mkdtemp(join(tmpdir(), 'cv-domain-test-'));
   try {
     await mkdir(join(temp, 'scripts'));
-    await mkdir(join(temp, 'site'));
+    await mkdir(join(temp, 'site/sr'), { recursive: true });
     await copyFile(new URL('../scripts/set-site-url.mjs', import.meta.url), join(temp, 'scripts/set-site-url.mjs'));
-    for (const file of ['index.html', 'robots.txt', 'sitemap.xml']) await copyFile(new URL(file, site), join(temp, 'site', file));
+    const files = ['index.html', 'sr/index.html', 'privacy.html', 'sr/privacy.html', 'robots.txt', 'sitemap.xml'];
+    for (const file of files) await copyFile(new URL(file, site), join(temp, 'site', file));
     for (const host of ['nmikic.rs', 'n0tl3ss.github.io']) {
       execFileSync(process.execPath, [join(temp, 'scripts/set-site-url.mjs'), `https://${host}`]);
       const html = await readFile(join(temp, 'site/index.html'), 'utf8');
       assert.equal(metadata(html).canonical, `https://${host}/`);
       const other = host === 'nmikic.rs' ? 'n0tl3ss.github.io' : 'nmikic.rs';
-      for (const file of ['index.html', 'robots.txt', 'sitemap.xml']) assert.ok(!(await readFile(join(temp, 'site', file), 'utf8')).includes(other));
+      assert.equal(metadata(await readFile(join(temp, 'site/sr/index.html'), 'utf8')).canonical, `https://${host}/sr/`);
+      for (const file of files) assert.ok(!(await readFile(join(temp, 'site', file), 'utf8')).includes(other));
       if (host === 'nmikic.rs') assert.equal(await readFile(join(temp, 'site/CNAME'), 'utf8'), 'nmikic.rs\n');
       else await assert.rejects(readFile(join(temp, 'site/CNAME')), { code: 'ENOENT' });
     }

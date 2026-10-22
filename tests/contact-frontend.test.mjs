@@ -4,7 +4,7 @@ import test from 'node:test';
 import vm from 'node:vm';
 
 const source = readFileSync(new URL('../site/main.js', import.meta.url), 'utf8');
-function app(config = {}, IntersectionObserver) {
+function app(config = {}, IntersectionObserver, lang = 'en') {
   const events = {};
   const scripts = [];
   const fields = new Map();
@@ -36,7 +36,7 @@ function app(config = {}, IntersectionObserver) {
   let widgetOptions;
   const renderings = [];
   const resets = [];
-  const root = { dataset: { theme: 'light' } };
+  const root = { dataset: { theme: 'light' }, lang };
   const window = {
     CONTACT_CONFIG: config,
     IntersectionObserver,
@@ -90,6 +90,25 @@ function app(config = {}, IntersectionObserver) {
   };
 }
 const live = { endpoint: 'https://script.google.com/macros/s/EXAMPLE_DEPLOYMENT/exec', recaptchaSiteKey: 'public-test-sitekey' };
+
+test('Serbian form localizes CAPTCHA and status without bypassing token checks', () => {
+  const a = app(live, undefined, 'sr-Latn');
+  assert.equal(a.nodes.get('#contact-form').action, live.endpoint);
+  assert.match(a.scripts[0].src, /&hl=sr$/);
+  a.window.onRecaptchaReady();
+  assert.equal(a.nodes.get('#form-status').textContent, 'Pre slanja potvrdite da niste robot.');
+  a.options().callback('valid-token');
+  assert.equal(a.nodes.get('#send-message').disabled, false);
+  assert.equal(a.nodes.get('#form-status').textContent, 'Provera je završena. Poruka je spremna za slanje.');
+  a.options()['expired-callback']();
+  assert.equal(a.nodes.get('#send-message').disabled, true);
+  let prevented = false;
+  a.events.submit({ preventDefault: () => { prevented = true; } });
+  assert.equal(prevented, true);
+  const disabled = app({}, undefined, 'sr-Latn');
+  disabled.events.submit({ preventDefault() {} });
+  assert.equal(disabled.nodes.get('#form-status').textContent, 'Kontakt forma trenutno nije dostupna. Javite mi se putem imejla.');
+});
 
 test('defers Google until the form approaches or receives focus and loads it only once', () => {
   for (const trigger of ['viewport', 'focus']) {

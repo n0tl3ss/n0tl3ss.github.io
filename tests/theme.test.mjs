@@ -4,12 +4,12 @@ import test from 'node:test';
 import vm from 'node:vm';
 
 const source = readFileSync(new URL('../site/theme.js', import.meta.url), 'utf8');
-function page(saved, blocked = false) {
+function page(saved, blocked = false, lang = 'en') {
   const storage = new Map([['cv-theme', saved]]);
   const events = {};
   const windowEvents = {};
   const changes = [];
-  const root = { dataset: {} };
+  const root = { dataset: {}, lang };
   const meta = { setAttribute: (key, value) => { meta[key] = value; } };
   const label = {};
   const button = { hidden: true, setAttribute: (key, value) => { button[key] = value; }, addEventListener: (type, callback) => { events[type] = callback; } };
@@ -64,4 +64,15 @@ test('invalid preferences and blocked storage leave a usable theme switch', () =
     assert.equal(a.root.dataset.theme, 'dark');
     a.windowEvents.pageshow({ persisted: true });
   }
+});
+
+test('Serbian pages keep theme preferences and accessible controls in Serbian', () => {
+  const a = page('dark', false, 'sr-Latn');
+  a.events.DOMContentLoaded();
+  assert.equal(a.label.textContent, 'Svetla');
+  assert.equal(a.button['aria-label'], 'Prebaci na svetlu temu');
+  a.events.click();
+  assert.equal(a.storage.get('cv-theme'), 'light');
+  assert.equal(a.label.textContent, 'Tamna');
+  assert.equal(a.button['aria-label'], 'Prebaci na tamnu temu');
 });

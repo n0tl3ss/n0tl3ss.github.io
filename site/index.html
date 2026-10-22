@@ -10,6 +10,9 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://static.cloudflareinsights.com/beacon.min.js; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://www.google.com/recaptcha/ https://cloudflareinsights.com/cdn-cgi/rum; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/; form-action 'self' https://script.google.com https://script.googleusercontent.com; base-uri 'self'; object-src 'none'">
   <link rel="canonical" href="https://nmikic.rs/">
+  <link rel="alternate" hreflang="en" href="https://nmikic.rs/">
+  <link rel="alternate" hreflang="sr-Latn" href="https://nmikic.rs/sr/">
+  <link rel="alternate" hreflang="x-default" href="https://nmikic.rs/">
   <meta property="og:site_name" content="Nemanja Mikic">
   <meta property="og:title" content="Nemanja Mikic — Software Engineer">
   <meta property="og:description" content="Backend services, developer frameworks and cloud tooling. Oracle IC4 and Micronaut contributor, based in Belgrade.">
@@ -32,7 +35,7 @@
         "url": "https://nmikic.rs/",
         "name": "Nemanja Mikic",
         "alternateName": "Nemanja Mikić",
-        "inLanguage": "en",
+        "inLanguage": ["en", "sr-Latn"],
         "publisher": { "@id": "https://nmikic.rs/#person" }
       },
       {
@@ -43,7 +46,7 @@
         "description": "Software engineer at Oracle in Belgrade, contributing to Micronaut, GraalVM, cloud integrations and developer tooling.",
         "inLanguage": "en",
         "dateCreated": "2026-10-20T21:25:56+02:00",
-        "dateModified": "2026-10-21T19:53:44Z",
+        "dateModified": "2026-10-22T09:52:43Z",
         "isPartOf": { "@id": "https://nmikic.rs/#website" },
         "mainEntity": { "@id": "https://nmikic.rs/#person" }
       },
@@ -86,7 +89,11 @@
       <a href="#guides">Guides</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="header-cv" href="assets/cv-one-page.pdf" target="_blank" rel="noopener">View CV <span aria-hidden="true">↗</span></a>
+    <a class="header-cv" href="assets/cv-one-page.pdf" target="_blank" rel="noopener" aria-label="View CV (PDF, English)">CV <span aria-hidden="true">↗</span></a>
+    <div class="language-switch" role="group" aria-label="Language">
+      <a href="./" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a>
+      <a href="sr/" lang="sr-Latn" hreflang="sr-Latn" aria-label="Srpski">SR</a>
+    </div>
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" hidden>
       <svg class="theme-moon" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.7 13.1A9 9 0 0 1 10.9 3.3a9 9 0 1 0 9.8 9.8Z"/></svg>
       <svg class="theme-sun" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"/></svg>
@@ -98,7 +105,7 @@
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-main">
         <p class="eyebrow"><span class="location-mark" aria-hidden="true"></span> Belgrade, Serbia</p>
-        <h1 id="hero-title">Nemanja<br> <em>Mikić</em><span class="name-dot">.</span></h1>
+        <h1 id="hero-title">Nemanja<br> <em>Mikić</em></h1>
         <p class="hero-role">Software engineer.<br>Frameworks, backend &amp; cloud.</p>
         <p class="hero-description">I'm Nemanja Mikic, a software engineer at Oracle in Belgrade. I build backend services, cloud integrations and developer tools with Java, Python, Micronaut and GraalVM.</p>
         <div class="hero-actions">
