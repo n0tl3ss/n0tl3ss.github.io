@@ -76,6 +76,10 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
 .project-links { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-bottom:32px; }
 .project-link { display:flex; flex-direction:column; padding:20px 22px; border:1px solid var(--line); background:var(--tint); border-radius:2px; }
 .project-link:hover { border-color:var(--green); text-decoration:none; }
+.project-logo { display:block; width:100%; max-width:210px; height:64px; margin-bottom:22px; background:var(--green); mask-repeat:no-repeat; mask-position:left center; mask-size:contain; }
+.project-logo--micronaut { mask-image:url(assets/logos/micronaut.svg); }
+.project-logo--pyronaut { mask-image:url(assets/logos/pyronaut.svg); }
+.project-logo--gdk { mask-image:url(assets/logos/gdk.svg); }
 .project-name { display:flex; justify-content:space-between; align-items:baseline; gap:16px; font-size:17px; font-weight:550; line-height:1.4; letter-spacing:-.025em; }
 .project-name > span { color:var(--green); font-size:20px; }
 .project-link:hover .project-name { text-decoration:underline; text-underline-offset:5px; }
