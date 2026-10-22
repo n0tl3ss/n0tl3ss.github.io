@@ -2,6 +2,19 @@ const form = document.querySelector('#contact-form');
 const button = document.querySelector('#send-message');
 const status = document.querySelector('#form-status');
 const config = window.CONTACT_CONFIG || {};
+const sr = document.documentElement.lang === 'sr-Latn';
+const messages = sr ? {
+  'The spam check could not load. Please retry or use the email link.': 'Provera protiv spama nije mogla da se učita. Pokušajte ponovo ili koristite imejl link.',
+  'Please complete the spam check before sending.': 'Pre slanja potvrdite da niste robot.',
+  'Spam check complete. Your message is ready to send.': 'Provera je završena. Poruka je spremna za slanje.',
+  'The spam check expired. Please complete it again.': 'Provera je istekla. Potvrdite ponovo da niste robot.',
+  'Loading the spam check…': 'Učitavanje provere protiv spama…',
+  'The spam check could not load. Please use the email link.': 'Provera protiv spama nije mogla da se učita. Koristite imejl link.',
+  'The spam check will load when you reach the contact form.': 'Provera protiv spama učitaće se kada dođete do kontakt forme.',
+  'The contact form is currently unavailable. Please use the email link to get in touch.': 'Kontakt forma trenutno nije dostupna. Javite mi se putem imejla.',
+  'Sending your message…': 'Slanje poruke…',
+  'Please complete the spam check to send another message.': 'Za novu poruku ponovo potvrdite da niste robot.',
+} : {};
 let widgetId;
 let challengeToken = '';
 let renderGeneration = 0;
@@ -9,7 +22,7 @@ let renderGeneration = 0;
 document.querySelector('#year').textContent = String(new Date().getFullYear());
 
 function message(text, state = '') {
-  status.textContent = text;
+  status.textContent = messages[text] || text;
   status.dataset.state = state;
 }
 
@@ -79,7 +92,7 @@ if (configured()) {
     message('Loading the spam check…');
     window.onRecaptchaReady = renderRecaptcha;
     const script = document.createElement('script');
-    script.src = 'https://www.google.com/recaptcha/enterprise.js?onload=onRecaptchaReady&render=explicit';
+    script.src = `https://www.google.com/recaptcha/enterprise.js?onload=onRecaptchaReady&render=explicit&hl=${sr ? 'sr' : 'en'}`;
     script.async = true;
     script.defer = true;
     script.onerror = () => requireChallenge('The spam check could not load. Please use the email link.');
