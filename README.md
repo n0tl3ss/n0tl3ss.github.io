@@ -25,7 +25,7 @@ Only `site/` is copied to `dist/`. The Apps Script backend, tests, setup instruc
 
 - Experience at Oracle and Seven Bridges Genomics, education and technical skills.
 - Framework and cloud feature contributions, including Micronaut Data vector search, OpenTelemetry, OKE Workload Identity, OCI Certificates, Micrometer Observation, CloudWatch logging and Python dataclasses, with dated public PR links. Additional links cover Prometheus Pushgateway, JDBC tracing, OCI raw metrics and OCI DevOps project generation.
-- Apple web server security acknowledgment (November 2025), with the source link and a saved screenshot of the relevant section.
+- Apple web server security acknowledgment (November 2025), with the source link and a saved screenshot of the relevant section, and the Anthropic Cyber Verification Program approval (Defense Access, October 2026).
 - Six published Micronaut guides with direct links and attribution.
 - One-page and detailed PDF downloads. These web copies use city/country instead of a street address and omit the phone number. The editable CV documents are maintained separately.
 - An accessible, responsive contact form with an email fallback. Google reCAPTCHA loads when the visitor approaches or focuses the form, keeping its scripts off the initial page load; space is reserved for the checkbox.
