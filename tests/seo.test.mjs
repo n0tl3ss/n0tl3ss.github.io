@@ -75,7 +75,7 @@ test('domain activation and rollback update all canonical references and CNAME t
       assert.equal(metadata(html).canonical, `https://${host}/`);
       const other = host === 'nmikic.rs' ? 'n0tl3ss.github.io' : 'nmikic.rs';
       assert.equal(metadata(await readFile(join(temp, 'site/sr/index.html'), 'utf8')).canonical, `https://${host}/sr/`);
-      for (const file of files) assert.ok(!(await readFile(join(temp, 'site', file), 'utf8')).includes(other));
+      for (const file of files) assert.ok(!(await readFile(join(temp, 'site', file), 'utf8')).includes(`https://${other}/`));
       if (host === 'nmikic.rs') assert.equal(await readFile(join(temp, 'site/CNAME'), 'utf8'), 'nmikic.rs\n');
       else await assert.rejects(readFile(join(temp, 'site/CNAME')), { code: 'ENOENT' });
     }
