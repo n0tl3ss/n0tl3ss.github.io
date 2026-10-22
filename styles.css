@@ -20,7 +20,7 @@ ul { padding-left:1.15rem; }
 .eyebrow { text-transform:uppercase; font-size:12px; font-weight:650; letter-spacing:.16em; line-height:1.5; }
 .small-muted { color:var(--muted); font-size:13px; }
 .site-header { display:flex; align-items:center; min-height:108px; gap:24px; border-bottom:1px solid var(--line); }
-.wordmark { font-size:32px; font-weight:750; letter-spacing:-.1em; line-height:1; }
+.wordmark { flex-shrink:0; font-size:32px; font-weight:750; letter-spacing:-.055em; line-height:1; white-space:nowrap; }
 .wordmark span { color:var(--accent); }
 .wordmark:hover { text-decoration:none; }
 .site-header nav { display:flex; gap:28px; margin-left:auto; }
@@ -199,6 +199,11 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
 .privacy-page a { text-decoration:underline; }
 @media (min-width:1440px) { .hero { column-gap:130px; } }
 @media (max-width:1000px) { .wrap { width:calc(100% - 64px); } .site-header { gap:24px; } .site-header nav { gap:18px; } .header-cv { padding-left:20px; } .hero { column-gap:45px; grid-template-columns:minmax(0,1fr) 220px; } h1 { font-size:92px; } .hero-description { font-size:14px; } .contact-layout { gap:45px; } .career-row { grid-template-columns:165px 1fr; gap:30px; } }
+@media (max-width:1100px) {
+  .site-header { flex-wrap:wrap; gap:16px; padding-block:20px; }
+  .site-header nav { order:3; width:100%; justify-content:space-between; border-top:1px solid var(--line); padding-top:15px; }
+  .header-cv { margin-left:auto; border:0; padding-left:0; }
+}
 @media (max-width:720px) {
   .wrap { width:calc(100% - 40px); }
   .site-header { min-height:82px; gap:12px; flex-wrap:wrap; padding-block:20px; }
@@ -276,6 +281,14 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
   .site-footer > a:last-child { display:none; }
   .privacy-page { padding-block:40px; }
   .privacy-page h1 { font-size:47px; }
+}
+@media (max-width:480px) {
+  .site-header { display:grid; grid-template-columns:minmax(0,1fr) auto; }
+  .site-header .header-cv { grid-column:2; grid-row:1; }
+  .site-header .language-switch { justify-self:start; }
+  .site-header .theme-toggle { grid-column:2; grid-row:2; justify-self:end; }
+  .site-header nav { grid-column:1/-1; grid-row:3; }
+  .site-footer p { flex-basis:100%; text-align:left; }
 }
 @media (max-width:360px) { h1 { font-size:72px; } .contact-intro h2 { font-size:40px; } }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none!important; } }
