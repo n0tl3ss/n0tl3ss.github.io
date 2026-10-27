@@ -141,8 +141,6 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
 .company-logo--oracle { mask-image:url(assets/logos/oracle.svg); }
 .company-logo--seven-bridges { mask-image:url(assets/logos/seven-bridges.svg); }
 .career-date { font-size:13px; color:var(--muted); }
-.career-title { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 22px; }
-.career-title > span { font-size:13px; color:var(--muted); }
 .career-content p { color:var(--muted); font-size:15px; margin-top:13px; max-width:750px; }
 .career-content p a { color:var(--green); text-decoration:underline; }
 .career-content p.career-grade { color:var(--green); font-size:12px; margin-top:8px; }
@@ -276,9 +274,6 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
   .career-meta { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px 24px; margin-bottom:18px; padding-top:0; }
   .company-logo { width:130px; height:28px; margin-bottom:0; }
   .career-date { font-size:12px; }
-  .career-title { display:block; }
-  .career-title h3 { font-size:18px; }
-  .career-title > span { font-size:13px; }
   .career-content p,.career-content ul { font-size:14px; }
   .education-summary { padding:22px; }
   .education-institution { padding-bottom:23px; }
