@@ -51,7 +51,7 @@
         "description": "Softverski inženjer u kompaniji Oracle u Beogradu. Doprinosi Micronaut i GraalVM ekosistemima, cloud integracijama i razvojnim alatima.",
         "inLanguage": "sr-Latn",
         "dateCreated": "2026-10-22T09:52:43Z",
-        "dateModified": "2026-10-27T09:19:14Z",
+        "dateModified": "2026-10-27T09:31:04Z",
         "isPartOf": {
           "@id": "https://nmikic.rs/#website"
         },
@@ -117,7 +117,7 @@
   <link rel="preload" href="../fonts/newsreader-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <script src="../theme.js"></script>
-  <link rel="stylesheet" href="../styles.css?v=21b7492">
+  <link rel="stylesheet" href="../styles.css?v=20261027-ai">
   <script src="../contact-config.js" defer></script>
   <script src="../main.js?v=21b7492" defer></script>
 </head>
@@ -132,7 +132,7 @@
       <a href="#guides">Vodiči</a>
       <a href="#contact">Kontakt</a>
     </nav>
-    <a class="header-cv" href="../assets/cv-one-page.pdf?v=21b7492" target="_blank" rel="noopener" aria-label="Preuzmi CV (PDF, engleski)">CV <span aria-hidden="true">↗</span></a>
+    <a class="header-cv" href="../assets/cv-one-page.pdf?v=20261027-ai" target="_blank" rel="noopener" aria-label="Preuzmi CV (PDF, engleski)">CV <span aria-hidden="true">↗</span></a>
     <div class="language-switch" role="group" aria-label="Jezik">
       <a href="../" lang="en" hreflang="en" aria-label="English">EN</a>
       <a href="./" lang="sr-Latn" hreflang="sr-Latn" aria-label="Srpski" aria-current="page">SR</a>
@@ -153,7 +153,7 @@
         <p class="hero-description">Ja sam Nemanja Mikić, senior softverski inženjer fokusiran na backend, sa 8+ godina iskustva u razvoju servisa, framework-ova i cloud integracija u Javi, Python-u i Go-u. U Oracle-u doprinosim Micronaut i GraalVM ekosistemima.</p>
         <div class="hero-actions">
           <a class="button" href="#contact">Javite mi se <span aria-hidden="true">↗</span></a>
-          <a class="button button-secondary" href="../assets/cv-one-page.pdf?v=21b7492" target="_blank" rel="noopener" aria-label="Preuzmite CV (PDF, engleski)">Preuzmite CV <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary" href="../assets/cv-one-page.pdf?v=20261027-ai" target="_blank" rel="noopener" aria-label="Preuzmite CV (PDF, engleski)">Preuzmite CV <span aria-hidden="true">↗</span></a>
           <a class="text-link" href="https://github.com/n0tl3ss" target="_blank" rel="me noopener noreferrer">Pogledajte moj GitHub <span aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -176,7 +176,7 @@
       </aside>
       <div class="hero-facts" aria-label="Iskustvo ukratko">
         <div><strong>8<span>+</span></strong><p>godina u softverskom inženjerstvu</p></div>
-        <div><strong>400<span>+</span></strong><p>prihvaćenih PR-ova u Micronaut ekosistemu</p></div>
+        <div><strong>400<span>+</span></strong><p>prihvaćenih PR-ova u Micronaut ekosistemu<br><span class="contribution-note">Uključuje rad uz pomoć AI-ja i rad koji je AI generisao.</span></p></div>
         <div class="language-fact"><strong>Java · Python · Go</strong><p>jezici koje koristim</p></div>
       </div>
     </section>
@@ -221,22 +221,24 @@
         <article class="featured-project">
           <div class="featured-project-meta"><span>02</span><span>Podaci / Java</span></div>
           <h3>Vektorska pretraga u Micronaut Data</h3>
+          <p class="ai-disclosure">Razvijeno uz pomoć veštačke inteligencije (AI)</p>
           <div class="featured-story">
             <p><strong>Problem</strong> Micronaut Data je zahtevao čuvanje vektora i upite za pretragu sličnosti kroz SQL baze.</p>
             <p><strong>Moj doprinos</strong> Implementirao sam guste i retke vektorske tipove, izvedene upite, generisanje šema i indeksa, integracione testove i veze sa bazama.</p>
             <p><strong>Rezultat</strong> Podrška obuhvata JDBC za Oracle, PostgreSQL/pgvector i MySQL HeatWave, kao i R2DBC za Oracle i PostgreSQL.</p>
           </div>
-          <p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-data/pull/3637" target="_blank" rel="noopener noreferrer" aria-label="PR · Maj 2026 — moj doprinos vektorskoj podršci u Micronaut Data">PR · Maj 2026 <span aria-hidden="true">↗</span></a><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/#sqlVectorType" target="_blank" rel="noopener noreferrer">Dokumentacija za vektorsku pretragu <span aria-hidden="true">↗</span></a></p>
+          <p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-data/pull/3637" target="_blank" rel="noopener noreferrer" aria-label="PR · Maj 2026 — moj doprinos vektorskoj podršci u Micronaut Data uz pomoć veštačke inteligencije">PR · Maj 2026 <span aria-hidden="true">↗</span></a><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/#sqlVectorType" target="_blank" rel="noopener noreferrer">Dokumentacija za vektorsku pretragu <span aria-hidden="true">↗</span></a></p>
         </article>
         <article class="featured-project">
           <div class="featured-project-meta"><span>03</span><span>Python / GraalPy</span></div>
           <h3>Python dataclass klase u Micronaut-u</h3>
+          <p class="ai-disclosure">Implementaciju je u potpunosti generisala veštačka inteligencija (AI)</p>
           <div class="featured-story">
             <p><strong>Problem</strong> Python dataclass klase su zahtevale introspekciju framework-a pri korišćenju kroz GraalPy.</p>
-            <p><strong>Moj doprinos</strong> Dodao sam podršku za metapodatke validacije, alternativne nazive, podrazumevane vrednosti i nasleđivanje, uz testove prevodioca i izvršnog okruženja.</p>
+            <p><strong>Obim implementacije</strong> Podrška za metapodatke validacije, alternativne nazive, podrazumevane vrednosti i nasleđivanje, uz testove prevodioca i izvršnog okruženja.</p>
             <p><strong>Rezultat</strong> Micronaut može da čita metapodatke dataclass klasa, uključujući validaciju, podrazumevane vrednosti i nasleđivanje.</p>
           </div>
-          <p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-core/pull/13786" target="_blank" rel="noopener noreferrer" aria-label="PR · Oktobar 2026 — moj doprinos podršci za Python dataclass klase">PR · Oktobar 2026 <span aria-hidden="true">↗</span></a><a href="https://pyronaut.io/docs/" target="_blank" rel="noopener noreferrer">Pyronaut dokumentacija <span aria-hidden="true">↗</span></a></p>
+          <p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-core/pull/13786" target="_blank" rel="noopener noreferrer" aria-label="PR · Oktobar 2026 — implementacija Python dataclass podrške koju je u potpunosti generisala veštačka inteligencija">PR · Oktobar 2026 <span aria-hidden="true">↗</span></a><a href="https://pyronaut.io/docs/" target="_blank" rel="noopener noreferrer">Pyronaut dokumentacija <span aria-hidden="true">↗</span></a></p>
         </article>
       </div>
       <h3 class="work-list-title">Još izdvojenih radova</h3>
@@ -293,7 +295,7 @@
         <div class="career-list">
           <article class="career-row">
             <div class="career-date">Januar 2022 — danas</div>
-            <div class="career-content"><div class="career-title"><h3>Oracle</h3><span>Softverski inženjer</span></div><p class="career-grade">IC4 od Juna 2024 · Prethodno IC3</p><p>Doprinosim <a href="https://micronaut.io/" target="_blank" rel="noopener noreferrer">Micronaut</a> i <a href="https://www.graalvm.org/" target="_blank" rel="noopener noreferrer">GraalVM</a> ekosistemima kroz razvoj framework-a, cloud integracija, praćenja rada sistema i razvojnih alata.</p><ul><li>Implementirao sam čuvanje vektora i pretragu sličnosti u Micronaut Data integracijama sa bazama podataka.</li><li>Proširio sam praćenje rada internih Java servisa sirovim metrikama, HTTP/JVM instrumentacijom i prenosom konteksta zahteva.</li><li>Razvio sam cloud integracije, referentna Terraform okruženja i automatizaciju isporuke.</li><li>Razvio sam alate za lokalna ogledala zavisnosti bez pristupa internetu i proveravao Gradle/Maven build-ove uz izveštaje o kontrolnim sumama i usklađenosti.</li><li>Pisao sam javne Micronaut vodiče sa aplikacijama koje se mogu pokrenuti i pratećim testovima.</li></ul></div>
+            <div class="career-content"><div class="career-title"><h3>Oracle</h3><span>Softverski inženjer</span></div><p class="career-grade">IC4 od Juna 2024 · Prethodno IC3</p><p>Doprinosim <a href="https://micronaut.io/" target="_blank" rel="noopener noreferrer">Micronaut</a> i <a href="https://www.graalvm.org/" target="_blank" rel="noopener noreferrer">GraalVM</a> ekosistemima kroz razvoj framework-a, cloud integracija, praćenja rada sistema i razvojnih alata.</p><ul><li>Implementirao sam čuvanje vektora i pretragu sličnosti u Micronaut Data integracijama sa bazama podataka uz pomoć veštačke inteligencije.</li><li>Proširio sam praćenje rada internih Java servisa sirovim metrikama, HTTP/JVM instrumentacijom i prenosom konteksta zahteva.</li><li>Razvio sam cloud integracije, referentna Terraform okruženja i automatizaciju isporuke.</li><li>Razvio sam alate za lokalna ogledala zavisnosti bez pristupa internetu i proveravao Gradle/Maven build-ove uz izveštaje o kontrolnim sumama i usklađenosti.</li><li>Pisao sam javne Micronaut vodiče sa aplikacijama koje se mogu pokrenuti i pratećim testovima.</li></ul></div>
           </article>
           <article class="career-row">
             <div class="career-date">Maj 2021 — Decembar 2021</div>
@@ -348,7 +350,7 @@
 
     <section class="skills-section wrap" aria-labelledby="skills-title"><p class="eyebrow">Alati koje koristim</p><h2 class="sr-only" id="skills-title">Tehničke veštine</h2><div class="skills-grid"><div><h3>Jezici i izvršna okruženja</h3><p>Java, Python, Go<br>Micronaut, Netty, GraalVM, GraalPy</p></div><div><h3>Cloud i isporuka</h3><p>OCI, AWS, Kubernetes, Docker<br>Terraform, Gradle, Maven, CI/CD</p></div><div><h3>Nadzor sistema i bezbednost</h3><p>OpenTelemetry, Micrometer, Prometheus<br>Vault, OAuth2, SSO, MFA</p></div></div></section>
 
-    <section class="cv-section wrap" aria-labelledby="cv-title"><div><p class="eyebrow">Preuzmite CV</p><h2 id="cv-title">CV, u formatu koji vam odgovara.</h2><p>Sažet pregled ili detaljnije iskustvo. Oba PDF dokumenta su na engleskom.</p></div><div class="cv-options"><a href="../assets/cv-one-page.pdf?v=21b7492" target="_blank" rel="noopener"><span>CV na jednoj strani</span><span>PDF <span aria-hidden="true">↗</span></span></a><a href="../assets/cv-two-pages.pdf?v=21b7492" target="_blank" rel="noopener"><span>Detaljan CV</span><span>2 strane · PDF <span aria-hidden="true">↗</span></span></a></div></section>
+    <section class="cv-section wrap" aria-labelledby="cv-title"><div><p class="eyebrow">Preuzmite CV</p><h2 id="cv-title">CV, u formatu koji vam odgovara.</h2><p>Sažet pregled ili detaljnije iskustvo. Oba PDF dokumenta su na engleskom.</p></div><div class="cv-options"><a href="../assets/cv-one-page.pdf?v=20261027-ai" target="_blank" rel="noopener"><span>CV na jednoj strani</span><span>PDF <span aria-hidden="true">↗</span></span></a><a href="../assets/cv-two-pages.pdf?v=20261027-ai" target="_blank" rel="noopener"><span>Detaljan CV</span><span>2 strane · PDF <span aria-hidden="true">↗</span></span></a></div></section>
 
     <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="section wrap contact-layout"><div class="contact-intro"><p class="eyebrow">05 / Kontakt</p><h2 id="contact-title">Imate nešto<br>na umu?</h2><p>Za poslovne prilike u razvoju softvera, tehničke razgovore ili pitanja o mom radu, pošaljite mi poruku.</p><a class="contact-email" href="mailto:n0t_l3ss@outlook.com">n0t_l3ss@outlook.com <span aria-hidden="true">↗</span></a><div class="social-links"><a href="https://github.com/n0tl3ss" target="_blank" rel="me noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/nrmikic" target="_blank" rel="me noopener noreferrer">LinkedIn ↗</a></div></div>
         <form id="contact-form" method="post" action="#contact" aria-describedby="form-status">
@@ -365,7 +367,7 @@
         </form>
       </div></section>
   </main>
-  <footer class="site-footer wrap"><a class="wordmark" href="#" aria-label="nmikic.rs — Nazad na vrh">nmikic<span>.rs</span></a><p>Nemanja Mikić <span>© <span id="year">2026</span></span></p><a href="#main">Nazad na vrh <span aria-hidden="true">↑</span></a></footer>
+  <footer class="site-footer wrap"><a class="wordmark" href="#" aria-label="nmikic.rs — Nazad na vrh">nmikic<span>.rs</span></a><p>Nemanja Mikić <span>© <span id="year">2026</span></span><span class="creation-note">Sajt i CV dokumenti pripremljeni su uz pomoć veštačke inteligencije.</span></p><a href="#main">Nazad na vrh <span aria-hidden="true">↑</span></a></footer>
   <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;:&quot;b222550edcda40eabc8ba7fec7277089&quot;}"></script>
 </body>
 </html>
