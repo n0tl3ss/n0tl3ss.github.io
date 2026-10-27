@@ -136,7 +136,11 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
 .experience-section { background:var(--tint); border-block:1px solid var(--line); }
 .career-list { border-top:1px solid var(--line); }
 .career-row { display:grid; grid-template-columns:200px 1fr; column-gap:45px; padding:28px 0; border-bottom:1px solid var(--line); }
-.career-date { font-size:13px; color:var(--muted); padding-top:4px; }
+.career-meta { padding-top:4px; }
+.company-logo { display:block; width:155px; max-width:100%; height:34px; margin-bottom:16px; background:var(--green); mask-repeat:no-repeat; mask-position:left center; mask-size:contain; }
+.company-logo--oracle { mask-image:url(assets/logos/oracle.svg); }
+.company-logo--seven-bridges { mask-image:url(assets/logos/seven-bridges.svg); }
+.career-date { font-size:13px; color:var(--muted); }
 .career-title { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 22px; }
 .career-title > span { font-size:13px; color:var(--muted); }
 .career-content p { color:var(--muted); font-size:15px; margin-top:13px; max-width:750px; }
@@ -269,7 +273,9 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
   .work-row p.work-tech { font-size:11px; }
   .arrow-link { padding:0; font-size:23px; }
   .career-row { display:block; padding-block:25px; }
-  .career-date { font-size:12px; margin-bottom:12px; }
+  .career-meta { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px 24px; margin-bottom:18px; padding-top:0; }
+  .company-logo { width:130px; height:28px; margin-bottom:0; }
+  .career-date { font-size:12px; }
   .career-title { display:block; }
   .career-title h3 { font-size:18px; }
   .career-title > span { font-size:13px; }
