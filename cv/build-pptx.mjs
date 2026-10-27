@@ -93,7 +93,7 @@ for (const [kind, pages] of Object.entries(model)) {
           fill: 'none', line: { fill: '#202c30', width: .5 * PX, style: 'solid' } });
       }
     }
-    slide.speakerNotes.text = 'Public contribution evidence (reviewed 22 October 2026). PR totals include maintenance/backport work.\n' + [...sources].join('\n');
+    slide.speakerNotes.text = 'Public contribution evidence (reviewed 22 October 2026). PR totals include maintenance/backport work and AI-assisted or AI-generated contributions. The candidate identifies the Python dataclass implementation (micronaut-core#13786) as fully AI-generated and Micronaut Data vector search (#3637) as AI-assisted.\n' + [...sources].join('\n');
     slide.speakerNotes.setVisible(false);
   }
   const stem = kind === 'one' ? 'Nemanja_Mikic_One_Page_CV_Upstream_2026' : 'Nemanja_Mikic_Two_Pages_CV_Upstream_2026';

@@ -24,7 +24,7 @@ Before publishing, inspect every rendered page, verify page counts, content and 
 
 ## Contribution wording added in October 2026
 
-The review count excludes the author's own PRs and is intentionally rounded down to 200+. The authored total includes maintenance/backport PRs. Release authorship describes the published releases, without asserting a formal maintainer title.
+The review count excludes the author's own PRs and is intentionally rounded down to 200+. The contribution total includes maintenance/backport PRs and AI-assisted or AI-generated contributions. The candidate confirmed that the Python dataclass implementation in micronaut-core#13786 was fully AI-generated and Micronaut Data vector search (#3637) was AI-assisted; keep these disclosures beside their features in both CVs. CV wording and layout were prepared with AI assistance. Do not infer AI use for other work from its date or GitHub authorship. Release authorship describes the published releases, without asserting a formal maintainer title.
 
 - [Reviewed public Micronaut PRs by other contributors](https://github.com/search?q=org%3Amicronaut-projects+is%3Apublic+reviewed-by%3An0tl3ss+-author%3An0tl3ss+is%3Apr+is%3Amerged&type=pullrequests)
 - Releases: [SQL](https://github.com/micronaut-projects/micronaut-sql/releases/tag/v7.1.3), [Data](https://github.com/micronaut-projects/micronaut-data/releases/tag/v5.1.5), [Tracing](https://github.com/micronaut-projects/micronaut-tracing/releases/tag/v5.0.2), [Oracle Cloud](https://github.com/micronaut-projects/micronaut-oracle-cloud/releases/tag/v5.8.2)

@@ -192,8 +192,8 @@
         },
         {
           "kind": "bullet",
-          "text": "Delivered Micronaut Data vector search: vector types, similarity queries and schema generation; JDBC support for Oracle, PostgreSQL and MySQL HeatWave, and R2DBC support for Oracle and PostgreSQL.",
-          "html": "Delivered <link href=\"https://github.com/micronaut-projects/micronaut-data/pull/3637\" color=\"#124c43\"><u>Micronaut Data vector search</u></link>: vector types, similarity queries and schema generation; JDBC support for Oracle, PostgreSQL and MySQL HeatWave, and R2DBC support for Oracle and PostgreSQL.",
+          "text": "Delivered Micronaut Data vector search with AI assistance: vector types, similarity queries and schema generation; JDBC support for Oracle, PostgreSQL and MySQL HeatWave, and R2DBC support for Oracle and PostgreSQL.",
+          "html": "Delivered <link href=\"https://github.com/micronaut-projects/micronaut-data/pull/3637\" color=\"#124c43\"><u>Micronaut Data vector search</u></link> with AI assistance: vector types, similarity queries and schema generation; JDBC support for Oracle, PostgreSQL and MySQL HeatWave, and R2DBC support for Oracle and PostgreSQL.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -218,8 +218,8 @@
         },
         {
           "kind": "bullet",
-          "text": "Added GraalPy dataclass introspection and coroutine adaptation for Python/Java interoperability; extended Graal Development Kit application and Kubernetes generation across AWS, OCI and GCP.",
-          "html": "Added <link href=\"https://github.com/micronaut-projects/micronaut-core/pull/13786\" color=\"#124c43\"><u>GraalPy dataclass introspection</u></link> and coroutine adaptation for Python/Java interoperability; extended <link href=\"https://graal.cloud/gdk/\" color=\"#124c43\"><u>Graal Development Kit</u></link> application and Kubernetes generation across AWS, OCI and GCP.",
+          "text": "Contributed fully AI-generated GraalPy dataclass introspection; added coroutine adaptation for Python/Java interoperability; extended Graal Development Kit application and Kubernetes generation across AWS, OCI and GCP.",
+          "html": "Contributed fully AI-generated <link href=\"https://github.com/micronaut-projects/micronaut-core/pull/13786\" color=\"#124c43\"><u>GraalPy dataclass introspection</u></link>; added coroutine adaptation for Python/Java interoperability; extended <link href=\"https://graal.cloud/gdk/\" color=\"#124c43\"><u>Graal Development Kit</u></link> application and Kubernetes generation across AWS, OCI and GCP.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -231,8 +231,8 @@
         },
         {
           "kind": "bullet",
-          "text": "Authored 400+ merged Micronaut PRs, reviewed 200+ PRs and published module releases. Authored five official Micronaut Guides and co-authored a sixth, each with a runnable, tested application.",
-          "html": "Authored 400+ merged Micronaut PRs, <link href=\"https://github.com/search?q=org%3Amicronaut-projects+is%3Apublic+reviewed-by%3An0tl3ss+-author%3An0tl3ss+is%3Apr+is%3Amerged&amp;type=pullrequests\" color=\"#124c43\"><u>reviewed 200+ PRs</u></link> and published module releases. Authored five official <link href=\"https://guides.micronaut.io/\" color=\"#124c43\"><u>Micronaut Guides</u></link> and co-authored a sixth, each with a runnable, tested application.",
+          "text": "Contributed 400+ merged Micronaut PRs (including AI-assisted and AI-generated work), reviewed 200+ PRs and published module releases. Authored five official Micronaut Guides and co-authored a sixth, each with a runnable, tested application.",
+          "html": "Contributed 400+ merged Micronaut PRs (including AI-assisted and AI-generated work), <link href=\"https://github.com/search?q=org%3Amicronaut-projects+is%3Apublic+reviewed-by%3An0tl3ss+-author%3An0tl3ss+is%3Apr+is%3Amerged&amp;type=pullrequests\" color=\"#124c43\"><u>reviewed 200+ PRs</u></link> and published module releases. Authored five official <link href=\"https://guides.micronaut.io/\" color=\"#124c43\"><u>Micronaut Guides</u></link> and co-authored a sixth, each with a runnable, tested application.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -446,6 +446,17 @@
           "leading": 13.2,
           "original_top": 359.28,
           "original_lines": 3
+        },
+        {
+          "kind": "note",
+          "text": "CV wording and layout prepared with AI assistance.",
+          "html": "CV wording and layout prepared with AI assistance.",
+          "size": 9.12,
+          "color": "#4a5450",
+          "x": 42.96,
+          "date": null,
+          "gap": 8.0,
+          "leading": 11.4
         }
       ]
     }
@@ -630,8 +641,8 @@
         },
         {
           "kind": "bullet",
-          "text": "Authored 400+ merged pull requests across the Micronaut ecosystem, reviewed 200+ pull requests from other contributors, and published releases for Micronaut SQL, Data, Tracing and Oracle Cloud.",
-          "html": "Authored 400+ merged pull requests across the Micronaut ecosystem, reviewed <link href=\"https://github.com/search?q=org%3Amicronaut-projects+is%3Apublic+reviewed-by%3An0tl3ss+-author%3An0tl3ss+is%3Apr+is%3Amerged&amp;type=pullrequests\" color=\"#124c43\"><u>200+ pull requests</u></link> from other contributors, and published releases for <link href=\"https://github.com/micronaut-projects/micronaut-sql/releases/tag/v7.1.3\" color=\"#124c43\"><u>Micronaut SQL</u></link>, <link href=\"https://github.com/micronaut-projects/micronaut-data/releases/tag/v5.1.5\" color=\"#124c43\"><u>Data</u></link>, <link href=\"https://github.com/micronaut-projects/micronaut-tracing/releases/tag/v5.0.2\" color=\"#124c43\"><u>Tracing</u></link> and <link href=\"https://github.com/micronaut-projects/micronaut-oracle-cloud/releases/tag/v5.8.2\" color=\"#124c43\"><u>Oracle Cloud</u></link>.",
+          "text": "Contributed 400+ merged pull requests across the Micronaut ecosystem (including AI-assisted and AI-generated work), reviewed 200+ pull requests from other contributors, and published releases for Micronaut SQL, Data, Tracing and Oracle Cloud.",
+          "html": "Contributed 400+ merged pull requests across the Micronaut ecosystem (including AI-assisted and AI-generated work), reviewed <link href=\"https://github.com/search?q=org%3Amicronaut-projects+is%3Apublic+reviewed-by%3An0tl3ss+-author%3An0tl3ss+is%3Apr+is%3Amerged&amp;type=pullrequests\" color=\"#124c43\"><u>200+ pull requests</u></link> from other contributors, and published releases for <link href=\"https://github.com/micronaut-projects/micronaut-sql/releases/tag/v7.1.3\" color=\"#124c43\"><u>Micronaut SQL</u></link>, <link href=\"https://github.com/micronaut-projects/micronaut-data/releases/tag/v5.1.5\" color=\"#124c43\"><u>Data</u></link>, <link href=\"https://github.com/micronaut-projects/micronaut-tracing/releases/tag/v5.0.2\" color=\"#124c43\"><u>Tracing</u></link> and <link href=\"https://github.com/micronaut-projects/micronaut-oracle-cloud/releases/tag/v5.8.2\" color=\"#124c43\"><u>Oracle Cloud</u></link>.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -721,8 +732,8 @@
         },
         {
           "kind": "topic",
-          "text": "Micronaut Data vector search",
-          "html": "<b>Micronaut Data vector search</b>",
+          "text": "Micronaut Data vector search (AI-assisted)",
+          "html": "<b>Micronaut Data vector search (AI-assisted)</b>",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 48.0,
@@ -773,8 +784,8 @@
         },
         {
           "kind": "bullet",
-          "text": "Improved GraalPy-based Python/Java interoperability in Micronaut: coroutine/Publisher adaptation and automatic dataclass introspection with typed validation annotations.",
-          "html": "Improved GraalPy-based Python/Java interoperability in Micronaut: coroutine/Publisher adaptation and <link href=\"https://github.com/micronaut-projects/micronaut-core/pull/13786\" color=\"#124c43\"><u>automatic dataclass introspection</u></link> with typed validation annotations.",
+          "text": "Improved GraalPy-based Python/Java interoperability in Micronaut: coroutine/Publisher adaptation and fully AI-generated automatic dataclass introspection with typed validation annotations.",
+          "html": "Improved GraalPy-based Python/Java interoperability in Micronaut: coroutine/Publisher adaptation and fully AI-generated <link href=\"https://github.com/micronaut-projects/micronaut-core/pull/13786\" color=\"#124c43\"><u>automatic dataclass introspection</u></link> with typed validation annotations.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -1191,6 +1202,17 @@
           "leading": 14.0,
           "original_top": 726.24,
           "original_lines": 2
+        },
+        {
+          "kind": "note",
+          "text": "CV wording and layout prepared with AI assistance.",
+          "html": "CV wording and layout prepared with AI assistance.",
+          "size": 9.12,
+          "color": "#4a5450",
+          "x": 48.0,
+          "date": null,
+          "gap": 8.0,
+          "leading": 11.4
         }
       ]
     }
