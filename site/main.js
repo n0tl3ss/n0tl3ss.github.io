@@ -85,6 +85,7 @@ if (configured()) {
   document.querySelector('#request-id').value = crypto.randomUUID();
   let observer;
   let loading = false;
+  let providerHost = 'www.google.com';
   const loadRecaptcha = () => {
     if (loading) return;
     loading = true;
@@ -92,10 +93,18 @@ if (configured()) {
     message('Loading the spam check…');
     window.onRecaptchaReady = renderRecaptcha;
     const script = document.createElement('script');
-    script.src = `https://www.google.com/recaptcha/enterprise.js?onload=onRecaptchaReady&render=explicit&hl=${sr ? 'sr' : 'en'}`;
+    script.src = `https://${providerHost}/recaptcha/enterprise.js?onload=onRecaptchaReady&render=explicit&hl=${sr ? 'sr' : 'en'}`;
     script.async = true;
     script.defer = true;
-    script.onerror = () => requireChallenge('The spam check could not load. Please use the email link.');
+    script.onerror = () => {
+      if (providerHost === 'www.google.com') {
+        providerHost = 'www.recaptcha.net';
+        loading = false;
+        loadRecaptcha();
+        return;
+      }
+      requireChallenge('The spam check could not load. Please use the email link.');
+    };
     document.head.append(script);
   };
 

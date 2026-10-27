@@ -216,9 +216,26 @@ test('expired challenges and restored pages invalidate old tokens', () => {
   assert.equal(a.nodes.get('#send-message').disabled, false);
 });
 
-test('provider loading failures leave submission disabled', () => {
+test('provider loading falls back to recaptcha.net and permits a solved submission', () => {
+  const a = app(live);
+  assert.match(a.scripts[0].src, /^https:\/\/www\.google\.com\/recaptcha\/enterprise\.js\?/);
+  a.scripts[0].onerror();
+  assert.equal(a.scripts.length, 2);
+  assert.match(a.scripts[1].src, /^https:\/\/www\.recaptcha\.net\/recaptcha\/enterprise\.js\?/);
+  assert.equal(new URL(a.scripts[1].src).search, new URL(a.scripts[0].src).search);
+  a.window.onRecaptchaReady();
+  a.options().callback('fallback-token');
+  assert.equal(a.nodes.get('#send-message').disabled, false);
+  let prevented = false;
+  a.events.submit({ preventDefault: () => { prevented = true; } });
+  assert.equal(prevented, false);
+});
+
+test('provider loading failures leave submission disabled after both hosts fail', () => {
   const a = app(live);
   a.scripts[0].onerror();
+  a.scripts[1].onerror();
+  assert.equal(a.scripts.length, 2);
   assert.equal(a.nodes.get('#send-message').disabled, true);
   assert.match(a.nodes.get('#form-status').textContent, /email link/);
 });

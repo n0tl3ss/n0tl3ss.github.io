@@ -71,6 +71,8 @@ Google Apps Script
 
 The visitor receives a confirmation page from Apps Script and a return link. A regular form POST works without an extra CORS proxy or application server.
 
+The checkbox loads when the contact form approaches the viewport or receives focus. If Google’s primary script host fails, it retries once through the official `www.recaptcha.net` host. Both failures leave submission disabled and show the direct email link. Server-side token and hostname verification remain required.
+
 1. Follow [apps-script/README.md](apps-script/README.md) to configure the Google Cloud checkbox key, private spreadsheet and backend. The owner performs Google authorization.
 2. Keep the restricted API key, Sheet ID and backend settings in Apps Script **Script Properties**. Never put secrets in GitHub files or chat.
 3. Only the **public reCAPTCHA site key** and deployed Apps Script **`/exec` URL** go into `site/contact-config.js`. These two values can be shared for final connection.

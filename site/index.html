@@ -8,7 +8,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#f7f6f0">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://static.cloudflareinsights.com/beacon.min.js; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://www.google.com/recaptcha/ https://cloudflareinsights.com/cdn-cgi/rum; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/; form-action 'self' https://script.google.com https://script.googleusercontent.com; base-uri 'self'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/ https://static.cloudflareinsights.com/beacon.min.js; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://www.google.com/recaptcha/ https://www.recaptcha.net/ https://cloudflareinsights.com/cdn-cgi/rum; frame-src https://www.google.com/recaptcha/ https://www.recaptcha.net/ https://recaptcha.google.com/recaptcha/; form-action 'self' https://script.google.com https://script.googleusercontent.com; base-uri 'self'; object-src 'none'">
   <link rel="canonical" href="https://nmikic.rs/">
   <link rel="alternate" hreflang="en" href="https://nmikic.rs/">
   <link rel="alternate" hreflang="sr-Latn" href="https://nmikic.rs/sr/">
@@ -46,7 +46,7 @@
         "description": "Software engineer at Oracle in Belgrade, contributing to Micronaut, GraalVM, cloud integrations and developer tooling.",
         "inLanguage": "en",
         "dateCreated": "2026-10-20T21:25:56+02:00",
-        "dateModified": "2026-10-22T12:31:54Z",
+        "dateModified": "2026-10-27T09:19:14Z",
         "isPartOf": { "@id": "https://nmikic.rs/#website" },
         "mainEntity": { "@id": "https://nmikic.rs/#person" }
       },
@@ -106,10 +106,11 @@
       <div class="hero-main">
         <p class="eyebrow"><span class="location-mark" aria-hidden="true"></span> Belgrade, Serbia</p>
         <h1 id="hero-title">Nemanja<br> <em>Mikić</em></h1>
-        <p class="hero-role">Software engineer.<br>Frameworks, backend &amp; cloud.</p>
-        <p class="hero-description">I'm Nemanja Mikic, a software engineer at Oracle in Belgrade. I build backend services, cloud integrations and developer tools with Java, Python, Micronaut and GraalVM.</p>
+        <p class="hero-role">Senior software engineer.<br>Backend, platforms &amp; cloud.</p>
+        <p class="hero-description">I'm Nemanja Mikic, a senior backend-focused software engineer with 8+ years building services, frameworks and cloud integrations in Java, Python and Go. At Oracle, I contribute to the Micronaut and GraalVM ecosystems.</p>
         <div class="hero-actions">
           <a class="button" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary" href="assets/cv-one-page.pdf" target="_blank" rel="noopener" aria-label="Download CV (PDF, English)">Download CV <span aria-hidden="true">↗</span></a>
           <a class="text-link" href="https://github.com/n0tl3ss" target="_blank" rel="me noopener noreferrer">Explore my GitHub <span aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -118,7 +119,8 @@
           <p class="eyebrow">Currently</p>
           <a class="company" href="https://www.oracle.com/" target="_blank" rel="noopener noreferrer">Oracle<span aria-hidden="true">↗</span></a>
           <p>Software Engineer · IC4</p>
-          <span class="small-muted">January 2022 — Present</span>
+          <span class="small-muted role-level">IC4 since June 2024</span>
+          <span class="small-muted role-tenure">January 2022 — Present</span>
         </div>
         <div class="focus-index">
           <p class="eyebrow">Where I work</p>
@@ -162,41 +164,59 @@
           <span class="project-domain">graal.cloud/gdk</span>
         </a>
       </nav>
-      <div class="work-list">
-        <article class="work-row">
-          <span class="work-number" aria-hidden="true">01</span>
-          <div><h3>OpenTelemetry for Micronaut</h3><p>Added OpenTelemetry modules for HTTP and gRPC client/server tracing, with tracing annotations, SDK configuration, integration tests and documentation.</p><p class="work-tech">Java / OpenTelemetry / HTTP / gRPC</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-tracing/pull/65" target="_blank" rel="noopener noreferrer" aria-label="PR · May 2022 — my OpenTelemetry support contribution">PR · May 2022 <span aria-hidden="true">↗</span></a><a href="https://micronaut-projects.github.io/micronaut-tracing/latest/guide/#opentelemetry" target="_blank" rel="noopener noreferrer">Tracing docs <span aria-hidden="true">↗</span></a></p></div>
-          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-tracing/pull/65" target="_blank" rel="noopener noreferrer" aria-label="View my OpenTelemetry support contribution">↗</a>
+      <div class="featured-work" aria-label="Featured project stories">
+        <article class="featured-project">
+          <div class="featured-project-meta"><span>01</span><span>Observability / Java</span></div>
+          <h3>OpenTelemetry for Micronaut</h3>
+          <div class="featured-story">
+            <p><strong>Problem</strong> Micronaut needed tracing across HTTP and gRPC client and server paths.</p>
+            <p><strong>My contribution</strong> Added OpenTelemetry modules, tracing annotations, SDK configuration, integration tests and documentation.</p>
+            <p><strong>Result</strong> A tested, documented tracing integration for Micronaut applications.</p>
+          </div>
+          <p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-tracing/pull/65" target="_blank" rel="noopener noreferrer" aria-label="PR · May 2022 — my OpenTelemetry support contribution">PR · May 2022 <span aria-hidden="true">↗</span></a><a href="https://micronaut-projects.github.io/micronaut-tracing/latest/guide/#opentelemetry" target="_blank" rel="noopener noreferrer">Tracing docs <span aria-hidden="true">↗</span></a></p>
         </article>
-        <article class="work-row">
-          <span class="work-number" aria-hidden="true">02</span>
-          <div><h3>Vector search in Micronaut Data</h3><p>Implemented dense/sparse vector types, derived similarity queries, schema/index generation and integration tests. Added JDBC bindings for Oracle, PostgreSQL/pgvector and MySQL HeatWave, plus Oracle/PostgreSQL R2DBC support.</p><p class="work-tech">Java / Micronaut Data / JDBC / R2DBC</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-data/pull/3637" target="_blank" rel="noopener noreferrer" aria-label="PR · May 2026 — my Micronaut Data vector support contribution">PR · May 2026 <span aria-hidden="true">↗</span></a><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/#sqlVectorType" target="_blank" rel="noopener noreferrer">Vector search docs <span aria-hidden="true">↗</span></a></p></div>
-          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-data/pull/3637" target="_blank" rel="noopener noreferrer" aria-label="View my Micronaut Data vector support contribution">↗</a>
+        <article class="featured-project">
+          <div class="featured-project-meta"><span>02</span><span>Data / Java</span></div>
+          <h3>Vector search in Micronaut Data</h3>
+          <div class="featured-story">
+            <p><strong>Problem</strong> Micronaut Data needed vector persistence and similarity queries across SQL databases.</p>
+            <p><strong>My contribution</strong> Implemented dense and sparse vector types, derived queries, schema and index generation, plus integration tests and database bindings.</p>
+            <p><strong>Result</strong> Support spans JDBC for Oracle, PostgreSQL/pgvector and MySQL HeatWave, plus Oracle and PostgreSQL R2DBC.</p>
+          </div>
+          <p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-data/pull/3637" target="_blank" rel="noopener noreferrer" aria-label="PR · May 2026 — my Micronaut Data vector support contribution">PR · May 2026 <span aria-hidden="true">↗</span></a><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/#sqlVectorType" target="_blank" rel="noopener noreferrer">Vector search docs <span aria-hidden="true">↗</span></a></p>
         </article>
+        <article class="featured-project">
+          <div class="featured-project-meta"><span>03</span><span>Python / GraalPy</span></div>
+          <h3>Python dataclasses in Micronaut</h3>
+          <div class="featured-story">
+            <p><strong>Problem</strong> Python dataclasses needed framework introspection when used through GraalPy.</p>
+            <p><strong>My contribution</strong> Added support for validation metadata, aliases, defaults and inheritance, with compiler and runtime tests.</p>
+            <p><strong>Result</strong> Micronaut can introspect those dataclass features across the compiler and runtime paths.</p>
+          </div>
+          <p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-core/pull/13786" target="_blank" rel="noopener noreferrer" aria-label="PR · October 2026 — my Python dataclass support contribution">PR · October 2026 <span aria-hidden="true">↗</span></a><a href="https://pyronaut.io/docs/" target="_blank" rel="noopener noreferrer">Pyronaut docs <span aria-hidden="true">↗</span></a></p>
+        </article>
+      </div>
+      <h3 class="work-list-title">More selected work</h3>
+      <div class="work-list compact-work-list">
         <article class="work-row">
-          <span class="work-number" aria-hidden="true">03</span>
+          <span class="work-number" aria-hidden="true">04</span>
           <div><h3>OKE Workload Identity</h3><p>Enabled Micronaut applications on Oracle OKE to authenticate with Kubernetes workload identity. Implemented service-account federation, cluster-CA TLS setup, configuration, tests and documentation.</p><p class="work-tech">Java / OCI / Kubernetes / Authentication</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/686" target="_blank" rel="noopener noreferrer" aria-label="PR · September 2023 — my OKE Workload Identity contribution">PR · September 2023 <span aria-hidden="true">↗</span></a><a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#oke-workload-identity" target="_blank" rel="noopener noreferrer">Workload Identity docs <span aria-hidden="true">↗</span></a></p></div>
           <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/686" target="_blank" rel="noopener noreferrer" aria-label="View my OKE Workload Identity contribution">↗</a>
         </article>
         <article class="work-row">
-          <span class="work-number" aria-hidden="true">04</span>
+          <span class="work-number" aria-hidden="true">05</span>
           <div><h3>OCI certificate management</h3><p>Built the Micronaut integration with OCI Certificates, including certificate and private-key retrieval, scheduled refresh and retry, certificate-update events and HTTPS integration tests.</p><p class="work-tech">Java / OCI Certificates / TLS</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/596" target="_blank" rel="noopener noreferrer" aria-label="PR · June 2023 — my OCI Certificates integration contribution">PR · June 2023 <span aria-hidden="true">↗</span></a><a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#certificates" target="_blank" rel="noopener noreferrer">Certificate docs <span aria-hidden="true">↗</span></a></p></div>
           <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/596" target="_blank" rel="noopener noreferrer" aria-label="View my OCI Certificates integration contribution">↗</a>
         </article>
         <article class="work-row">
-          <span class="work-number" aria-hidden="true">05</span>
+          <span class="work-number" aria-hidden="true">06</span>
           <div><h3>Micrometer Observation</h3><p>Added Micrometer Observation integration for Micronaut, with annotation mapping, HTTP client/server filters, handler configuration and context propagation, backed by integration tests.</p><p class="work-tech">Java / Micrometer / Observability</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-micrometer/pull/585" target="_blank" rel="noopener noreferrer" aria-label="PR · July 2023 — my Micrometer Observation contribution">PR · July 2023 <span aria-hidden="true">↗</span></a><a href="https://micronaut-projects.github.io/micronaut-micrometer/latest/guide/#observation" target="_blank" rel="noopener noreferrer">Observation docs <span aria-hidden="true">↗</span></a></p></div>
           <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-micrometer/pull/585" target="_blank" rel="noopener noreferrer" aria-label="View my Micrometer Observation contribution">↗</a>
         </article>
         <article class="work-row">
-          <span class="work-number" aria-hidden="true">06</span>
+          <span class="work-number" aria-hidden="true">07</span>
           <div><h3>CloudWatch logging for Micronaut</h3><p>Added the AWS CloudWatch logging module with a Logback appender, queued and batched publishing, log-group/stream setup, sequence-token retry and an emergency fallback appender, plus tests and documentation.</p><p class="work-tech">Java / AWS CloudWatch / Logback</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-aws/pull/1438" target="_blank" rel="noopener noreferrer" aria-label="PR · September 2022 — my CloudWatch logging module contribution">PR · September 2022 <span aria-hidden="true">↗</span></a><a href="https://micronaut-projects.github.io/micronaut-aws/latest/guide/#cloudWatchLogging" target="_blank" rel="noopener noreferrer">CloudWatch logging docs <span aria-hidden="true">↗</span></a></p></div>
           <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-aws/pull/1438" target="_blank" rel="noopener noreferrer" aria-label="View my CloudWatch logging module contribution">↗</a>
-        </article>
-        <article class="work-row">
-          <span class="work-number" aria-hidden="true">07</span>
-          <div><h3>Python meets Micronaut</h3><p>Automatic Python dataclass introspection through GraalPy, including validation metadata, aliases, defaults, inheritance and compiler/runtime tests.</p><p class="work-tech">Python / GraalPy / GraalVM / Pyronaut</p><p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-core/pull/13786" target="_blank" rel="noopener noreferrer" aria-label="PR · October 2026 — my Python dataclass support contribution">PR · October 2026 <span aria-hidden="true">↗</span></a><a href="https://pyronaut.io/docs/" target="_blank" rel="noopener noreferrer">Pyronaut docs <span aria-hidden="true">↗</span></a></p></div>
-          <a class="arrow-link" href="https://github.com/micronaut-projects/micronaut-core/pull/13786" target="_blank" rel="noopener noreferrer" aria-label="View my Python dataclass introspection contribution">↗</a>
         </article>
       </div>
       <div class="more-work">
@@ -219,7 +239,7 @@
             <figcaption>Unmodified browser capture of the November section, saved on <time datetime="2026-10-20">20 October 2026</time>. <a href="assets/apple-acknowledgement-provenance.json">Source and capture details</a>.</figcaption>
           </figure>
         </details>
-        <h3 class="recognition-more" id="verification-title">Verified by Anthropic</h3>
+        <h3 class="recognition-more" id="verification-title">Cyber Verification Program · Defense Access</h3>
         <p>Approved as an individual security researcher in Anthropic’s <a href="https://www.anthropic.com/news/cyber-verification-program" target="_blank" rel="noopener noreferrer">Cyber Verification Program</a>, Defense Access tier, in <time datetime="2026-10">October 2026</time>, for vulnerability analysis and coordinated disclosure.</p>
       </aside>
     </section>
