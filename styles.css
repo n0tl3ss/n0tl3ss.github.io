@@ -137,7 +137,9 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
 .career-list { border-top:1px solid var(--line); }
 .career-row { display:grid; grid-template-columns:200px 1fr; column-gap:45px; padding:28px 0; border-bottom:1px solid var(--line); }
 .career-meta { padding-top:4px; }
-.company-logo { display:block; width:155px; max-width:100%; height:34px; margin-bottom:16px; background:var(--green); mask-repeat:no-repeat; mask-position:left center; mask-size:contain; }
+.company-link { display:flex; align-items:center; width:fit-content; max-width:100%; min-height:44px; margin-bottom:6px; border-radius:2px; }
+.company-link:hover .company-logo { background:var(--accent); }
+.company-logo { display:block; width:155px; max-width:100%; height:34px; background:var(--green); mask-repeat:no-repeat; mask-position:left center; mask-size:contain; }
 .company-logo--oracle { mask-image:url(assets/logos/oracle.svg); }
 .company-logo--seven-bridges { mask-image:url(assets/logos/seven-bridges.svg); }
 .career-date { font-size:13px; color:var(--muted); }
@@ -272,7 +274,8 @@ h3 { font-size:18px; line-height:1.4; font-weight:550; letter-spacing:-.025em; }
   .arrow-link { padding:0; font-size:23px; }
   .career-row { display:block; padding-block:25px; }
   .career-meta { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px 24px; margin-bottom:18px; padding-top:0; }
-  .company-logo { width:130px; height:28px; margin-bottom:0; }
+  .company-link { margin-bottom:0; }
+  .company-logo { width:130px; height:28px; }
   .career-date { font-size:12px; }
   .career-content p,.career-content ul { font-size:14px; }
   .education-summary { padding:22px; }
