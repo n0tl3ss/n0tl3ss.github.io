@@ -46,7 +46,7 @@
         "description": "Software engineer at Oracle in Belgrade, contributing to Micronaut, GraalVM, cloud integrations and developer tooling.",
         "inLanguage": "en",
         "dateCreated": "2026-10-20T21:25:56+02:00",
-        "dateModified": "2026-10-27T09:19:14Z",
+        "dateModified": "2026-10-27T09:31:04Z",
         "isPartOf": { "@id": "https://nmikic.rs/#website" },
         "mainEntity": { "@id": "https://nmikic.rs/#person" }
       },
@@ -74,7 +74,7 @@
   <link rel="preload" href="fonts/newsreader-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <script src="theme.js"></script>
-  <link rel="stylesheet" href="styles.css?v=21b7492">
+  <link rel="stylesheet" href="styles.css?v=20261027-ai">
   <script src="contact-config.js" defer></script>
   <script src="main.js?v=21b7492" defer></script>
 </head>
@@ -89,7 +89,7 @@
       <a href="#guides">Guides</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="header-cv" href="assets/cv-one-page.pdf?v=21b7492" target="_blank" rel="noopener" aria-label="View CV (PDF, English)">CV <span aria-hidden="true">↗</span></a>
+    <a class="header-cv" href="assets/cv-one-page.pdf?v=20261027-ai" target="_blank" rel="noopener" aria-label="View CV (PDF, English)">CV <span aria-hidden="true">↗</span></a>
     <div class="language-switch" role="group" aria-label="Language">
       <a href="./" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a>
       <a href="sr/" lang="sr-Latn" hreflang="sr-Latn" aria-label="Srpski">SR</a>
@@ -110,7 +110,7 @@
         <p class="hero-description">I'm Nemanja Mikic, a senior backend-focused software engineer with 8+ years building services, frameworks and cloud integrations in Java, Python and Go. At Oracle, I contribute to the Micronaut and GraalVM ecosystems.</p>
         <div class="hero-actions">
           <a class="button" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
-          <a class="button button-secondary" href="assets/cv-one-page.pdf?v=21b7492" target="_blank" rel="noopener" aria-label="Download CV (PDF, English)">Download CV <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary" href="assets/cv-one-page.pdf?v=20261027-ai" target="_blank" rel="noopener" aria-label="Download CV (PDF, English)">Download CV <span aria-hidden="true">↗</span></a>
           <a class="text-link" href="https://github.com/n0tl3ss" target="_blank" rel="me noopener noreferrer">Explore my GitHub <span aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -133,7 +133,7 @@
       </aside>
       <div class="hero-facts" aria-label="Experience at a glance">
         <div><strong>8<span>+</span></strong><p>years in software engineering</p></div>
-        <div><strong>400<span>+</span></strong><p>merged PRs in the Micronaut ecosystem</p></div>
+        <div><strong>400<span>+</span></strong><p>merged PRs in the Micronaut ecosystem<br><span class="contribution-note">Includes AI-assisted and AI-generated work.</span></p></div>
         <div class="language-fact"><strong>Java · Python · Go</strong><p>languages I work with</p></div>
       </div>
     </section>
@@ -178,22 +178,24 @@
         <article class="featured-project">
           <div class="featured-project-meta"><span>02</span><span>Data / Java</span></div>
           <h3>Vector search in Micronaut Data</h3>
+          <p class="ai-disclosure">AI-assisted implementation</p>
           <div class="featured-story">
             <p><strong>Problem</strong> Micronaut Data needed vector persistence and similarity queries across SQL databases.</p>
             <p><strong>My contribution</strong> Implemented dense and sparse vector types, derived queries, schema and index generation, plus integration tests and database bindings.</p>
             <p><strong>Result</strong> Support spans JDBC for Oracle, PostgreSQL/pgvector and MySQL HeatWave, plus Oracle and PostgreSQL R2DBC.</p>
           </div>
-          <p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-data/pull/3637" target="_blank" rel="noopener noreferrer" aria-label="PR · May 2026 — my Micronaut Data vector support contribution">PR · May 2026 <span aria-hidden="true">↗</span></a><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/#sqlVectorType" target="_blank" rel="noopener noreferrer">Vector search docs <span aria-hidden="true">↗</span></a></p>
+          <p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-data/pull/3637" target="_blank" rel="noopener noreferrer" aria-label="PR · May 2026 — my AI-assisted Micronaut Data vector support contribution">PR · May 2026 <span aria-hidden="true">↗</span></a><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/#sqlVectorType" target="_blank" rel="noopener noreferrer">Vector search docs <span aria-hidden="true">↗</span></a></p>
         </article>
         <article class="featured-project">
           <div class="featured-project-meta"><span>03</span><span>Python / GraalPy</span></div>
           <h3>Python dataclasses in Micronaut</h3>
+          <p class="ai-disclosure">Fully AI-generated implementation</p>
           <div class="featured-story">
             <p><strong>Problem</strong> Python dataclasses needed framework introspection when used through GraalPy.</p>
-            <p><strong>My contribution</strong> Added support for validation metadata, aliases, defaults and inheritance, with compiler and runtime tests.</p>
+            <p><strong>Implementation scope</strong> Support for validation metadata, aliases, defaults and inheritance, with compiler and runtime tests.</p>
             <p><strong>Result</strong> Micronaut can introspect those dataclass features across the compiler and runtime paths.</p>
           </div>
-          <p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-core/pull/13786" target="_blank" rel="noopener noreferrer" aria-label="PR · October 2026 — my Python dataclass support contribution">PR · October 2026 <span aria-hidden="true">↗</span></a><a href="https://pyronaut.io/docs/" target="_blank" rel="noopener noreferrer">Pyronaut docs <span aria-hidden="true">↗</span></a></p>
+          <p class="work-links"><a href="https://github.com/micronaut-projects/micronaut-core/pull/13786" target="_blank" rel="noopener noreferrer" aria-label="PR · October 2026 — fully AI-generated Python dataclass implementation">PR · October 2026 <span aria-hidden="true">↗</span></a><a href="https://pyronaut.io/docs/" target="_blank" rel="noopener noreferrer">Pyronaut docs <span aria-hidden="true">↗</span></a></p>
         </article>
       </div>
       <h3 class="work-list-title">More selected work</h3>
@@ -250,7 +252,7 @@
         <div class="career-list">
           <article class="career-row">
             <div class="career-date">January 2022 — Present</div>
-            <div class="career-content"><div class="career-title"><h3>Oracle</h3><span>Software Engineer</span></div><p class="career-grade">IC4 since June 2024 · Previously IC3</p><p>Contributing to the <a href="https://micronaut.io/" target="_blank" rel="noopener noreferrer">Micronaut</a> and <a href="https://www.graalvm.org/" target="_blank" rel="noopener noreferrer">GraalVM</a> ecosystems through framework features, cloud integrations, observability and developer tooling.</p><ul><li>Implemented Micronaut Data vector persistence and similarity search across database integrations.</li><li>Extended internal Java service observability with raw metrics, HTTP/JVM instrumentation and request-context propagation.</li><li>Built cloud integrations, Terraform reference deployments and delivery automation.</li><li>Developed offline dependency-mirror tooling and validated Gradle/Maven builds with checksum and compliance reports.</li><li>Authored public Micronaut guides with runnable applications and tests.</li></ul></div>
+            <div class="career-content"><div class="career-title"><h3>Oracle</h3><span>Software Engineer</span></div><p class="career-grade">IC4 since June 2024 · Previously IC3</p><p>Contributing to the <a href="https://micronaut.io/" target="_blank" rel="noopener noreferrer">Micronaut</a> and <a href="https://www.graalvm.org/" target="_blank" rel="noopener noreferrer">GraalVM</a> ecosystems through framework features, cloud integrations, observability and developer tooling.</p><ul><li>Implemented Micronaut Data vector persistence and similarity search across database integrations with AI assistance.</li><li>Extended internal Java service observability with raw metrics, HTTP/JVM instrumentation and request-context propagation.</li><li>Built cloud integrations, Terraform reference deployments and delivery automation.</li><li>Developed offline dependency-mirror tooling and validated Gradle/Maven builds with checksum and compliance reports.</li><li>Authored public Micronaut guides with runnable applications and tests.</li></ul></div>
           </article>
           <article class="career-row">
             <div class="career-date">May 2021 — Dec 2021</div>
@@ -305,7 +307,7 @@
 
     <section class="skills-section wrap" aria-labelledby="skills-title"><p class="eyebrow">The tools behind the work</p><h2 class="sr-only" id="skills-title">Technical skills</h2><div class="skills-grid"><div><h3>Languages &amp; runtimes</h3><p>Java, Python, Go<br>Micronaut, Netty, GraalVM, GraalPy</p></div><div><h3>Cloud &amp; delivery</h3><p>OCI, AWS, Kubernetes, Docker<br>Terraform, Gradle, Maven, CI/CD</p></div><div><h3>Observability &amp; security</h3><p>OpenTelemetry, Micrometer, Prometheus<br>Vault, OAuth2, SSO, MFA</p></div></div></section>
 
-    <section class="cv-section wrap" aria-labelledby="cv-title"><div><p class="eyebrow">Take a copy</p><h2 id="cv-title">The CV, in your format.</h2><p>A quick overview or the details behind the work.</p></div><div class="cv-options"><a href="assets/cv-one-page.pdf?v=21b7492" target="_blank" rel="noopener"><span>One-page CV</span><span>PDF <span aria-hidden="true">↗</span></span></a><a href="assets/cv-two-pages.pdf?v=21b7492" target="_blank" rel="noopener"><span>Detailed CV</span><span>2 pages · PDF <span aria-hidden="true">↗</span></span></a></div></section>
+    <section class="cv-section wrap" aria-labelledby="cv-title"><div><p class="eyebrow">Take a copy</p><h2 id="cv-title">The CV, in your format.</h2><p>A quick overview or the details behind the work.</p></div><div class="cv-options"><a href="assets/cv-one-page.pdf?v=20261027-ai" target="_blank" rel="noopener"><span>One-page CV</span><span>PDF <span aria-hidden="true">↗</span></span></a><a href="assets/cv-two-pages.pdf?v=20261027-ai" target="_blank" rel="noopener"><span>Detailed CV</span><span>2 pages · PDF <span aria-hidden="true">↗</span></span></a></div></section>
 
     <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="section wrap contact-layout"><div class="contact-intro"><p class="eyebrow">05 / Contact</p><h2 id="contact-title">Have something<br>in mind?</h2><p>For software engineering opportunities, technical conversations or a question about my work, send me a note.</p><a class="contact-email" href="mailto:n0t_l3ss@outlook.com">n0t_l3ss@outlook.com <span aria-hidden="true">↗</span></a><div class="social-links"><a href="https://github.com/n0tl3ss" target="_blank" rel="me noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/nrmikic" target="_blank" rel="me noopener noreferrer">LinkedIn ↗</a></div></div>
         <form id="contact-form" method="post" action="#contact" aria-describedby="form-status">
@@ -322,7 +324,7 @@
         </form>
       </div></section>
   </main>
-  <footer class="site-footer wrap"><a class="wordmark" href="#" aria-label="nmikic.rs — Back to top">nmikic<span>.rs</span></a><p>Nemanja Mikić <span>© <span id="year">2026</span></span></p><a href="#main">Back to top <span aria-hidden="true">↑</span></a></footer>
+  <footer class="site-footer wrap"><a class="wordmark" href="#" aria-label="nmikic.rs — Back to top">nmikic<span>.rs</span></a><p>Nemanja Mikić <span>© <span id="year">2026</span></span><span class="creation-note">Website and CVs prepared with AI assistance.</span></p><a href="#main">Back to top <span aria-hidden="true">↑</span></a></footer>
   <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"b222550edcda40eabc8ba7fec7277089"}'></script>
 </body>
 </html>
