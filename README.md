@@ -44,7 +44,7 @@ The canonical domain is `https://nmikic.rs/`. Loopia holds the registration, Clo
 
 The owner-provided `google2b694a43c865015d.html` file is included for Google Search Console URL-prefix verification. After deployment, click Verify in the owner account, submit `sitemap.xml`, and inspect/request indexing of the homepage. Keep the verification file after verification succeeds. After verification, check indexing and search queries over time. No metadata or test score can guarantee first place for a name search.
 
-When changing content, keep the sitemap `lastmod` and profile `dateModified` accurate. The social image is generated from [design/social-card.svg](design/social-card.svg); it is a title card, not a portrait.
+When changing content, keep the sitemap `lastmod` and profile `dateModified` accurate. Bump the `v` query on changed CSS, JavaScript and CV download URLs in both languages so returning visitors fetch the new files after publishing. The social image is generated from [design/social-card.svg](design/social-card.svg); it is a title card, not a portrait.
 
 The repository history was rewritten to update retired contact details, including historical PDF content. If you cloned before that cleanup, clone it again rather than merging or pushing old branches back.
 
