@@ -2,6 +2,7 @@
 from pathlib import Path
 import argparse
 import json
+import os
 
 from reportlab.lib.colors import HexColor
 from reportlab.lib.styles import ParagraphStyle
@@ -12,21 +13,19 @@ from reportlab.platypus import Paragraph
 
 
 def render(model, output):
-    font_dir = Path('/Applications/Microsoft Word.app/Contents/Resources/DFonts')
+    font_dir = Path(os.environ.get('CV_FONT_DIR', '/Applications/Microsoft Word.app/Contents/Resources/DFonts'))
     for name, file in [('Calibri', 'Calibri.ttf'), ('Calibri-Bold', 'Calibrib.ttf'),
                        ('Calibri-Italic', 'Calibrii.ttf'), ('Calibri-BoldItalic', 'Calibriz.ttf')]:
         pdfmetrics.registerFont(TTFont(name, str(font_dir / file)))
     pdfmetrics.registerFontFamily('Calibri', normal='Calibri', bold='Calibri-Bold',
                                  italic='Calibri-Italic', boldItalic='Calibri-BoldItalic')
     output.mkdir(parents=True, exist_ok=True)
-    audit = {}
     for kind, pages in model.items():
         path = output / ('cv-one-page.pdf' if kind == 'one' else 'cv-two-pages.pdf')
         canvas = Canvas(str(path), pagesize=(pages[0]['width'], pages[0]['height']), pageCompression=1)
         canvas.setTitle(f'Nemanja Mikić — {"One-page" if kind == "one" else "Detailed"} CV')
         canvas.setAuthor('Nemanja Mikić')
         canvas.setSubject('Software engineering experience, qualifications and public contributions')
-        audit[kind] = []
         for page_index, page in enumerate(pages, 1):
             width, height, left = page['width'], page['height'], page['left']
             top = page['top']
@@ -57,15 +56,12 @@ def render(model, output):
                     canvas.setStrokeColor(HexColor('#202c30'))
                     canvas.setLineWidth(.5)
                     canvas.line(left - 1.44, baseline - 4, width - left + 1.44, baseline - 4)
-                audit[kind].append({'page':page_index, 'kind':block['kind'], 'top':round(top, 2),
-                                    'bottom':round(top + h, 2), 'text':block['text']})
                 top += h
             if top > height - 18:
                 raise ValueError(f'{kind} page {page_index}: content ends at {top:.2f}, too close to the page edge')
             canvas.showPage()
         canvas.save()
         print(path)
-    (output / 'layout.json').write_text(json.dumps(audit, indent=2, ensure_ascii=False) + '\n')
 
 
 if __name__ == '__main__':
