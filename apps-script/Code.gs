@@ -26,9 +26,12 @@ const HEADERS = [
 ];
 
 function doPost(e) {
+  const lang = e && e.parameter && e.parameter.lang === 'sr' ? 'sr' : 'en';
+  let siteUrl = 'https://nmikic.rs/';
   let stage = 'configuration';
   try {
     const config = getConfig();
+    siteUrl = config.siteUrl;
     stage = 'validation';
     const form = parseForm(e);
 
@@ -43,16 +46,16 @@ function doPost(e) {
     const result = saveSubmission(form, recaptcha.hostname, config);
 
     if (result.duplicate) {
-      return renderStatus('duplicate', config);
+      return renderStatus('duplicate', lang, siteUrl);
     }
     if (result.rejected) {
-      return renderStatus('limited', config);
+      return renderStatus('limited', lang, siteUrl);
     }
-    return renderStatus(result.mailSent ? 'success' : 'saved', config);
+    return renderStatus(result.mailSent ? 'success' : 'saved', lang, siteUrl);
   } catch (error) {
     logContactFailure(stage, error);
     // Do not expose validation, configuration, or provider errors to the public.
-    return renderStatus('failure', safeConfigForResponse());
+    return renderStatus('failure', lang, siteUrl);
   }
 }
 
@@ -133,25 +136,6 @@ function getConfig() {
     throw contactFailure('CONFIG_INVALID');
   }
   return config;
-}
-
-function safeConfigForResponse() {
-  let siteUrl = 'https://example.invalid/';
-  let notifyEmail = '';
-  try {
-    const properties = PropertiesService.getScriptProperties();
-    const configured = properties.getProperty('SITE_URL') || '';
-    const configuredEmail = properties.getProperty('NOTIFY_EMAIL') || '';
-    if (isHttpsUrl(configured)) {
-      siteUrl = configured;
-    }
-    if (isEmail(configuredEmail)) {
-      notifyEmail = configuredEmail;
-    }
-  } catch (ignored) {
-    // Keep a fixed safe fallback if configuration cannot be read.
-  }
-  return { siteUrl: siteUrl, notifyEmail: notifyEmail };
 }
 
 function parseForm(e) {
@@ -500,8 +484,15 @@ function safeSheetValue(value) {
   return /^[=+\-@]/.test(text) ? "'" + text : text;
 }
 
-function renderStatus(status, config) {
-  const messages = {
+function renderStatus(status, lang, siteUrl) {
+  const serbian = lang === 'sr';
+  const messages = serbian ? {
+    success: { heading: 'Poruka je primljena', detail: 'Hvala na poruci.' },
+    duplicate: { heading: 'Poruka je već primljena', detail: 'Ovu poruku smo već primili.' },
+    saved: { heading: 'Poruka je sačuvana', detail: 'Sačuvali smo poruku. Ako odgovor izostane, javite se direktno mejlom.' },
+    limited: { heading: 'Pokušajte kasnije', detail: 'Forma je privremeno nedostupna. Pokušajte ponovo kasnije.' },
+    failure: { heading: 'Slanje nije uspelo', detail: 'Poruka nije poslata. Pokušajte ponovo kasnije.' },
+  } : {
     success: { heading: 'Message received', detail: 'Thanks — your message was received.' },
     duplicate: { heading: 'Already received', detail: 'This message was already received.' },
     saved: { heading: 'Message saved', detail: 'Your message was saved. Please try again later if you do not hear back.' },
@@ -509,13 +500,10 @@ function renderStatus(status, config) {
     failure: { heading: 'Unable to send', detail: 'We could not submit your message. Please try again later.' },
   };
   const copy = messages[status] || messages.failure;
-  const returnUrl = escapeHtml(config && config.siteUrl ? config.siteUrl : 'https://example.invalid/');
-  const notifyEmail = config && isEmail(config.notifyEmail || '') ? config.notifyEmail : '';
-  const mailto = notifyEmail ? 'mailto:' + encodeURIComponent(notifyEmail) : '';
-  const mailtoLink = mailto
-    ? '<p><a href="' + escapeHtml(mailto) + '">Email directly</a></p>'
-    : '';
-  const html = '<!doctype html><html><head><meta charset="utf-8">' +
+  const returnUrl = escapeHtml(siteUrl.replace(/\/+$/, '') + (serbian ? '/sr/#contact' : '/#contact'));
+  const returnLabel = serbian ? 'Povratak na sajt' : 'Return to the website';
+  const emailLabel = serbian ? 'Pošaljite mejl direktno' : 'Email directly';
+  const html = '<!doctype html><html lang="' + (serbian ? 'sr-Latn' : 'en') + '"><head><meta charset="utf-8">' +
     '<meta name="viewport" content="width=device-width,initial-scale=1">' +
     '<title>' + escapeHtml(copy.heading) + '</title>' +
     '<style>body{margin:0;background:#f7f6f0;color:#182d29;font-family:system-ui,-apple-system,sans-serif}' +
@@ -523,10 +511,10 @@ function renderStatus(status, config) {
     'a{color:#124c43;font-weight:650}</style></head><body>' +
     '<main><h1>' + escapeHtml(copy.heading) + '</h1>' +
     '<p>' + escapeHtml(copy.detail) + '</p>' +
-    '<p><a href="' + returnUrl + '" target="_top">Return to the website</a></p>' +
-    mailtoLink +
+    '<p><a href="' + returnUrl + '" target="_top">' + returnLabel + '</a></p>' +
+    '<p><a href="mailto:n0t_l3ss@outlook.com" target="_top">' + emailLabel + '</a></p>' +
     '</main></body></html>';
-  return HtmlService.createHtmlOutput(html).setTitle('Contact');
+  return HtmlService.createHtmlOutput(html).setTitle(copy.heading);
 }
 
 function escapeHtml(value) {

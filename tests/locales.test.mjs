@@ -42,6 +42,7 @@ test('localized profiles share identity and evidence while keeping distinct sear
     const graph = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
     const profile = graph.find(n => n['@type'] === 'ProfilePage');
     assert.equal(profile.inLanguage, lang);
+    assert.ok(html.includes(`name="lang" value="${lang === 'en' ? 'en' : 'sr'}"`));
     assert.equal(profile.url, url);
     assert.equal(profile.mainEntity['@id'], `${base}#person`);
     assert.equal(graph.find(n => n['@type'] === 'Person')['@id'], `${base}#person`);
@@ -50,6 +51,6 @@ test('localized profiles share identity and evidence while keeping distinct sear
     assert.equal((html.match(/data-cf-beacon=/g) || []).length, 1);
     assert.match(profile.dateCreated, /T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:\d{2})$/);
   }
-  assert.match(sr, /Ja sam Nemanja Mikić/);
+  assert.match(sr, /<h1[^>]*>Nemanja<br> <em>Mikić<\/em><\/h1>/);
   assert.match(sr, /Oba PDF dokumenta su na engleskom/);
 });

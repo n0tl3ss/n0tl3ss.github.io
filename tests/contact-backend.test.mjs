@@ -15,7 +15,7 @@ function createHarness(options = {}) {
     RECAPTCHA_SITE_KEY: 'recaptcha-site-key',
     SPREADSHEET_ID: 'sheet-id',
     NOTIFY_EMAIL: 'owner@example.com',
-    SITE_URL: 'https://example.com/cv',
+    SITE_URL: 'https://nmikic.rs/',
     ALLOWED_HOSTNAME: 'example.com',
     ...(options.properties || {}),
   }));
@@ -231,7 +231,35 @@ test('accepts a valid submission, saves it, and sends only to configured recipie
   assert.match(html(result), /color:#182d29/);
   assert.match(html(result), /Georgia,serif/);
   assert.match(html(result), /Return to the website/);
-  assert.match(html(result), /mailto:owner%40example\.com/);
+  assert.match(html(result), /href="mailto:n0t_l3ss@outlook\.com"/);
+  assert.doesNotMatch(decodeURIComponent(html(result)), /owner@example\.com/);
+});
+
+test('Serbian forms return localized receipts for all submission outcomes', () => {
+  const accepted = createHarness();
+  const saved = createHarness({ mailError: true });
+  const limited = createHarness({ properties: {
+    DAILY_ACCEPTED_STATE: JSON.stringify({ date: new Date().toISOString().slice(0, 10), count: 50 }),
+  } });
+  const unconfigured = createHarness({ properties: { RECAPTCHA_API_KEY: '' } });
+  for (const [harness, heading] of [
+    [accepted, 'Poruka je primljena'],
+    [accepted, 'Poruka je već primljena'],
+    [saved, 'Poruka je sačuvana'],
+    [limited, 'Pokušajte kasnije'],
+    [unconfigured, 'Slanje nije uspelo'],
+  ]) {
+    const result = harness.post({ lang: 'sr' });
+    const receipt = html(result);
+    assert.equal(result.title, heading);
+    assert.ok(receipt.includes('<h1>' + heading + '</h1>'));
+    assert.match(receipt, /<html lang="sr-Latn">/);
+    assert.match(receipt, /href="https:\/\/nmikic\.rs\/sr\/#contact" target="_top">Povratak na sajt/);
+    assert.match(receipt, /href="mailto:n0t_l3ss@outlook\.com"[^>]*>Pošaljite mejl direktno/);
+    assert.doesNotMatch(decodeURIComponent(receipt), /owner@example\.com/);
+  }
+  assert.equal(accepted.sentEmails[0].to, 'owner@example.com');
+  assert.equal(unconfigured.fetches.length, 0);
 });
 
 test('fails closed when reCAPTCHA validity or hostname is wrong', () => {
@@ -481,9 +509,13 @@ test('does not expose or trust a client-controlled recipient or return URL', () 
     email: 'visitor@example.com',
     notifyEmail: 'attacker@example.com',
     siteUrl: 'javascript:alert(1)',
+    lang: 'https://attacker.example/"><',
   });
 
   assert.equal(harness.sentEmails[0].to, 'owner@example.com');
   assert.doesNotMatch(html(result), /javascript:/i);
   assert.doesNotMatch(html(result), /attacker@example.com/);
+  assert.doesNotMatch(html(result), /attacker\.example/);
+  assert.match(html(result), /<html lang="en">/);
+  assert.match(html(result), /href="https:\/\/nmikic\.rs\/#contact"/);
 });

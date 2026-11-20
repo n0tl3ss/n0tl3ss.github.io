@@ -56,7 +56,7 @@
         },
         {
           "kind": "paragraph",
-          "html": "Software engineer with 8+ years building backend services and developer frameworks in Java, Python and Go. At Oracle since January 2022, promoted to IC4 in June 2024, delivering Micronaut observability, vector search and cloud integrations. Four years of asynchronous collaboration across Europe and the US.",
+          "html": "At Oracle, I added HTTP and gRPC tracing to Micronaut and integrated Kubernetes workload identity with Oracle Cloud. At Seven Bridges, I split billing into separate pricing and charging services and built a Go service for sharing credentials through Vault.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 42.96,
@@ -65,66 +65,6 @@
           "leading": 13.2,
           "original_top": 115.44,
           "original_lines": 6
-        },
-        {
-          "kind": "heading",
-          "html": "<b>Core Skills</b>",
-          "size": 12.48,
-          "color": "#1f2a2e",
-          "x": 42.96,
-          "date": null,
-          "gap": 7.0,
-          "leading": 15.6,
-          "original_top": 195.12,
-          "original_lines": 1
-        },
-        {
-          "kind": "label",
-          "html": "<b>Languages:</b> Java, Python, Go, SQL",
-          "size": 10.56,
-          "color": "#1f2a2e",
-          "x": 42.96,
-          "date": null,
-          "gap": 4.92,
-          "leading": 13.2,
-          "original_top": 215.04,
-          "original_lines": 1
-        },
-        {
-          "kind": "label",
-          "html": "<b>Backend and data:</b> Micronaut, Netty, GraalVM/GraalPy, REST, gRPC, PostgreSQL, Oracle DB, MongoDB",
-          "size": 10.56,
-          "color": "#1f2a2e",
-          "x": 42.96,
-          "date": null,
-          "gap": 0.84,
-          "leading": 13.2,
-          "original_top": 228.48,
-          "original_lines": 1
-        },
-        {
-          "kind": "label",
-          "html": "<b>Cloud and delivery:</b> OCI, AWS, GCP, Kubernetes, Docker, Terraform, Gradle, Maven, CI/CD",
-          "size": 10.56,
-          "color": "#1f2a2e",
-          "x": 42.96,
-          "date": null,
-          "gap": 0.6,
-          "leading": 13.2,
-          "original_top": 241.68,
-          "original_lines": 2
-        },
-        {
-          "kind": "label",
-          "html": "<b>Observability and security:</b> OpenTelemetry, Micrometer, Prometheus, OAuth2/OIDC, Vault, application security",
-          "size": 10.56,
-          "color": "#1f2a2e",
-          "x": 42.96,
-          "date": null,
-          "gap": 0.96,
-          "leading": 13.2,
-          "original_top": 267.6,
-          "original_lines": 2
         },
         {
           "kind": "heading",
@@ -166,7 +106,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Shipped Micronaut <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/65\" color=\"#124c43\"><u>OpenTelemetry</u></link> tracing for HTTP, gRPC, <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/646\" color=\"#124c43\"><u>JDBC and R2DBC</u></link>, plus <link href=\"https://github.com/micronaut-projects/micronaut-micrometer/pull/585\" color=\"#124c43\"><u>Micrometer Observation</u></link> and <link href=\"https://github.com/micronaut-projects/micronaut-micrometer/pull/848\" color=\"#124c43\"><u>Prometheus PushGateway</u></link> integrations, with tests and documentation.",
+          "html": "Added OpenTelemetry tracing for <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/65\" color=\"#124c43\"><u>HTTP and gRPC</u></link> clients and servers, then added database tracing for <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/646\" color=\"#124c43\"><u>JDBC</u></link> and <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/863\" color=\"#124c43\"><u>R2DBC</u></link>.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -190,7 +130,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Built <link href=\"https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/686\" color=\"#124c43\"><u>OKE workload identity</u></link>, <link href=\"https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/596\" color=\"#124c43\"><u>OCI certificate management</u></link> and cloud logging integrations. Fixed OCI retry back-off that could block Netty event loops and stall server I/O.",
+          "html": "Built <link href=\"https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/686\" color=\"#124c43\"><u>OKE workload identity</u></link>, <link href=\"https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/596\" color=\"#124c43\"><u>OCI certificate management</u></link> and cloud logging integrations. Fixed an <link href=\"https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/1402\" color=\"#124c43\"><u>OCI retry</u></link> path that could block Netty event loops after a read timeout.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -202,7 +142,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Contributed fully AI-generated <link href=\"https://github.com/micronaut-projects/micronaut-core/pull/13786\" color=\"#124c43\"><u>GraalPy dataclass introspection</u></link>; added coroutine adaptation for Python/Java interoperability; extended <link href=\"https://graal.cloud/gdk/\" color=\"#124c43\"><u>Graal Development Kit</u></link> application and Kubernetes generation across AWS, OCI and GCP.",
+          "html": "Contributed fully AI-generated <link href=\"https://github.com/micronaut-projects/micronaut-core/pull/13786\" color=\"#124c43\"><u>GraalPy dataclass introspection</u></link>. Added coroutine adaptation for Python/Java interoperability and extended Kubernetes generation across AWS, OCI and GCP in the <link href=\"https://graal.cloud/gdk/\" color=\"#124c43\"><u>Graal Development Kit</u></link>.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -214,7 +154,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Contributed 400+ merged Micronaut PRs (including AI-assisted and AI-generated work), <link href=\"https://github.com/search?q=org%3Amicronaut-projects+is%3Apublic+reviewed-by%3An0tl3ss+-author%3An0tl3ss+is%3Apr+is%3Amerged&amp;type=pullrequests\" color=\"#124c43\"><u>reviewed 200+ PRs</u></link> and published module releases. Authored five official <link href=\"https://guides.micronaut.io/\" color=\"#124c43\"><u>Micronaut Guides</u></link> and co-authored a sixth, each with a runnable, tested application.",
+          "html": "Contributed 400+ merged Micronaut PRs (including AI-assisted and AI-generated work), <link href=\"https://github.com/search?q=org%3Amicronaut-projects+is%3Apublic+reviewed-by%3An0tl3ss+-author%3An0tl3ss+is%3Apr+is%3Amerged&amp;type=pullrequests\" color=\"#124c43\"><u>reviewed 200+ PRs</u></link> and published module releases. Authored five tested Micronaut guides, including <link href=\"https://guides.micronaut.io/micronaut-k8s-oci-gradle-java/\" color=\"#124c43\"><u>Kubernetes on OKE</u></link>, and co-authored a sixth.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -240,7 +180,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Moved to the security team to test the platform I had helped build: web and API penetration testing, authentication and authorization reviews, and remediation guidance for the Core Team.",
+          "html": "Tested authentication and authorization across the platform’s web applications and APIs. Worked with the Core Team on fixes.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -266,19 +206,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Built platform services in Java, Python and Go, including shared secrets management with HashiCorp Vault and MFA with recovery codes, email verification and TOTP.",
-          "size": 10.56,
-          "color": "#1f2a2e",
-          "x": 57.96,
-          "date": null,
-          "gap": 2.4,
-          "leading": 13.2,
-          "original_top": 615.36,
-          "original_lines": 2
-        },
-        {
-          "kind": "bullet",
-          "html": "Split a monolithic billing service into separate charging and pricing services in Java, improved OAuth2 single sign-on, and built the administrative billing API gateway and Go HTTP clients.",
+          "html": "Split billing into Java services for resource pricing and customer charges. Built the billing administration gateway and Go HTTP clients.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -286,6 +214,18 @@
           "gap": 2.4,
           "leading": 13.2,
           "original_top": 641.52,
+          "original_lines": 2
+        },
+        {
+          "kind": "bullet",
+          "html": "Built a Go service for sharing secrets through Vault. Implemented MFA and improved OAuth2 single sign-on.",
+          "size": 10.56,
+          "color": "#1f2a2e",
+          "x": 57.96,
+          "date": null,
+          "gap": 2.4,
+          "leading": 13.2,
+          "original_top": 615.36,
           "original_lines": 2
         },
         {
@@ -325,6 +265,42 @@
           "leading": 13.2,
           "original_top": 710.88,
           "original_lines": 2
+        },
+        {
+          "kind": "heading",
+          "html": "<b>Core Skills</b>",
+          "size": 12.48,
+          "color": "#1f2a2e",
+          "x": 42.96,
+          "date": null,
+          "gap": 7.0,
+          "leading": 15.6,
+          "original_top": 195.12,
+          "original_lines": 1
+        },
+        {
+          "kind": "label",
+          "html": "<b>Backend:</b> Java, Python, Go, SQL, Micronaut, Netty, GraalVM, PostgreSQL",
+          "size": 10.56,
+          "color": "#1f2a2e",
+          "x": 42.96,
+          "date": null,
+          "gap": 4.92,
+          "leading": 13.2,
+          "original_top": 215.04,
+          "original_lines": 1
+        },
+        {
+          "kind": "label",
+          "html": "<b>Cloud and operations:</b> OCI, AWS, Kubernetes, Terraform, OpenTelemetry, HashiCorp Vault",
+          "size": 10.56,
+          "color": "#1f2a2e",
+          "x": 42.96,
+          "date": null,
+          "gap": 0.84,
+          "leading": 13.2,
+          "original_top": 228.48,
+          "original_lines": 1
         },
         {
           "kind": "heading",
@@ -484,7 +460,7 @@
         },
         {
           "kind": "paragraph",
-          "html": "Software engineer with 8+ years building backend services and developer frameworks in Java, Python and Go. At Oracle since January 2022, promoted to IC4 in June 2024, delivering Micronaut observability, vector search and cloud integrations. Four years of asynchronous collaboration across Europe and the US.",
+          "html": "At Oracle, I added HTTP and gRPC tracing to Micronaut and integrated Kubernetes workload identity with Oracle Cloud. At Seven Bridges, I split billing into separate pricing and charging services and built a Go service for sharing credentials through Vault.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 48.0,
@@ -493,66 +469,6 @@
           "leading": 14.0,
           "original_top": 132.72,
           "original_lines": 8
-        },
-        {
-          "kind": "heading",
-          "html": "<b>Core Skills</b>",
-          "size": 12.96,
-          "color": "#1f2a2e",
-          "x": 48.0,
-          "date": null,
-          "gap": 9.36,
-          "leading": 16.2,
-          "original_top": 247.68,
-          "original_lines": 1
-        },
-        {
-          "kind": "label",
-          "html": "<b>Languages:</b> Java, Python, Go, SQL",
-          "size": 11.04,
-          "color": "#1f2a2e",
-          "x": 48.0,
-          "date": null,
-          "gap": 5.64,
-          "leading": 14.0,
-          "original_top": 269.52,
-          "original_lines": 1
-        },
-        {
-          "kind": "label",
-          "html": "<b>Backend and data:</b> Micronaut, Netty, GraalVM/GraalPy, REST, gRPC, JDBC/R2DBC, PostgreSQL, MySQL, Oracle Database, MongoDB, vector search",
-          "size": 11.04,
-          "color": "#1f2a2e",
-          "x": 48.0,
-          "date": null,
-          "gap": 0.96,
-          "leading": 14.0,
-          "original_top": 283.68,
-          "original_lines": 2
-        },
-        {
-          "kind": "label",
-          "html": "<b>Cloud and delivery:</b> OCI, AWS, GCP, Kubernetes, Docker, Terraform, GitHub Actions, GitLab CI, Gradle, Maven, release automation and integration testing",
-          "size": 11.04,
-          "color": "#1f2a2e",
-          "x": 48.0,
-          "date": null,
-          "gap": 1.2,
-          "leading": 14.0,
-          "original_top": 311.28,
-          "original_lines": 2
-        },
-        {
-          "kind": "label",
-          "html": "<b>Observability and security:</b> OpenTelemetry, Micrometer, Prometheus, CloudWatch, OAuth2/OIDC, SSO, MFA, HashiCorp Vault, TLS, application security and penetration testing",
-          "size": 11.04,
-          "color": "#1f2a2e",
-          "x": 48.0,
-          "date": null,
-          "gap": 0.96,
-          "leading": 14.0,
-          "original_top": 338.64,
-          "original_lines": 2
         },
         {
           "kind": "heading",
@@ -618,7 +534,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Implemented Micronaut <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/65\" color=\"#124c43\"><u>OpenTelemetry</u></link> support across HTTP and gRPC clients and servers: span lifecycle handling, tracing annotations, SDK configuration, tests and documentation.",
+          "html": "Instrumented Micronaut <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/65\" color=\"#124c43\"><u>HTTP and gRPC</u></link> clients and servers with OpenTelemetry spans, tracing annotations and SDK configuration. Added integration tests and documentation.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -630,7 +546,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Added <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/646\" color=\"#124c43\"><u>JDBC and R2DBC tracing,</u></link> <link href=\"https://github.com/micronaut-projects/micronaut-micrometer/pull/585\" color=\"#124c43\"><u>Micrometer Observation</u></link> and <link href=\"https://github.com/micronaut-projects/micronaut-micrometer/pull/848\" color=\"#124c43\"><u>Prometheus PushGateway</u></link> integrations, with configuration support, automated tests and documentation.",
+          "html": "Added database tracing for <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/646\" color=\"#124c43\"><u>JDBC</u></link> and <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/863\" color=\"#124c43\"><u>R2DBC</u></link>, integrated <link href=\"https://github.com/micronaut-projects/micronaut-micrometer/pull/585\" color=\"#124c43\"><u>Micrometer Observation</u></link>, and added support for the <link href=\"https://github.com/micronaut-projects/micronaut-micrometer/pull/848\" color=\"#124c43\"><u>Prometheus Pushgateway</u></link>.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -666,7 +582,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Fixed synchronous OCI retry back-off that could run on Netty event loops and stall server I/O; added regression tests for responsive health checks, retry behavior and exception preservation.",
+          "html": "Fixed an <link href=\"https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/1402\" color=\"#124c43\"><u>OCI retry</u></link> path that could block a Netty event loop after a read timeout. Regression tests check server responsiveness during backoff and preserve the original timeout cause.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -726,7 +642,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Improved GraalPy-based Python/Java interoperability in Micronaut: coroutine/Publisher adaptation and fully AI-generated <link href=\"https://github.com/micronaut-projects/micronaut-core/pull/13786\" color=\"#124c43\"><u>automatic dataclass introspection</u></link> with typed validation annotations.",
+          "html": "Adapted Python coroutines to reactive Java publishers in Micronaut. Contributed fully AI-generated <link href=\"https://github.com/micronaut-projects/micronaut-core/pull/13786\" color=\"#124c43\"><u>dataclass introspection</u></link> with typed validation annotations.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -738,7 +654,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Extended Micronaut Python project generation with service discovery, and <link href=\"https://pyronaut.io/\" color=\"#124c43\"><u>Pyronaut</u></link> tooling with async pytest, PyPI releases, multi-architecture containers and Windows PGO.",
+          "html": "Extended <link href=\"https://github.com/micronaut-projects/pyronaut/pull/397\" color=\"#124c43\"><u>Pyronaut packaging</u></link> to include Python runtime dependencies in Docker images, fat JARs and wheels. Added async pytest support and multi-architecture containers.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -771,18 +687,10 @@
           "leading": 14.0,
           "original_top": 54.72,
           "original_lines": 2
-        }
-      ]
-    },
-    {
-      "width": 595.2,
-      "height": 841.92,
-      "top": 40.56,
-      "left": 48.0,
-      "blocks": [
+        },
         {
           "kind": "topic",
-          "html": "<b>Published guides and sample applications</b>",
+          "html": "<b>Guides and developer tooling</b>",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 48.0,
@@ -805,56 +713,8 @@
           "original_lines": 2
         },
         {
-          "kind": "topic",
-          "html": "<b>Delivery automation and integration testing</b>",
-          "size": 11.04,
-          "color": "#1f2a2e",
-          "x": 48.0,
-          "date": null,
-          "gap": 6.0,
-          "leading": 14.0,
-          "original_top": 112.56,
-          "original_lines": 1
-        },
-        {
           "kind": "bullet",
-          "html": "Developed scheduled dependency-update and branch-synchronization tooling that opens review pull requests across Micronaut service and reference repositories, with OCI resource-principal authentication for repository access.",
-          "size": 11.04,
-          "color": "#1f2a2e",
-          "x": 63.0,
-          "date": null,
-          "gap": 2.4,
-          "leading": 14.0,
-          "original_top": 126.96,
-          "original_lines": 3
-        },
-        {
-          "kind": "bullet",
-          "html": "Implemented release pipelines with ticket checks, canary and template validation, tag promotion and rollback; added Maven/Gradle smoke tests and offline dependency-mirror validation with checksum and compliance reports.",
-          "size": 11.04,
-          "color": "#1f2a2e",
-          "x": 63.0,
-          "date": null,
-          "gap": 2.4,
-          "leading": 14.0,
-          "original_top": 168.24,
-          "original_lines": 3
-        },
-        {
-          "kind": "topic",
-          "html": "<b>Multi-cloud application tooling</b>",
-          "size": 11.04,
-          "color": "#1f2a2e",
-          "x": 48.0,
-          "date": null,
-          "gap": 6.0,
-          "leading": 14.0,
-          "original_top": 211.44,
-          "original_lines": 1
-        },
-        {
-          "kind": "bullet",
-          "html": "Extended <link href=\"https://graal.cloud/gdk/\" color=\"#124c43\"><u>Graal Development Kit</u></link> application and Kubernetes generation across AWS, OCI and GCP with cloud configuration, metrics/tracing and generated tests; contributed to an internal Micronaut service framework with metrics, request-ID propagation and Terraform references.",
+          "html": "Extended <link href=\"https://graal.cloud/gdk/\" color=\"#124c43\"><u>Graal Development Kit</u></link> application and Kubernetes generation across AWS, OCI and GCP. Added <link href=\"https://github.com/micronaut-projects/micronaut-starter/pull/1302\" color=\"#124c43\"><u>OCI DevOps project generation</u></link> and CI checks for generated applications.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -866,16 +726,24 @@
         },
         {
           "kind": "bullet",
-          "html": "Implemented Oracle Functions generation and GitLab CI stages for JDK 17/21, GraalVM native builds, guide testing, dependency scanning and artifact publishing; contributed <link href=\"https://github.com/micronaut-projects/micronaut-starter/pull/1302\" color=\"#124c43\"><u>OCI DevOps project generation</u></link> and recurring versioned releases.",
+          "html": "Built dependency-update automation and verified offline Maven and Gradle builds against a local artifact mirror.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
           "date": null,
           "gap": 2.4,
           "leading": 14.0,
-          "original_top": 266.88,
+          "original_top": 126.96,
           "original_lines": 3
-        },
+        }
+      ]
+    },
+    {
+      "width": 595.2,
+      "height": 841.92,
+      "top": 40.56,
+      "left": 48.0,
+      "blocks": [
         {
           "kind": "job",
           "html": "<b>Seven Bridges Genomics — Penetration Tester</b>",
@@ -885,14 +753,14 @@
           "date": "May 2021 – Dec 2021",
           "date_x": 463.9,
           "date_size": 9.6,
-          "gap": 6.36,
+          "gap": 0,
           "leading": 13.8,
           "original_top": 313.2,
           "original_lines": 1
         },
         {
           "kind": "bullet",
-          "html": "Moved to the security team to test the platform I had helped build: web and API penetration testing, authentication and authorization reviews, and remediation guidance for the Core Team.",
+          "html": "Tested authentication and authorization across the platform’s web applications and APIs. Worked with the Core Team on fixes.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -930,6 +798,18 @@
         },
         {
           "kind": "bullet",
+          "html": "Split billing into Java services for resource pricing and customer charges. Built the billing administration gateway and Go HTTP clients.",
+          "size": 11.04,
+          "color": "#1f2a2e",
+          "x": 63.0,
+          "date": null,
+          "gap": 2.4,
+          "leading": 14.0,
+          "original_top": 445.92,
+          "original_lines": 2
+        },
+        {
+          "kind": "bullet",
           "html": "Built a secrets management service in Go with HashiCorp Vault, allowing users to store sensitive credentials and organization administrators to share secrets with authorized members.",
           "size": 11.04,
           "color": "#1f2a2e",
@@ -942,7 +822,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Implemented MFA recovery codes, email verification and time-based one-time passwords in a Python service; improved OAuth2 single sign-on flows for custom applications in Java and Python.",
+          "html": "Implemented MFA recovery codes, email verification and time-based one-time passwords in Python. Improved OAuth2 single sign-on for custom Java and Python applications.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -950,18 +830,6 @@
           "gap": 2.4,
           "leading": 14.0,
           "original_top": 417.84,
-          "original_lines": 2
-        },
-        {
-          "kind": "bullet",
-          "html": "Split a large billing service into smaller Java services for customer charges and platform resource pricing; developed the administrative billing API gateway and HTTP clients in Go.",
-          "size": 11.04,
-          "color": "#1f2a2e",
-          "x": 63.0,
-          "date": null,
-          "gap": 2.4,
-          "leading": 14.0,
-          "original_top": 445.92,
           "original_lines": 2
         },
         {
@@ -989,18 +857,6 @@
           "original_lines": 2
         },
         {
-          "kind": "bullet",
-          "html": "Stack: Django, Jersey, Jackson, Guice, JDBI, Hibernate and go-chi across backend services and platform integrations.",
-          "size": 11.04,
-          "color": "#1f2a2e",
-          "x": 63.0,
-          "date": null,
-          "gap": 2.4,
-          "leading": 14.0,
-          "original_top": 529.92,
-          "original_lines": 2
-        },
-        {
           "kind": "job",
           "html": "<b>Seven Bridges Genomics — Python Software Engineer Intern</b>",
           "size": 11.04,
@@ -1016,7 +872,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Built a Python user management service for registration and authentication, and an API gateway for frontend clients using Tornado, SQLAlchemy and PostgreSQL; worked with REST APIs, Git and a microservices architecture.",
+          "html": "Built a Python registration and authentication service, plus an API gateway for frontend clients using Tornado, SQLAlchemy and PostgreSQL.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -1024,6 +880,66 @@
           "gap": 2.4,
           "leading": 14.0,
           "original_top": 577.68,
+          "original_lines": 2
+        },
+        {
+          "kind": "heading",
+          "html": "<b>Core Skills</b>",
+          "size": 12.96,
+          "color": "#1f2a2e",
+          "x": 48.0,
+          "date": null,
+          "gap": 9.36,
+          "leading": 16.2,
+          "original_top": 247.68,
+          "original_lines": 1
+        },
+        {
+          "kind": "label",
+          "html": "<b>Languages:</b> Java, Python, Go, SQL",
+          "size": 11.04,
+          "color": "#1f2a2e",
+          "x": 48.0,
+          "date": null,
+          "gap": 5.64,
+          "leading": 14.0,
+          "original_top": 269.52,
+          "original_lines": 1
+        },
+        {
+          "kind": "label",
+          "html": "<b>Frameworks and data:</b> Micronaut, Netty, GraalVM/GraalPy, gRPC, PostgreSQL, Oracle Database, MySQL, MongoDB",
+          "size": 11.04,
+          "color": "#1f2a2e",
+          "x": 48.0,
+          "date": null,
+          "gap": 0.96,
+          "leading": 14.0,
+          "original_top": 283.68,
+          "original_lines": 2
+        },
+        {
+          "kind": "label",
+          "html": "<b>Cloud and delivery:</b> OCI, AWS, GCP, Kubernetes, Docker, Terraform, GitHub Actions, GitLab CI, Gradle, Maven",
+          "size": 11.04,
+          "color": "#1f2a2e",
+          "x": 48.0,
+          "date": null,
+          "gap": 1.2,
+          "leading": 14.0,
+          "original_top": 311.28,
+          "original_lines": 2
+        },
+        {
+          "kind": "label",
+          "html": "<b>Observability and security:</b> OpenTelemetry, Micrometer, Prometheus, OAuth2/OIDC, MFA, HashiCorp Vault, TLS",
+          "size": 11.04,
+          "color": "#1f2a2e",
+          "x": 48.0,
+          "date": null,
+          "gap": 0.96,
+          "leading": 14.0,
+          "original_top": 338.64,
           "original_lines": 2
         },
         {

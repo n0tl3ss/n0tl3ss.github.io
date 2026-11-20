@@ -24,7 +24,7 @@ Only `site/` is copied to `dist/`. The Apps Script backend, tests, setup instruc
 ## Contents
 
 - Experience at Oracle and Seven Bridges Genomics, education and technical skills.
-- Framework and cloud feature contributions, including Micronaut Data vector search (AI-assisted), OpenTelemetry, OKE Workload Identity, OCI Certificates, Micrometer Observation, CloudWatch logging and Python dataclasses (fully AI-generated implementation), with dated public PR links. Additional links cover Prometheus Pushgateway, JDBC tracing, OCI raw metrics and OCI DevOps project generation.
+- Featured contributions cover OpenTelemetry tracing, OKE Workload Identity and a fix for OCI retries blocking Netty event loops. Additional work includes Micronaut Data vector search (AI-assisted), Python dataclass introspection (fully AI-generated), OCI Certificates, Micrometer Observation and CloudWatch logging.
 - Apple web server security acknowledgment (November 2025), with the source link and a saved screenshot of the relevant section, and the Anthropic Cyber Verification Program approval (Defense Access, October 2026).
 - Six published Micronaut guides with direct links and attribution.
 - One-page and detailed PDF downloads. These web copies use city/country instead of a street address and omit the phone number. Their source and renderer live in [cv/](cv/README.md).
@@ -38,7 +38,7 @@ Only `site/` is copied to `dist/`. The Apps Script backend, tests, setup instruc
 
 English is the default at `/`; the complete Serbian Latin version is at `/sr/`. The EN / SR links work without JavaScript and do not redirect based on browser language. Both versions have their own canonical and reciprocal `hreflang` links, and both homepages appear in the sitemap. Keep profile content, public contribution links and employment dates in sync when editing the two HTML versions. Shared CSS, theme/contact scripts, logos and PDFs stay in `site/`; Serbian pages reference those assets with relative paths.
 
-Both languages have a privacy page. Theme controls, contact status messages and reCAPTCHA are localized. Downloadable CV PDFs and the external Apps Script receipt page remain in English; the Serbian download section labels the PDFs accordingly.
+Both languages have a privacy page. The form sends its language to Apps Script so that receipts and return links match the page used. Public receipts use the Outlook address in the CV. The Google notification address stays in Script Properties. Deploy changes to `Code.gs` separately from GitHub Pages. Both downloadable CVs are in English.
 
 The canonical domain is `https://nmikic.rs/`. Loopia holds the registration, Cloudflare hosts DNS, and GitHub Pages hosts the site and manages its HTTPS certificate. Keep `www` and the old GitHub Pages URL redirecting to the canonical domain. [Domain setup and cutover instructions](deployment/DOMAIN.md) cover DNSSEC, ownership verification, HTTPS and contact settings.
 

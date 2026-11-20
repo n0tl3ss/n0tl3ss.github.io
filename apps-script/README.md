@@ -10,7 +10,7 @@ Create one standalone Apps Script project, add `Code.gs` and `appsscript.json`, 
 - `RECAPTCHA_PROJECT_ID`: Google Cloud project ID that owns the reCAPTCHA key.
 - `RECAPTCHA_SITE_KEY`: Google Cloud Fraud Defense Web checkbox key ID. Keep the same value on the server even though the frontend site key is public.
 - `SPREADSHEET_ID`: ID of the private spreadsheet that receives messages.
-- `NOTIFY_EMAIL`: fixed recipient address for notifications, normally `n0t_l3ss@outlook.com`.
+- `NOTIFY_EMAIL`: private recipient address for notification email.
 - `SITE_URL`: fixed HTTPS URL for the public CV site and return link.
 - `ALLOWED_HOSTNAME`: exact hostname returned by reCAPTCHA, initially `n0tl3ss.github.io`.
 
@@ -28,13 +28,13 @@ The accepted-submission cap does not limit reCAPTCHA assessment traffic from rej
 
 Runtime requires a tab named `Messages` with the exact headers written by `setup()`. `setup()` is the only path that creates the tab. Requests fail closed if the tab or schema is missing or changed; runtime never falls back to the first sheet.
 
-Keep the spreadsheet private. The notification address may also be visible in the site's public mail link, but `NOTIFY_EMAIL` remains a fixed server-controlled recipient and the form never accepts a visitor-supplied recipient. Never put `RECAPTCHA_API_KEY` or `SPREADSHEET_ID` in the public frontend. The endpoint validates field lengths, email syntax, UUID request IDs, the honeypot, reCAPTCHA validity/hostname, and formula-like leading characters before writing values to Sheets.
+Keep the spreadsheet private. Only notification delivery uses `NOTIFY_EMAIL`. Public receipts link to the CV contact address, `n0t_l3ss@outlook.com`. Serbian submissions (`lang=sr`) return to `/sr/#contact`; English and legacy submissions return to `/#contact` on the configured site. Never put `RECAPTCHA_API_KEY` or `SPREADSHEET_ID` in the public frontend. The endpoint validates field lengths, email syntax, UUID request IDs, the honeypot, reCAPTCHA validity/hostname, and formula-like leading characters before writing values to Sheets.
 
 ## Diagnostics and code updates
 
 For a live `Unable to send` response, run `diagnoseSetup()` from the editor after saving the current source. It validates configuration syntax and reads the Sheet schema without contacting reCAPTCHA, adding rows or sending email. `CONFIG_AND_SHEET_OK` confirms only those checks; it does not validate API credentials or CAPTCHA verification. Do not use a fabricated token to diagnose API configuration: its rejection is ambiguous. Deploy the saved code as a new version of the existing web app, then submit the real form with a fresh CAPTCHA token and inspect the latest `doPost` execution. Failure logs contain only the stage and a controlled diagnostic code, never raw provider errors, credentials, tokens or message contents. See the [Serbian troubleshooting steps](../deployment/CONTACT-SR.md#ako-odgovor-glasi-unable-to-send).
 
-To apply code changes to the existing public `/exec` URL, edit its deployment under **Deploy → Manage deployments**, choose a **New version**, and deploy. Saving the source alone does not change the published version. Script Properties remain server-side; `NOTIFY_EMAIL` also controls the public response page's direct-email link.
+To apply code changes to the existing public `/exec` URL, edit its deployment under **Deploy → Manage deployments**, choose a **New version**, and deploy. Saving the source alone does not change the published version. The bilingual receipt update needs only the new `Code.gs`. Existing Script Properties, permissions, spreadsheet schema and deployment URL can be reused.
 
 ## Local tests
 
