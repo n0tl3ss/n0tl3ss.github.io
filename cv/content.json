@@ -56,7 +56,7 @@
         },
         {
           "kind": "paragraph",
-          "html": "Software engineer with 8+ years building backend microservices, REST APIs and developer frameworks in Java, Python and Go, nearly five of them working asynchronously with teams across Europe and the US. At Oracle, I added HTTP and gRPC tracing to Micronaut and integrated Kubernetes workload identity with Oracle Cloud. At Seven Bridges, I split billing into separate pricing and charging services and built a Go service for sharing credentials through Vault.",
+          "html": "Software engineer with 8+ years building Java, Python and Go services, APIs and frameworks. Nearly five years collaborating asynchronously across Europe and the US. At Oracle I work on Micronaut and OCI. At Seven Bridges I built billing services and a Go service for sharing credentials through Vault.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 42.96,
@@ -142,6 +142,18 @@
         },
         {
           "kind": "bullet",
+          "html": "Wrote OpenRewrite recipes to migrate Maven and Gradle builds, CI and container images to JDK 25. Upgraded two reference services.",
+          "size": 10.56,
+          "color": "#1f2a2e",
+          "x": 57.96,
+          "date": null,
+          "gap": 2.4,
+          "leading": 13.2,
+          "original_top": 359.28,
+          "original_lines": 3
+        },
+        {
+          "kind": "bullet",
           "html": "Contributed fully AI-generated <link href=\"https://github.com/micronaut-projects/micronaut-core/pull/13786\" color=\"#124c43\"><u>GraalPy dataclass introspection</u></link>. Added coroutine adaptation for Python/Java interoperability and extended Kubernetes generation across AWS, OCI and GCP in the <link href=\"https://graal.cloud/gdk/\" color=\"#124c43\"><u>Graal Development Kit</u></link>.",
           "size": 10.56,
           "color": "#1f2a2e",
@@ -180,7 +192,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Tested authentication and authorization across the platform’s web applications and APIs. Worked with the Core Team on fixes.",
+          "html": "Tested web and API authentication and authorization. Worked with the Core Team on fixes.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -206,7 +218,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Split billing into Java services for resource pricing and customer charges. Built the billing administration gateway and Go HTTP clients.",
+          "html": "Split pricing and charging into Java services that applied customer-specific rates to RabbitMQ egress events in near real time.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -218,7 +230,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Built a Go service for sharing secrets through Vault. Implemented MFA and improved OAuth2 single sign-on.",
+          "html": "Built the platform’s MFA service from scratch and integrated TOTP, email verification and recovery codes across the product.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -230,7 +242,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Automated shutdown of idle AWS EC2 test environments and built a notification service for targeted and platform-wide messages (Go, MongoDB).",
+          "html": "Automated idle EC2 shutdowns and built a Go/MongoDB notification service for targeted or platform-wide messages.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -256,7 +268,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Built a Python user management service for registration and authentication, plus a frontend API gateway with Tornado, SQLAlchemy and PostgreSQL.",
+          "html": "Built Python registration and authentication services and a frontend API gateway using Tornado, SQLAlchemy and PostgreSQL.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -472,7 +484,7 @@
         },
         {
           "kind": "paragraph",
-          "html": "Software engineer with 8+ years building backend microservices, REST APIs and developer frameworks in Java, Python and Go, nearly five of them working asynchronously with teams across Europe and the US. At Oracle, I added HTTP and gRPC tracing to Micronaut and integrated Kubernetes workload identity with Oracle Cloud. At Seven Bridges, I split billing into separate pricing and charging services and built a Go service for sharing credentials through Vault.",
+          "html": "Software engineer with 8+ years building backend microservices, REST APIs and developer frameworks in Java, Python and Go, nearly five of them working asynchronously with teams across Europe and the US. At Oracle, I added HTTP and gRPC tracing to Micronaut and integrated Kubernetes workload identity with Oracle Cloud. At Seven Bridges, I worked on usage-based billing and built a Go service for sharing credentials through Vault.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 48.0,
@@ -569,6 +581,18 @@
           "original_lines": 2
         },
         {
+          "kind": "bullet",
+          "html": "Added annotations for service names and per-endpoint HTTP metric dimensions. Extended a reference service’s Grafana dashboard with worker metrics and workflow queue depth.",
+          "size": 11.04,
+          "color": "#1f2a2e",
+          "x": 63.0,
+          "date": null,
+          "gap": 2.4,
+          "leading": 14.0,
+          "original_top": 555.84,
+          "original_lines": 2
+        },
+        {
           "kind": "topic",
           "html": "<b>Cloud SDKs and service reliability</b>",
           "size": 11.04,
@@ -595,6 +619,18 @@
         {
           "kind": "bullet",
           "html": "Fixed an <link href=\"https://github.com/micronaut-projects/micronaut-oracle-cloud/pull/1402\" color=\"#124c43\"><u>OCI retry</u></link> path that could block a Netty event loop after a read timeout. Regression tests check server responsiveness during backoff and preserve the original timeout cause.",
+          "size": 11.04,
+          "color": "#1f2a2e",
+          "x": 63.0,
+          "date": null,
+          "gap": 2.4,
+          "leading": 14.0,
+          "original_top": 628.08,
+          "original_lines": 2
+        },
+        {
+          "kind": "bullet",
+          "html": "Extended OpenAPI code generation in Gradle to support OCI Java SDK v3 clients alongside Micronaut clients. Added SDK v2 and v3 client modules to a reference application.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -702,12 +738,44 @@
         },
         {
           "kind": "topic",
-          "html": "<b>Guides and developer tooling</b>",
+          "html": "<b>Java platform migrations</b>",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 48.0,
           "date": null,
           "gap": 6.0,
+          "leading": 14.0,
+          "original_top": 700.32,
+          "original_lines": 2
+        },
+        {
+          "kind": "bullet",
+          "html": "Built and tested OpenRewrite recipes for JDK 25 across Maven and Gradle builds, CI toolchains and container images. Upgraded two reference services to JDK 25.",
+          "size": 11.04,
+          "color": "#1f2a2e",
+          "x": 63.0,
+          "date": null,
+          "gap": 2.4,
+          "leading": 14.0,
+          "original_top": 555.84,
+          "original_lines": 2
+        }
+      ]
+    },
+    {
+      "width": 595.2,
+      "height": 841.92,
+      "top": 40.56,
+      "left": 48.0,
+      "blocks": [
+        {
+          "kind": "topic",
+          "html": "<b>Oracle · Developer guides and delivery tooling</b>",
+          "size": 11.04,
+          "color": "#1f2a2e",
+          "x": 48.0,
+          "date": null,
+          "gap": 0,
           "leading": 14.0,
           "original_top": 40.56,
           "original_lines": 1
@@ -738,24 +806,28 @@
         },
         {
           "kind": "bullet",
-          "html": "Built dependency-update automation and verified offline Maven and Gradle builds against a local artifact mirror.",
+          "html": "Automated dependency updates and release tagging in GitLab CI. Scheduled jobs opened or reused update PRs. CI tested the requested commit and linked its pipeline back to the PR.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
           "date": null,
           "gap": 2.4,
           "leading": 14.0,
-          "original_top": 126.96,
+          "original_top": 225.6,
           "original_lines": 3
-        }
-      ]
-    },
-    {
-      "width": 595.2,
-      "height": 841.92,
-      "top": 40.56,
-      "left": 48.0,
-      "blocks": [
+        },
+        {
+          "kind": "bullet",
+          "html": "Configured parallel smoke tests for API, worker, data-access and canary modules in Maven and Gradle. Verified offline builds against a local dependency mirror.",
+          "size": 11.04,
+          "color": "#1f2a2e",
+          "x": 63.0,
+          "date": null,
+          "gap": 2.4,
+          "leading": 14.0,
+          "original_top": 225.6,
+          "original_lines": 3
+        },
         {
           "kind": "job",
           "html": "<b>Seven Bridges Genomics — Penetration Tester</b>",
@@ -765,7 +837,7 @@
           "date": "May 2021 – Dec 2021",
           "date_x": 463.9,
           "date_size": 9.6,
-          "gap": 0,
+          "gap": 8.52,
           "leading": 13.8,
           "original_top": 313.2,
           "original_lines": 1
@@ -810,7 +882,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Split billing into Java services for resource pricing and customer charges. Built the billing administration gateway and Go HTTP clients.",
+          "html": "Split pricing and charging into Java services. Charging consumed egress events from RabbitMQ and applied customer-specific rates in near real time. Pricing notified charging when a cached rate card changed. Built the billing administration gateway and Go HTTP clients.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -834,7 +906,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Implemented MFA recovery codes, email verification and time-based one-time passwords in Python. Improved OAuth2 single sign-on for custom Java and Python applications.",
+          "html": "Built the MFA service in Python from scratch and integrated it across the platform. Users could choose TOTP or email verification and regain access with recovery codes. Improved OAuth2 single sign-on for Java and Python applications.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
