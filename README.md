@@ -95,7 +95,7 @@ git push origin "$(git subtree split --prefix=site)":refs/heads/gh-pages
 
 The subtree split preserves site history. GitHub's custom-domain settings can also add commits directly to `gh-pages`; if that makes the push non-fast-forward, preserve those commits using the publishing procedure in [DOMAIN.md](deployment/DOMAIN.md#publishing-after-a-pages-settings-commit). Never force-push over them. Pushing the source branch alone does not deploy. Check the Pages build and the public URL after updating `gh-pages`.
 
-This branch-based deployment uses the current GitHub login without requiring additional OAuth workflow permissions. `deployment/github-actions/` contains inactive templates for a future switch to custom Actions. Their publish template requires live contact configuration; the current branch deployment permits the explicitly disabled form and email fallback.
+This branch-based deployment uses the current GitHub login without requiring additional OAuth workflow permissions. `.github/workflows/check.yml` runs the tests and the build on every push and pull request; it does not deploy. `deployment/github-actions/` keeps an inactive publish template for a future switch to custom Actions. That template requires live contact configuration; the current branch deployment permits the explicitly disabled form and email fallback.
 
 To activate the form later, connect the services above, run `node scripts/check-live-config.mjs`, then deploy and verify one real message reaches both the Sheet and the owner's email.
 
