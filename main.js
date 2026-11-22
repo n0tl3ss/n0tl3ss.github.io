@@ -149,3 +149,9 @@ window.addEventListener('themechange', () => {
   requireChallenge('Please complete the spam check before sending.');
   renderRecaptcha();
 });
+
+// Closed <details> do not print, so Print / Save as PDF would drop the extra projects.
+window.addEventListener('beforeprint', () => {
+  const more = document.querySelector('.additional-projects');
+  if (more) more.open = true;
+});
