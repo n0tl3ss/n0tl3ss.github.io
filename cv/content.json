@@ -106,7 +106,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Added OpenTelemetry tracing for <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/65\" color=\"#124c43\"><u>HTTP and gRPC</u></link> clients and servers, then added database tracing for <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/646\" color=\"#124c43\"><u>JDBC</u></link> and <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/863\" color=\"#124c43\"><u>R2DBC</u></link>.",
+          "html": "Added OpenTelemetry tracing for <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/65\" color=\"#124c43\"><u>HTTP and gRPC</u></link> clients and servers, plus <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/646\" color=\"#124c43\"><u>JDBC</u></link> and <link href=\"https://github.com/micronaut-projects/micronaut-tracing/pull/863\" color=\"#124c43\"><u>R2DBC</u></link>.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -143,6 +143,18 @@
         {
           "kind": "bullet",
           "html": "Wrote OpenRewrite recipes to migrate Maven and Gradle builds, CI and container images to JDK 25. Upgraded two reference services.",
+          "size": 10.56,
+          "color": "#1f2a2e",
+          "x": 57.96,
+          "date": null,
+          "gap": 2.4,
+          "leading": 13.2,
+          "original_top": 359.28,
+          "original_lines": 3
+        },
+        {
+          "kind": "bullet",
+          "html": "Connected OCI Build to GitLab CI to run container-backed integration tests with Testcontainers and Micronaut Test Resources at the commit under review.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -242,7 +254,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Automated idle EC2 shutdowns and built a Go/MongoDB notification service for targeted or platform-wide messages.",
+          "html": "Automated idle EC2 shutdowns and built a Go/MongoDB service for targeted and platform-wide notices.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -818,7 +830,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Automated weekly dependency updates and major/minor branch synchronization in GitLab CI. CI tested the requested commit and posted its pipeline link on the pull request.",
+          "html": "Routed JDBC tests from OCI Build to GitLab CI, where Testcontainers and Micronaut Test Resources could start test databases. Linked the pipeline to the pull request for the exact commit tested.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -830,7 +842,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Configured parallel smoke tests for API, worker, data-access and canary modules in Maven and Gradle. Verified offline builds against a local dependency mirror.",
+          "html": "Added native checks and parallel Maven and Gradle smoke tests for API, worker, data-access and canary modules. Automated weekly updates and major/minor branch sync. Verified offline builds with a local mirror.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
