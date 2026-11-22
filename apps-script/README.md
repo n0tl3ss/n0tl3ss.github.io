@@ -12,7 +12,7 @@ Create one standalone Apps Script project, add `Code.gs` and `appsscript.json`, 
 - `SPREADSHEET_ID`: ID of the private spreadsheet that receives messages.
 - `NOTIFY_EMAIL`: private recipient address for notification email.
 - `SITE_URL`: fixed HTTPS URL for the public CV site and return link.
-- `ALLOWED_HOSTNAME`: exact hostname returned by reCAPTCHA, initially `n0tl3ss.github.io`.
+- `ALLOWED_HOSTNAME`: exact hostname returned by reCAPTCHA: `nmikic.rs`.
 
 Create a Google Cloud Fraud Defense Web checkbox key for the website and allow exactly these website domains: `n0tl3ss.github.io` and `nmikic.rs` (add `www.nmikic.rs` too if that hostname will serve the site). Keep domain verification enabled. The site key is public; the API key belongs only in Script Properties. For the API key, choose API restrictions → Restrict key → reCAPTCHA Enterprise API (`recaptchaenterprise.googleapis.com`), and leave application restrictions unset: Apps Script calls Google server-to-server and has no browser HTTP referrer to authorize. Google creates or enables the required Cloud project and APIs when creating a key through the Fraud Defense console. The first 10,000 assessments per organization per calendar month are free; billing is required to continue beyond that limit.
 

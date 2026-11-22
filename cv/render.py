@@ -25,6 +25,7 @@ def render(model, output):
         canvas = Canvas(str(path), pagesize=(pages[0]['width'], pages[0]['height']), pageCompression=1)
         canvas.setTitle(f'Nemanja Mikić — {"One-page" if kind == "one" else "Detailed"} CV')
         canvas.setAuthor('Nemanja Mikić')
+        canvas.setCreator('Nemanja Mikić')
         canvas.setSubject('Software engineering experience, qualifications and public contributions')
         for page_index, page in enumerate(pages, 1):
             width, height, left = page['width'], page['height'], page['left']
@@ -42,12 +43,13 @@ def render(model, output):
                     available = block['date_x'] - block['x'] - 6
                 paragraph = Paragraph(block['html'], style)
                 _, h = paragraph.wrap(available, height)
-                paragraph.drawOn(canvas, block['x'], height - top - h)
                 baseline = height - top - size
                 if block['kind'] == 'bullet':
+                    # Drawn before its text so extracted text reads "• item", not "item •".
                     canvas.setFillColor(HexColor(block['color']))
                     canvas.setFont('Calibri', size)
                     canvas.drawString(left + 5, baseline, '•')
+                paragraph.drawOn(canvas, block['x'], height - top - h)
                 if block.get('date'):
                     canvas.setFont('Calibri', block['date_size'])
                     canvas.setFillColor(HexColor('#5d685f'))
