@@ -738,7 +738,7 @@
         },
         {
           "kind": "topic",
-          "html": "<b>Java platform migrations</b>",
+          "html": "<b>Java migrations and release engineering</b>",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 48.0,
@@ -751,6 +751,18 @@
         {
           "kind": "bullet",
           "html": "Built and tested OpenRewrite recipes for JDK 25 across Maven and Gradle builds, CI toolchains and container images. Upgraded two reference services to JDK 25.",
+          "size": 11.04,
+          "color": "#1f2a2e",
+          "x": 63.0,
+          "date": null,
+          "gap": 2.4,
+          "leading": 14.0,
+          "original_top": 555.84,
+          "original_lines": 2
+        },
+        {
+          "kind": "bullet",
+          "html": "Built a release pipeline that checked change approvals, verified generated templates with a canary and Maven, and restored release tags if validation failed.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -806,7 +818,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Automated dependency updates and release tagging in GitLab CI. Scheduled jobs opened or reused update PRs. CI tested the requested commit and linked its pipeline back to the PR.",
+          "html": "Automated weekly dependency updates and major/minor branch synchronization in GitLab CI. CI tested the requested commit and posted its pipeline link on the pull request.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
