@@ -142,7 +142,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Wrote OpenRewrite recipes to migrate Maven and Gradle builds, CI and container images to JDK 25. Upgraded two reference services.",
+          "html": "Wrote OpenRewrite recipes to migrate Maven and Gradle builds, CI and container images to JDK 25. Upgraded two reference services. Wrote Terraform reference deployments for an internal Java service framework.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -154,7 +154,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Connected OCI Build to GitLab CI to run container-backed integration tests with Testcontainers and Micronaut Test Resources at the commit under review.",
+          "html": "Connected our internal build system to GitLab CI to run container-backed integration tests with Testcontainers and Micronaut Test Resources at the commit under review.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -242,7 +242,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Built the platform’s MFA service from scratch and integrated TOTP, email verification and recovery codes across the product.",
+          "html": "Built the platform’s MFA service from scratch and integrated TOTP, email verification and recovery codes across the product. Improved OAuth2 single sign-on for Java and Python applications.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -774,7 +774,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Built a release pipeline that checked change approvals, verified generated templates with a canary and Maven, and restored release tags if validation failed.",
+          "html": "Built a release pipeline that checked change approvals, verified generated templates with a canary application and Maven, and restored release tags if validation failed.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -830,7 +830,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Routed JDBC tests from OCI Build to GitLab CI, where Testcontainers and Micronaut Test Resources could start test databases. Linked the pipeline to the pull request for the exact commit tested.",
+          "html": "Routed JDBC tests from our internal build system to GitLab CI, where Testcontainers and Micronaut Test Resources could start test databases. Linked the pipeline to the pull request for the exact commit tested.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -842,7 +842,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Added native checks and parallel Maven and Gradle smoke tests for API, worker, data-access and canary modules. Automated weekly updates and major/minor branch sync. Verified offline builds with a local mirror.",
+          "html": "Added native checks and parallel Maven and Gradle smoke tests for API, worker, data-access and canary modules. Automated weekly updates and major/minor branch sync. Verified offline builds with a local mirror. Wrote Terraform reference deployments for an internal Java service framework.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
