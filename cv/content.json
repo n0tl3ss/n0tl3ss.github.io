@@ -142,7 +142,17 @@
         },
         {
           "kind": "bullet",
-          "html": "Wrote OpenRewrite recipes to migrate Maven and Gradle builds, CI and container images to JDK 25. Upgraded two reference services. Wrote Terraform reference deployments for an internal Java service framework.",
+          "html": "Updated Terraform modules for OCI service logs, access policies and canary checks.",
+          "size": 10.56,
+          "color": "#1f2a2e",
+          "x": 57.96,
+          "date": null,
+          "gap": 2.4,
+          "leading": 13.2
+        },
+        {
+          "kind": "bullet",
+          "html": "Wrote JDK 25 OpenRewrite recipes for Maven, Gradle, CI and container images. Migrated two reference services.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -242,7 +252,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Built the platform’s MFA service from scratch and integrated TOTP, email verification and recovery codes across the product. Improved OAuth2 single sign-on for Java and Python applications.",
+          "html": "Built the platform’s MFA service from scratch and integrated TOTP, email verification and recovery codes.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 57.96,
@@ -251,6 +261,16 @@
           "leading": 13.2,
           "original_top": 615.36,
           "original_lines": 2
+        },
+        {
+          "kind": "bullet",
+          "html": "Extended <link href=\"https://docs.sevenbridges.com/docs/integrate-your-web-application\" color=\"#124c43\"><u>OAuth 2.0</u></link> support so developers could build web apps that call the Seven Bridges API on users’ behalf.",
+          "size": 10.56,
+          "color": "#1f2a2e",
+          "x": 57.96,
+          "date": null,
+          "gap": 2.4,
+          "leading": 13.2
         },
         {
           "kind": "bullet",
@@ -842,7 +862,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Added native checks and parallel Maven and Gradle smoke tests for API, worker, data-access and canary modules. Automated weekly updates and major/minor branch sync. Verified offline builds with a local mirror. Wrote Terraform reference deployments for an internal Java service framework.",
+          "html": "Added native checks and parallel Maven and Gradle smoke tests for API, worker, data-access and canary modules. Automated weekly updates and major/minor branch sync. Verified offline builds with a local mirror.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -851,6 +871,16 @@
           "leading": 14.0,
           "original_top": 225.6,
           "original_lines": 3
+        },
+        {
+          "kind": "bullet",
+          "html": "Updated Terraform modules for logging, access policies and canary checks in an OCI reference deployment.",
+          "size": 11.04,
+          "color": "#1f2a2e",
+          "x": 63.0,
+          "date": null,
+          "gap": 2.4,
+          "leading": 14.0
         },
         {
           "kind": "job",
@@ -868,7 +898,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Tested authentication and authorization across the platform’s web applications and APIs. Worked with the Core Team on fixes.",
+          "html": "Tested web and API authentication and authorization. Worked with the Core Team on fixes.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -930,7 +960,7 @@
         },
         {
           "kind": "bullet",
-          "html": "Built the MFA service in Python from scratch and integrated it across the platform. Users could choose TOTP or email verification and regain access with recovery codes. Improved OAuth2 single sign-on for Java and Python applications.",
+          "html": "Built the MFA service in Python from scratch and integrated it across the platform. Users could choose TOTP or email verification and regain access with recovery codes.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
@@ -942,7 +972,17 @@
         },
         {
           "kind": "bullet",
-          "html": "Implemented a Go service that monitors AWS EC2 test environments and shuts them down after 90 minutes without user activity.",
+          "html": "Extended the platform’s <link href=\"https://docs.sevenbridges.com/docs/integrate-your-web-application\" color=\"#124c43\"><u>OAuth 2.0</u></link> authorization server so developers could build web applications that call the Seven Bridges API on behalf of users.",
+          "size": 11.04,
+          "color": "#1f2a2e",
+          "x": 63.0,
+          "date": null,
+          "gap": 2.4,
+          "leading": 14.0
+        },
+        {
+          "kind": "bullet",
+          "html": "Built a Go service that shut down AWS EC2 test environments after 90 minutes of user inactivity.",
           "size": 11.04,
           "color": "#1f2a2e",
           "x": 63.0,
