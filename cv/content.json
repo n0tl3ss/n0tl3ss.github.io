@@ -56,7 +56,7 @@
         },
         {
           "kind": "paragraph",
-          "html": "Software engineer with 8+ years building Java, Python and Go services, APIs and frameworks. Nearly five years collaborating asynchronously across Europe and the US. At Oracle I added HTTP and gRPC tracing to Micronaut. At Seven Bridges I built billing services and a Go service for sharing credentials through Vault.",
+          "html": "Software engineer with 8+ years building Java, Python and Go services, APIs and frameworks. At Oracle I added HTTP and gRPC tracing to Micronaut, working with a team spread across Europe and the US. At Seven Bridges I built billing services and a Go service for sharing credentials through Vault.",
           "size": 10.56,
           "color": "#1f2a2e",
           "x": 42.96,
